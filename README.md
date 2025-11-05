@@ -82,18 +82,19 @@ source .venv-py311/bin/activate
 python -m pytest
 ```
 
-## Project Layout
+## Project Layout & Agent Roles
 
-- `config/` – Runtime configuration for agents and workflows
-- `src/` – Application code
-  - `agents/` – Agent implementations (researcher, analyst, orchestrator)
-  - `services/` – External service clients (BRENDA API)
-  - `workflows/` – Workflow orchestration logic
-  - `core/` – Shared configuration utilities
-  - `utils/` – Logging and helpers
-- `tests/` – Pytest-based unit tests
-- `docs/` – Architecture and operational documentation
-- `scripts/` – Automation scripts for deployment & operations
+- `config/` – Runtime configuration for agents and workflows (`settings.yaml`, `agents.yaml`, `workflows.yaml`).
+- `src/` – Application code:
+  - `agents/researcher.py` – Proposes exploration paths, identifies knowledge gaps, and drafts intermediate hypotheses on top of the BRENDA facts. Uses the LLM to reason about new angles.
+  - `agents/analyst.py` – Validates and enriches the researcher’s ideas by querying the structured database, summarising kinetics/inhibitors, and checking for inconsistencies.
+  - `agents/orchestrator.py` – Coordinates the researcher/analyst loop, applies retry/blending policies, and determines when a report is ready.
+  - `workflows/brenda_enzyme_insight.py` – High-level workflow definition that wires the agent trio, settings, and persistence hooks (see `crew/workflow.py` for orchestration scaffolding).
+  - `services/` – Integrations (Brenda API client, Chatbot, PubMed fetchers, response formatter).
+  - `core/` & `utils/` – Environment configuration, logging, shared helpers.
+- `scripts/` – Automation helpers (env setup, chatbot/Gradio/API runners, Nextflow glue).
+- `tests/` – Pytest suite validating settings loading and the chatbot abstraction.
+- `docs/` – Architecture notes and generated analysis outputs.
 
 ## Next Steps
 
@@ -132,6 +133,25 @@ Several derived datasets are intentionally excluded from Git. Rebuild them local
 | `artifacts/pubmed_stats_summary.json`, plots in `artifacts/figures/` | Visual summaries and statistics | `python -m src.pipelines.pubmed_stats --references artifacts/pubmed_references.json --links artifacts/pubmed_links.json --summary artifacts/pubmed_stats_summary.json` |
 
 These files can be large (100 MB–600 MB) and are gitignored. Remove them freely and regenerate when needed.
+
+## Dependencies
+
+The project uses Python packages from `requirements/base.txt`. Key runtime dependencies include:
+
+- `langchain`, `langchain-community`, `langchain-openai` – Agent framework and LLM wrappers.
+- `sqlalchemy`, `pandas`, `tabulate` – Structured data access and tabular formatting.
+- `fastapi`, `uvicorn[standard]` – REST API layer for interactive exploration.
+- `structlog` – Structured logging throughout agents and services.
+- `redis`, `requests`, `httpx` – Optional caching and HTTP integrations.
+- `gradio`, `rich` – Chat UI and rich CLI output.
+- `ijson`, `aiofiles` – Streaming ingestion of large JSON dumps.
+
+Install everything with:
+
+```bash
+source .venv-py311/bin/activate
+pip install -r requirements/base.txt
+```
 
 ## Interactive API
 
@@ -175,6 +195,8 @@ nextflow run main.nf
 # enable the crew/LLM demo once Ollama is running locally
 nextflow run main.nf --enable_chatbot true
 ```
+
+The pipeline orchestrates the ingestion, analysis, PubMed enrichment, and optional chatbot demo via the processes defined in `main.nf`. Each process maps directly to the Python pipelines shown above, allowing reproducible end-to-end builds on local machines or CI runners. Use `nextflow run main.nf -resume` to leverage Nextflow’s caching between runs.
 
 ## Chatbot Interfaces
 
