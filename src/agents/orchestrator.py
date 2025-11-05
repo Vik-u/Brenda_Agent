@@ -14,37 +14,43 @@ class OrchestratorAgent(BaseAgent):
     def __init__(self) -> None:
         super().__init__(
             name="orchestrator",
-            description="Coordinates researcher and analyst agents to deliver final reports.",
+            description=(
+                "Supervises the multi-agent workflow: dispatches discovery requests to the "
+                "researcher, routes enriched records through the analyst, and assembles the "
+                "final report (including provenance and summary statistics) for downstream "
+                "consumers."
+            ),
         )
         self._researcher = ResearcherAgent()
         self._analyst = AnalystAgent()
 
     async def handle_task(self, context: AgentContext) -> Dict[str, Any]:
-        work_spec = context.payload
-        ec_number = work_spec.get("ec_number")
-        if not ec_number:
-            raise ValueError("Orchestrator requires an 'ec_number' in the work specification")
-
-        organism = work_spec.get("organism")
+        work_spec = context.payload or {}
 
         researcher_context = AgentContext(
             task_id=_child_task_id(context.task_id, suffix="research"),
-            payload={"ec_number": ec_number, "organism": organism},
+            payload=dict(work_spec),
         )
         researcher_output = await self._researcher.run(researcher_context)
 
-        records: List[Dict[str, Any]] = researcher_output.get("brenda_data", {}).get("data", [])
+        records: List[Dict[str, Any]] = (
+            researcher_output.get("brenda_data", {}).get("data", [])
+        )
         analyst_context = AgentContext(
             task_id=_child_task_id(context.task_id, suffix="analysis"),
             payload={"records": records},
         )
         analyst_output = await self._analyst.run(analyst_context)
 
+        resolved_ec_numbers = researcher_output.get("resolved_ec_numbers", [])
+        primary_ec_number = researcher_output.get("ec_number")
         report = {
-            "ec_number": ec_number,
-            "organism": organism,
+            "ec_number": primary_ec_number,
+            "resolved_ec_numbers": resolved_ec_numbers,
+            "organism": work_spec.get("organism"),
             "record_count": len(records),
             "analysis_summary": analyst_output.get("summary"),
+            "search_terms": researcher_output.get("search_terms", {}),
         }
 
         return {
