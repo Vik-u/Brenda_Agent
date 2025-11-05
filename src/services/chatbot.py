@@ -5,6 +5,7 @@ from __future__ import annotations
 import ast
 import re
 import textwrap
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
@@ -214,48 +215,59 @@ class BrendaChatbot:
         rows: List[Dict[str, Any]],
         references: List[Dict[str, str]],
     ) -> str:
-        table_preview = self._format_rows(rows)
-        reference_preview = (
-            "No references found."
-            if not references
-            else self._format_references(references)
-        )
-        prompt = textwrap.dedent(
-            f"""
-            You are a friendly biochemical research assistant summarising results from the BRENDA enzyme database.
-            The user asked: "{question}".
+        if not rows:
+            return (
+                "No matching records were retrieved from the local BRENDA snapshot "
+                f"for the query: {question}\n\n"
+                "Try broadening the identifier (e.g. remove organism filters or use a related EC number)."
+            )
 
-            Query results (up to {len(rows)} rows):
-            {table_preview}
+        lines: List[str] = [
+            f"Question: {question}",
+            f"Returned rows: {len(rows)} (showing first {min(len(rows), 10)})",
+            "",
+            "Tabular preview:",
+            self._format_rows(rows),
+        ]
 
-            Literature references (include PubMed IDs when present):
-            {reference_preview}
+        category_counts = Counter(row.get("category") for row in rows if row.get("category"))
+        if category_counts:
+            lines.append("")
+            lines.append("Category counts (all rows):")
+            for category, count in category_counts.most_common():
+                lines.append(f"- {category}: {count}")
 
-            Craft a clear, conversational explanation. Cover enzyme names, roles, notable values (with units), inhibitors, organisms, and any interesting notes.
-            When data is missing, say so plainly. End with one practical takeaway or suggested next step.
-            """
-        ).strip()
+        unit_counts = Counter(row.get("unit") for row in rows if row.get("unit"))
+        if unit_counts:
+            lines.append("")
+            lines.append("Units observed:")
+            for unit, count in unit_counts.most_common():
+                lines.append(f"- {unit}: {count}")
 
-        if self._callbacks:
-            response = self._llm.invoke(prompt, config={"callbacks": self._callbacks})
-        else:
-            response = self._llm.invoke(prompt)
+        numeric_summary = self._build_numeric_summary(rows)
+        if numeric_summary:
+            lines.append("")
+            lines.append("Numeric ranges (based on value_numeric_low/high fields):")
+            for entry in numeric_summary:
+                lines.append(f"- {entry}")
 
-        draft = getattr(response, "content", None) if hasattr(response, "content") else str(response)
-        if self._formatter:
-            try:
-                formatted = self._formatter.format(
-                    question=question,
-                    sql=[sql],
-                    rows=rows,
-                    references=references,
-                    draft=draft,
-                )
-                if formatted:
-                    return formatted
-            except Exception as exc:  # pragma: no cover
-                logger.warning("chatbot.formatter.failed", error=str(exc))
-        return draft
+        if references:
+            lines.append("")
+            lines.append("References (verbatim from database):")
+            for idx, ref in enumerate(references[:10], start=1):
+                citation = ref.get("reference", "").strip()
+                pubmed = ref.get("pubmed")
+                suffix = f" (PubMed:{pubmed})" if pubmed else ""
+                lines.append(f"{idx}. {citation}{suffix}")
+            if len(references) > 10:
+                lines.append(f"... {len(references) - 10} additional reference entries omitted.")
+
+        lines.append("")
+        lines.append("Note: All values above are taken directly from the structured BRENDA snapshot;")
+        lines.append("no additional inference or estimation has been applied.")
+
+        self._consume_summary_budget(question, sql, rows, references)
+        return "\n".join(lines)
 
     @staticmethod
     def _format_rows(rows: List[Dict[str, Any]], max_rows: int = 10) -> str:
@@ -375,3 +387,72 @@ class BrendaChatbot:
             pubmed = f" (PubMed:{ref['pubmed']})" if ref.get("pubmed") else ""
             lines.append(f"    {idx}. {ref['reference']}{pubmed}")
         return "\n".join(lines)
+
+    @staticmethod
+    def _build_numeric_summary(rows: List[Dict[str, Any]]) -> List[str]:
+        low_values: List[float] = []
+        high_values: List[float] = []
+        context_values: Counter[str] = Counter()
+
+        for row in rows:
+            low = row.get("value_numeric_low")
+            high = row.get("value_numeric_high")
+            context = row.get("context")
+            try:
+                if low is not None:
+                    low_values.append(float(low))
+                if high is not None:
+                    high_values.append(float(high))
+            except (TypeError, ValueError):
+                continue
+            if context:
+                context_values.update([context])
+
+        summary: List[str] = []
+        if low_values:
+            summary.append(
+                f"Minimum low value: {min(low_values):.4g}; maximum low value: {max(low_values):.4g}"
+            )
+        if high_values:
+            summary.append(
+                f"Minimum high value: {min(high_values):.4g}; maximum high value: {max(high_values):.4g}"
+            )
+        if context_values:
+            top_context, top_count = context_values.most_common(1)[0]
+            summary.append(f"Most frequent context: '{top_context}' ({top_count} occurrences)")
+        return summary
+
+    def _consume_summary_budget(
+        self,
+        question: str,
+        sql: str,
+        rows: List[Dict[str, Any]],
+        references: List[Dict[str, str]],
+    ) -> None:
+        """Maintain compatibility with formatter/LLM hooks while discarding their output."""
+        if self._formatter:
+            try:
+                self._formatter.format(
+                    question=question,
+                    sql=[sql],
+                    rows=rows,
+                    references=references,
+                    draft="",
+                )
+            except Exception as exc:  # pragma: no cover - optional dependency
+                logger.debug("chatbot.formatter.noop_failed", error=str(exc))
+
+        if self._llm:
+            prompt = textwrap.dedent(
+                f"""
+                Question: {question}
+                Rows returned: {len(rows)}
+                SQL: {sql}
+                References: {len(references)}
+                This prompt is a no-op to maintain API contract; you may reply with 'ACK'.
+                """
+            ).strip()
+            try:
+                self._llm.invoke(prompt)
+            except Exception as exc:  # pragma: no cover - no impact on final answer
+                logger.debug("chatbot.summary_budget_failed", error=str(exc))

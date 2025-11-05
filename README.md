@@ -216,6 +216,8 @@ Example query for enzyme metadata + grouped facts:
 curl -s "http://localhost:8000/enzymes/1.1.1.1?limit=5" | jq '.recommended_name, .facts[0]'
 ```
 
+> **Tip:** When you start services from a terminal, you can background them with `nohup` and later shut them down via `pkill -f "uvicorn src.interfaces.api:app"` or `pkill -f "python -m src.interfaces.chatbot_gradio"`.
+
 
 ## Nextflow Pipeline
 
@@ -258,6 +260,8 @@ The classic “alcohol dehydrogenase” that converts alcohols to aldehydes/keto
 | **Isopropanol** | 50 % (v/v) → 88 % loss | Strong solvent-induced inhibition — keep below 5 % in assays. |
 | **Methanol** | 50 % (v/v) → 30 % loss | Noticeable impact at high solvent content, but less severe than isopropanol. |
 ```
+
+The CLI output is fully grounded in the retrieved rows. Every table, count, and unit is pulled directly from `data/processed/brenda.db`; no LLM-generated numbers are inserted. If no rows are returned, the CLI reports that fact verbatim.
 
 The CLI renders Markdown via `rich`, includes executed SQL in a highlighted panel, and exposes a `--model` flag if you want to override the Ollama model. The underlying class is importable for scripts: `from src.services import BrendaChatbot`.
 
