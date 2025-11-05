@@ -1,0 +1,30 @@
+app:
+  name: brenda-agentic-workflow
+  environment: development
+  log_level: INFO
+
+services:
+  brenda:
+    base_url: ${BRENDA_API_URL:-https://www.brenda-enzymes.org/api}
+    api_key: ${BRENDA_API_KEY:-}
+  openai:
+    api_key: ${OPENAI_API_KEY:-}
+  redis:
+    url: ${REDIS_URL:-redis://localhost:6379/0}
+  database:
+    url: ${DATABASE_URL:-sqlite:///data/processed/brenda.db}
+  ollama:
+    base_url: ${OLLAMA_BASE_URL:-http://localhost:11434}
+    model: ${OLLAMA_MODEL:-gpt-oss:20b}
+    temperature: 0.1
+    top_p: 0.95
+
+chatbot:
+  database_path: data/processed/brenda.db
+  top_k: 5
+  max_iterations: 12
+  max_rows: 25
+
+workflows:
+  default_timeout_seconds: 180
+  max_retries: 3

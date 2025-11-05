@@ -1,0 +1,39 @@
+{
+  "rows": 6697,
+  "reference_records": {
+    "min": 1.0,
+    "median": 8.0,
+    "mean": 25.037330147827387,
+    "max": 596.0
+  },
+  "unique_pubmed_ids": {
+    "min": 1.0,
+    "median": 8.0,
+    "mean": 25.033597133044648,
+    "max": 596.0
+  },
+  "protein_count": {
+    "min": 1.0,
+    "median": 6.0,
+    "mean": 16.31954606540242,
+    "max": 421.0
+  },
+  "synonym_count": {
+    "min": 0.0,
+    "median": 9.0,
+    "mean": 18.803494101836645,
+    "max": 700.0
+  },
+  "refs_per_pubmed": {
+    "min": 0.9642857142857143,
+    "median": 1.0,
+    "mean": 1.0001466716577996,
+    "max": 1.5
+  },
+  "pubmed_per_protein": {
+    "min": 0.0125,
+    "median": 1.2380952380952381,
+    "mean": 1.7079093854771075,
+    "max": 26.2
+  }
+}

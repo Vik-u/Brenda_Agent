@@ -1,0 +1,48 @@
+**What the data tell us (and what they don’t)**  
+- **Enzyme identity & role**  
+  - EC 2.1.1.247 is the *methyl‑CoIII methylamine‑specific corrinoid protein‑coenzyme M methyltransferase* (often abbreviated MtmB).  
+  - It catalyzes the transfer of a methyl group from methylamine (or methyl‑substituted amines) to coenzyme M (CoM) via a corrinoid protein (CoFeSP).  This step is essential in the methyl‑amine branch of methanogenesis in methanogenic archaea such as *Methanosarcina* spp. and *Methanomethylovorans* spp.  
+  - The reaction proceeds through a two‑step mechanism: (1) methyl‑amine → methyl‑corrinoid protein (CoIII → CoIV) and (2) methyl‑corrinoid protein → methyl‑CoM + reduced corrinoid protein.  
+
+- **Substrates & cofactors**  
+  - Primary substrate: methylamine (CH₃NH₂).  
+  - Cofactors: CoFeSP (corrinoid protein), coenzyme M (HSCoM), and a reduced form of the corrinoid protein (CoI).  
+  - The enzyme is metal‑dependent; the active site contains a metal ion (often Zn²⁺ or Fe²⁺) that is chelated by the corrinoid prosthetic group.  
+
+- **Inhibitors**  
+  - The only inhibitor captured in the wild‑type dataset is **EDTA**.  EDTA is a strong metal chelator, so its inhibition likely reflects removal of the essential metal ion from the active site.  
+  - No other small‑molecule inhibitors (e.g., analogues of methylamine, competitive inhibitors, or allosteric modulators) have been reported in the current dataset.  
+
+- **Kinetics**  
+  - Six distinct Km entries exist for this EC number, indicating that kinetic studies have been performed in multiple laboratories.  Unfortunately, the numeric values were not retrieved in this query.  
+  - No kcat (turnover number) data are available for the wild‑type enzyme.  This means we lack a measure of catalytic efficiency (kcat/Km) and cannot compare the enzyme’s performance to related methyltransferases.  
+
+- **Missing data & gaps**  
+  1. **Numeric Km values** – We need the actual µM or mM values to assess substrate affinity.  
+  2. **kcat / Vmax** – Without turnover numbers, we cannot evaluate catalytic power or compare mutants.  
+  3. **pH and temperature optima** – These parameters are essential for designing in‑vitro assays.  
+  4. **Effect of metal ions** – While EDTA inhibition suggests metal dependence, the identity and stoichiometry of the metal ion(s) remain unclear.  
+  5. **Mutational data** – No information on site‑directed mutants (e.g., active‑site residues, metal‑binding motifs) is available.  
+  6. **Inhibitor spectrum** – Other potential inhibitors (e.g., methyl‑amine analogues, transition‑state analogues) have not been tested or reported.  
+
+**Practical take‑aways for a biochemist**  
+- **If you want to characterize the enzyme’s catalytic properties**, you’ll need to obtain the missing kinetic parameters.  A standard approach is to purify the wild‑type enzyme (or express it recombinantly) and perform steady‑state kinetics with varying methylamine concentrations, measuring the formation of methyl‑CoM (e.g., by HPLC or LC‑MS).  
+- **To confirm metal dependence**, re‑introduce specific metal ions (Zn²⁺, Fe²⁺, Co²⁺) after EDTA treatment and assess activity recovery.  Metal‑specific chelators (e.g., TPEN for Zn²⁺) can help pinpoint the essential metal.  
+- **To explore inhibitor space**, test a panel of methyl‑amine analogues (e.g., dimethylamine, trimethylamine) and potential transition‑state analogues.  This will reveal whether the enzyme is selective for primary amines or can accept secondary/tertiary amines.  
+- **To probe the active site**, design site‑directed mutants of residues that coordinate the corrinoid or the metal ion (e.g., histidines, cysteines).  Measure how these mutations affect Km and kcat to map the catalytic mechanism.  
+
+**Suggested next experiment**  
+1. **Retrieve the numeric Km values**:  
+   - Run a targeted query against the `enzyme_facts` table (or use `brenda_sql_lookup`) to pull the exact Km numbers for EC 2.1.1.247.  
+2. **Measure kcat**:  
+   - Perform a time‑course assay with saturating methylamine and measure product formation to calculate kcat.  
+3. **Metal re‑constitution**:  
+   - After EDTA treatment, add back Zn²⁺ or Fe²⁺ and monitor activity recovery to confirm the metal requirement.  
+
+These steps will fill the most critical data gaps, allowing you to compare the wild‑type enzyme’s performance to engineered variants and to other methyltransferases in the methanogenesis pathway.
+
+-- filter JSON --
+{'raw': '```json\n{\n  "refined_query": "EC 2.1.1.247 inhibitors kinetics",\n  "filters": [\n    "EC:2.1.1.247",\n    "inhibitor",\n    "kinetic parameters",\n    "wildtype"\n  ],\n  "notes": "User requests a summary of inhibitors and kinetic data for the enzyme with EC number 2.1.1.247. No specific organism or mutation is mentioned, so the search should include all available wild‑type data."\n}\n```'}
+
+-- query JSON --
+{'raw': '**Enzyme:** EC\u202f2.1.1.247 – *methyl‑CoIII methylamine‑specific corrinoid protein‑coenzyme\u202fM methyltransferase* (wild‑type)\n\n| Category | Value | Units | Notes |\n|----------|-------|-------|-------|\n| **Inhibitor** | EDTA | – | Detected in 4 distinct wild‑type records (Methanosarcina\u202fbarkeri, Methanosarcina\u202fmazei, Methanomethylovorans\u202fhollandica, and a generic “wild‑type” entry). No other small‑molecule inhibitors were reported in the current dataset. |\n| **Kinetic parameter – Km** | 6 distinct Km entries | – | The database lists six Km values for this EC number, but the specific numeric values were not returned in the current query. |\n| **Kinetic parameter – kcat** | 0 entries | – | No turnover (kcat) data are available for the wild‑type enzyme. |\n\n### Summary\n- **Inhibitors:** The only inhibitor captured in the wild‑type dataset for EC\u202f2.1.1.247 is **EDTA**. It appears in multiple organism‑specific entries but no other inhibitors were reported.  \n- **Kinetics:** Six Km values have been recorded, indicating that kinetic studies have been performed, but the actual numeric values (e.g.,\u202fKm\u202f=\u202fX\u202fµM) were not retrieved in this query. No kcat (turnover number) data are available for the wild‑type enzyme.\n\nIf you need the exact Km values or additional kinetic parameters (e.g.,\u202fkcat, Vmax), a more targeted query that pulls the numeric fields from the `enzyme_facts` table (or a subsequent call to `brenda_sql_lookup`) would be required.'}

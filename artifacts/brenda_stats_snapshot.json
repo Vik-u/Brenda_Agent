@@ -1,0 +1,2054 @@
+{
+  "database": "/Users/viku/Documents/PlayGround/Projects/brenda-agentic-workflow/data/processed/brenda.db",
+  "db_stats": {
+    "totals": {
+      "enzymes": 8055,
+      "proteins": 109687,
+      "enzyme_facts": 2079335,
+      "text_facts": 1838750
+    },
+    "coverage": {
+      "enzyme_total": 8055,
+      "enzymes_with_inhibitors": 4699,
+      "protein_ec_total": 6844,
+      "protein_ec_matched": 6844,
+      "fact_ec_total": 8053,
+      "fact_ec_matched": 8053,
+      "text_ec_total": 8055,
+      "text_ec_matched": 6878
+    },
+    "protein_summary": {
+      "avg_per_enzyme": 13.617256362507758,
+      "max_per_enzyme": 421
+    },
+    "fact_links": {
+      "facts_with_numeric_values": 1270945,
+      "facts_with_references": 2033112,
+      "facts_with_protein_tokens": 2023554
+    },
+    "top_fact_categories": [
+      {
+        "category": "substrates_products",
+        "records": 274040
+      },
+      {
+        "category": "inhibitor",
+        "records": 257925
+      },
+      {
+        "category": "km_value",
+        "records": 172525
+      },
+      {
+        "category": "synonyms",
+        "records": 126374
+      },
+      {
+        "category": "protein_variants",
+        "records": 111024
+      },
+      {
+        "category": "source_tissue",
+        "records": 94219
+      },
+      {
+        "category": "turnover_number",
+        "records": 87879
+      },
+      {
+        "category": "ic50_value",
+        "records": 76105
+      },
+      {
+        "category": "cloned",
+        "records": 72628
+      },
+      {
+        "category": "molecular_weight",
+        "records": 67739
+      },
+      {
+        "category": "natural_substrates_products",
+        "records": 65402
+      },
+      {
+        "category": "general_information",
+        "records": 58965
+      },
+      {
+        "category": "purification",
+        "records": 58605
+      },
+      {
+        "category": "specific_activity",
+        "records": 55364
+      },
+      {
+        "category": "subunits",
+        "records": 51302
+      }
+    ],
+    "top_text_fields": [
+      {
+        "field_code": "IN",
+        "field_name": "inhibitor",
+        "records": 194312
+      },
+      {
+        "field_code": "RF",
+        "field_name": "reference",
+        "records": 184640
+      },
+      {
+        "field_code": "KM",
+        "field_name": "Km value",
+        "records": 153581
+      },
+      {
+        "field_code": "SP",
+        "field_name": "substrate/product",
+        "records": 153509
+      },
+      {
+        "field_code": "SY",
+        "field_name": "systematic name",
+        "records": 118169
+      },
+      {
+        "field_code": "PR",
+        "field_name": "protein",
+        "records": 109702
+      },
+      {
+        "field_code": "EN",
+        "field_name": "engineering",
+        "records": 87247
+      },
+      {
+        "field_code": "TN",
+        "field_name": "turnover number",
+        "records": 82411
+      },
+      {
+        "field_code": "IC50",
+        "field_name": "IC50 value",
+        "records": 73774
+      },
+      {
+        "field_code": "CL",
+        "field_name": "cloned",
+        "records": 72628
+      },
+      {
+        "field_code": "ST",
+        "field_name": "source tissue",
+        "records": 67412
+      },
+      {
+        "field_code": "PU",
+        "field_name": "purification",
+        "records": 58605
+      },
+      {
+        "field_code": "MW",
+        "field_name": "molecular weight",
+        "records": 52718
+      },
+      {
+        "field_code": "SA",
+        "field_name": "specific activity",
+        "records": 48114
+      },
+      {
+        "field_code": "KI",
+        "field_name": "Ki value",
+        "records": 44886
+      }
+    ],
+    "fact_category_details": [
+      {
+        "category": "substrates_products",
+        "records": 274040,
+        "ec_coverage": 6830,
+        "numeric_records": 185805,
+        "reference_records": 272555,
+        "protein_records": 271379,
+        "min_numeric": -4217903.0,
+        "avg_numeric": 14.091777078119534,
+        "max_numeric": 1200000000.0,
+        "numeric_fraction": 0.6780214567216465,
+        "reference_fraction": 0.9945810830535688,
+        "protein_fraction": 0.9902897387242738,
+        "distinct_units": 102159,
+        "top_units": [
+          {
+            "unit": "ATP + HO = ADP + phosphate",
+            "records": 541
+          },
+          {
+            "unit": "GTP + HO = GDP + phosphate",
+            "records": 281
+          },
+          {
+            "unit": "deoxynucleoside triphosphate + DNAn = diphosphate + DNAn |## DNA products synthesized by Pol delta and its subassemblies on primed M DNA, overview | <,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,>",
+            "records": 212
+          }
+        ],
+        "top_contexts": [
+          {
+            "context": "r",
+            "records": 18861
+          },
+          {
+            "context": "ir",
+            "records": 6655
+          }
+        ]
+      },
+      {
+        "category": "inhibitor",
+        "records": 257925,
+        "ec_coverage": 4699,
+        "numeric_records": 150818,
+        "reference_records": 256645,
+        "protein_records": 255212,
+        "min_numeric": -42165579.0,
+        "avg_numeric": 132481.0739984904,
+        "max_numeric": 1657074241.0,
+        "numeric_fraction": 0.5847358728312494,
+        "reference_fraction": 0.9950373170495299,
+        "protein_fraction": 0.9894814384026365,
+        "distinct_units": 87728,
+        "top_units": [
+          {
+            "unit": "Cu+",
+            "records": 3524
+          },
+          {
+            "unit": "Zn+",
+            "records": 3488
+          },
+          {
+            "unit": "Fe+",
+            "records": 2474
+          }
+        ],
+        "top_contexts": [
+          {
+            "context": "2-[(E)-(hydroxyimino)methyl]pyridinium",
+            "records": 3
+          }
+        ]
+      },
+      {
+        "category": "km_value",
+        "records": 172525,
+        "ec_coverage": 5155,
+        "numeric_records": 172525,
+        "reference_records": 172354,
+        "protein_records": 171675,
+        "min_numeric": -999.0,
+        "avg_numeric": -31.517549271632447,
+        "max_numeric": 17000.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9990088392986524,
+        "protein_fraction": 0.9950731778003188,
+        "distinct_units": 8,
+        "top_units": [
+          {
+            "unit": "{, dimethylbeta ({[ methyl ( chlorophenyl)isoxazol yl]carbonyl}amino)penamalpha carboxylic acid}",
+            "records": 6
+          },
+          {
+            "unit": "{difluorido[ (hexyloxy) (phosphonooxy)propyl [ [(, dimethylH pyrrol yl kappaN)methylidene]H pyrrol yl kappaN}]entanoatato]boron}",
+            "records": 1
+          },
+          {
+            "unit": "{difluorido[ (hexyloxy) (phosphonooxy)propyl [ [(, dimethylH pyrrol yl ?N)methylidene]H pyrrol yl kappaN}]entanoatato]boron}",
+            "records": 1
+          }
+        ],
+        "top_contexts": [
+          {
+            "context": "ATP",
+            "records": 6633
+          },
+          {
+            "context": "more",
+            "records": 6196
+          },
+          {
+            "context": "NAD+",
+            "records": 3531
+          }
+        ]
+      },
+      {
+        "category": "synonyms",
+        "records": 126374,
+        "ec_coverage": 6783,
+        "numeric_records": 58989,
+        "reference_records": 105153,
+        "protein_records": 104155,
+        "min_numeric": -501083.0,
+        "avg_numeric": 1.3731373645933997e+39,
+        "max_numeric": 8.1e+43,
+        "numeric_fraction": 0.46678114169053764,
+        "reference_fraction": 0.8320778008134585,
+        "protein_fraction": 0.82418060677038,
+        "distinct_units": 31116,
+        "top_units": [
+          {
+            "unit": "EC",
+            "records": 1342
+          },
+          {
+            "unit": "Atg",
+            "records": 305
+          },
+          {
+            "unit": "CYPA",
+            "records": 270
+          }
+        ],
+        "top_contexts": [
+          {
+            "context": "kappa",
+            "records": 1
+          }
+        ]
+      },
+      {
+        "category": "protein_variants",
+        "records": 111024,
+        "ec_coverage": 4061,
+        "numeric_records": 95846,
+        "reference_records": 111020,
+        "protein_records": 110939,
+        "min_numeric": -483.0,
+        "avg_numeric": 268.25603806001294,
+        "max_numeric": 2267161.0,
+        "numeric_fraction": 0.8632908200028823,
+        "reference_fraction": 0.999963971753855,
+        "protein_fraction": 0.9992343997694192,
+        "distinct_units": 10140,
+        "top_units": [
+          {
+            "unit": "DA",
+            "records": 3537
+          },
+          {
+            "unit": "HA",
+            "records": 3023
+          },
+          {
+            "unit": "RA",
+            "records": 2981
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "source_tissue",
+        "records": 94219,
+        "ec_coverage": 4144,
+        "numeric_records": 10825,
+        "reference_records": 93826,
+        "protein_records": 92451,
+        "min_numeric": -60562.0,
+        "avg_numeric": 1112229.0865733025,
+        "max_numeric": 6000000000.0,
+        "numeric_fraction": 0.11489190078434286,
+        "reference_fraction": 0.9958288667890766,
+        "protein_fraction": 0.9812352073360999,
+        "distinct_units": 1306,
+        "top_units": [
+          {
+            "unit": "A cell",
+            "records": 475
+          },
+          {
+            "unit": "HEK cell",
+            "records": 385
+          },
+          {
+            "unit": "Hep G cell",
+            "records": 374
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "turnover_number",
+        "records": 87879,
+        "ec_coverage": 3565,
+        "numeric_records": 87879,
+        "reference_records": 87815,
+        "protein_records": 87725,
+        "min_numeric": -999.0,
+        "avg_numeric": 4780.188306293798,
+        "max_numeric": 57500000.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.999271725895834,
+        "protein_fraction": 0.9982475904368506,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": [
+          {
+            "context": "ATP",
+            "records": 2257
+          },
+          {
+            "context": "NAD+",
+            "records": 1300
+          },
+          {
+            "context": "NADPH",
+            "records": 964
+          }
+        ]
+      },
+      {
+        "category": "ic50_value",
+        "records": 76105,
+        "ec_coverage": 1306,
+        "numeric_records": 76105,
+        "reference_records": 75955,
+        "protein_records": 76019,
+        "min_numeric": -999.0,
+        "avg_numeric": -4.4003155172780115,
+        "max_numeric": 447000.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9980290388279351,
+        "protein_fraction": 0.9988699822613495,
+        "distinct_units": 133,
+        "top_units": [
+          {
+            "unit": "{{ [ (allyl methyl amino) hexyloxy] fluoro phenyl} ( chloro phenyl) methanone}",
+            "records": 3
+          },
+          {
+            "unit": "{dibenzyl [( oxopropane, diyl)bis{imino[(S) methyl oxopentane, diyl]}]biscarbamate}",
+            "records": 3
+          },
+          {
+            "unit": "{benzyl [(S) { [( {(S) [( amino phenylpropanoyl)amino] methylpentanoyl}hydrazinyl)carbonyl]hydrazinyl} methyl oxopentan yl]carbamate}",
+            "records": 3
+          }
+        ],
+        "top_contexts": [
+          {
+            "context": "more",
+            "records": 477
+          },
+          {
+            "context": "quercetin",
+            "records": 150
+          },
+          {
+            "context": "Zn2+",
+            "records": 79
+          }
+        ]
+      },
+      {
+        "category": "cloned",
+        "records": 72628,
+        "ec_coverage": 5636,
+        "numeric_records": 0,
+        "reference_records": 72628,
+        "protein_records": 72628,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "molecular_weight",
+        "records": 67739,
+        "ec_coverage": 4883,
+        "numeric_records": 67739,
+        "reference_records": 67651,
+        "protein_records": 67169,
+        "min_numeric": -999.0,
+        "avg_numeric": 87136.41246549255,
+        "max_numeric": 27000000.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9987008960864494,
+        "protein_fraction": 0.9915853496508659,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "natural_substrates_products",
+        "records": 65402,
+        "ec_coverage": 6173,
+        "numeric_records": 37720,
+        "reference_records": 65157,
+        "protein_records": 64702,
+        "min_numeric": -1003.0,
+        "avg_numeric": 16.68558987274655,
+        "max_numeric": 160000.0,
+        "numeric_fraction": 0.5767407724534418,
+        "reference_fraction": 0.9962539371884652,
+        "protein_fraction": 0.9892969633956148,
+        "distinct_units": 18025,
+        "top_units": [
+          {
+            "unit": "ATP + HO = ADP + phosphate",
+            "records": 220
+          },
+          {
+            "unit": "GTP + HO = GDP + phosphate",
+            "records": 184
+          },
+          {
+            "unit": "L tryptophan + tetrahydrobiopterin + O = hydroxy L tryptophan + a hydroxytetrahydrobiopterin",
+            "records": 86
+          }
+        ],
+        "top_contexts": [
+          {
+            "context": "r",
+            "records": 5893
+          },
+          {
+            "context": "ir",
+            "records": 2880
+          }
+        ]
+      },
+      {
+        "category": "general_information",
+        "records": 58965,
+        "ec_coverage": 4866,
+        "numeric_records": 3,
+        "reference_records": 58941,
+        "protein_records": 58946,
+        "min_numeric": 8.0,
+        "avg_numeric": 8.0,
+        "max_numeric": 109.0,
+        "numeric_fraction": 5.0877639277537524e-05,
+        "reference_fraction": 0.9995929788857797,
+        "protein_fraction": 0.9996777749512422,
+        "distinct_units": 1,
+        "top_units": [
+          {
+            "unit": "physiological function linkages ; ## Streptococcus mutans causes dental caries in humans using sucrose for its growth <>) <,,>",
+            "records": 3
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "purification",
+        "records": 58605,
+        "ec_coverage": 5688,
+        "numeric_records": 0,
+        "reference_records": 58605,
+        "protein_records": 58605,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "specific_activity",
+        "records": 55364,
+        "ec_coverage": 4095,
+        "numeric_records": 55364,
+        "reference_records": 55332,
+        "protein_records": 55136,
+        "min_numeric": -999.0,
+        "avg_numeric": 1800.134637712237,
+        "max_numeric": 16000000.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9994220070804133,
+        "protein_fraction": 0.9958818004479445,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "subunits",
+        "records": 51302,
+        "ec_coverage": 5035,
+        "numeric_records": 16,
+        "reference_records": 51224,
+        "protein_records": 50864,
+        "min_numeric": 24.0,
+        "avg_numeric": 42.0,
+        "max_numeric": 60.0,
+        "numeric_fraction": 0.0003118786791937936,
+        "reference_fraction": 0.9984795914389303,
+        "protein_fraction": 0.9914623211570699,
+        "distinct_units": 1,
+        "top_units": [
+          {
+            "unit": "mer",
+            "records": 16
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "metals_ions",
+        "records": 47395,
+        "ec_coverage": 4030,
+        "numeric_records": 34903,
+        "reference_records": 47346,
+        "protein_records": 46944,
+        "min_numeric": -100.0,
+        "avg_numeric": 2.0903933759275706,
+        "max_numeric": 80.0,
+        "numeric_fraction": 0.7364278932376833,
+        "reference_fraction": 0.9989661356683195,
+        "protein_fraction": 0.9904842282941239,
+        "distinct_units": 159,
+        "top_units": [
+          {
+            "unit": "Mg+",
+            "records": 9384
+          },
+          {
+            "unit": "Mn+",
+            "records": 5788
+          },
+          {
+            "unit": "Ca+",
+            "records": 4601
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "ki_value",
+        "records": 46601,
+        "ec_coverage": 2120,
+        "numeric_records": 46601,
+        "reference_records": 46583,
+        "protein_records": 46476,
+        "min_numeric": -999.0,
+        "avg_numeric": -14.046383869782435,
+        "max_numeric": 11700.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9996137421943735,
+        "protein_fraction": 0.9973176541275939,
+        "distinct_units": 41,
+        "top_units": [
+          {
+            "unit": "{sodium benzyl { [ ( chlorophenyl) methyl, oxazol yl] oxoethyl}phosphonate}",
+            "records": 3
+          },
+          {
+            "unit": "{propan yl hydrogen {[ ( amino oxo, dihydroH purin yl)ethoxy]methyl}phosphonate}",
+            "records": 2
+          },
+          {
+            "unit": "{N {(S) {[(R) {[(benzyloxy)carbonyl]amino} phenylethyl](hydroxy)phosphoryl} [( phenyl, oxazol yl)methyl]propanoyl} L tryptophan}",
+            "records": 2
+          }
+        ],
+        "top_contexts": [
+          {
+            "context": "more",
+            "records": 859
+          },
+          {
+            "context": "phosphate",
+            "records": 278
+          },
+          {
+            "context": "ADP",
+            "records": 259
+          }
+        ]
+      },
+      {
+        "category": "kcat_km_value",
+        "records": 43326,
+        "ec_coverage": 2469,
+        "numeric_records": 43326,
+        "reference_records": 43324,
+        "protein_records": 43319,
+        "min_numeric": -999.0,
+        "avg_numeric": 80331.02753952726,
+        "max_numeric": 930000000.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9999538383418732,
+        "protein_fraction": 0.9998384341965564,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": [
+          {
+            "context": "ATP",
+            "records": 809
+          },
+          {
+            "context": "NAD+",
+            "records": 712
+          },
+          {
+            "context": "NADPH",
+            "records": 520
+          }
+        ]
+      },
+      {
+        "category": "ph_optimum",
+        "records": 38488,
+        "ec_coverage": 5223,
+        "numeric_records": 38488,
+        "reference_records": 38424,
+        "protein_records": 37933,
+        "min_numeric": -999.0,
+        "avg_numeric": -11.858610475992517,
+        "max_numeric": 14.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9983371440448972,
+        "protein_fraction": 0.9855799210143421,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "activating_compound",
+        "records": 31206,
+        "ec_coverage": 2961,
+        "numeric_records": 7767,
+        "reference_records": 31122,
+        "protein_records": 30876,
+        "min_numeric": -4937319.0,
+        "avg_numeric": -2487.194193382258,
+        "max_numeric": 38000000.0,
+        "numeric_fraction": 0.24889444337627378,
+        "reference_fraction": 0.9973082099596231,
+        "protein_fraction": 0.9894251105556624,
+        "distinct_units": 2717,
+        "top_units": [
+          {
+            "unit": "Triton X",
+            "records": 675
+          },
+          {
+            "unit": "mercaptoethanol",
+            "records": 540
+          },
+          {
+            "unit": "Tween",
+            "records": 354
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "temperature_stability",
+        "records": 27364,
+        "ec_coverage": 2825,
+        "numeric_records": 27364,
+        "reference_records": 27337,
+        "protein_records": 27321,
+        "min_numeric": -999.0,
+        "avg_numeric": -1.293926692004093,
+        "max_numeric": 999.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9990133021488087,
+        "protein_fraction": 0.9984285923110656,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "localization",
+        "records": 25715,
+        "ec_coverage": 3800,
+        "numeric_records": 5,
+        "reference_records": 25648,
+        "protein_records": 25282,
+        "min_numeric": -3.0,
+        "avg_numeric": 5.8,
+        "max_numeric": 20.0,
+        "numeric_fraction": 0.00019443904335990667,
+        "reference_fraction": 0.9973945168189773,
+        "protein_fraction": 0.9831615788450321,
+        "distinct_units": 5,
+        "top_units": [
+          {
+            "unit": "poly( hydroxybutyrate) granule",
+            "records": 1
+          },
+          {
+            "unit": "poly( hydroxybutyrate co hydroxyvalerate) granule",
+            "records": 1
+          },
+          {
+            "unit": "S proteasome",
+            "records": 1
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "application",
+        "records": 22189,
+        "ec_coverage": 3149,
+        "numeric_records": 8,
+        "reference_records": 22182,
+        "protein_records": 22151,
+        "min_numeric": 1.0,
+        "avg_numeric": 1.0,
+        "max_numeric": 190.0,
+        "numeric_fraction": 0.0003605390058136915,
+        "reference_fraction": 0.9996845283699131,
+        "protein_fraction": 0.998287439722385,
+        "distinct_units": 2,
+        "top_units": [
+          {
+            "unit": "synthesis [alpha L arabinofuranosyl ( >)] alpha L arabinofuranosyl and the liner beta L arabinofuranosyl ( >) beta L arabinofuranosyl ( >) beta L arabinofuranosyl structures in olive arabinan and dinoflagellate polyethers, respectively ) <,,,,,>",
+            "records": 7
+          },
+          {
+            "unit": "synthesis ( application of enzmye in synthesis of trisaccharide motifs possessing beta L arabinofuranosyl ( >) L arabinofuranosyl non reducing terminal structure with the branched beta L arabinofuranosyl ( >) [alpha L arabinofuranosyl ( >)] alpha L arabinofuranosyl and the liner beta L arabinofuranosyl ( >) beta L arabinofuranosyl ( >) beta L arabinofuranosyl structures in olive arabinan and dinoflagellate polyethers, respectively )",
+            "records": 1
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "temperature_optimum",
+        "records": 22120,
+        "ec_coverage": 4571,
+        "numeric_records": 22120,
+        "reference_records": 22077,
+        "protein_records": 21894,
+        "min_numeric": -999.0,
+        "avg_numeric": 31.345618839963834,
+        "max_numeric": 125.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9980560578661845,
+        "protein_fraction": 0.9897830018083182,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "crystallization",
+        "records": 19162,
+        "ec_coverage": 3429,
+        "numeric_records": 0,
+        "reference_records": 19162,
+        "protein_records": 19162,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "cofactor",
+        "records": 18452,
+        "ec_coverage": 3086,
+        "numeric_records": 2819,
+        "reference_records": 18426,
+        "protein_records": 18155,
+        "min_numeric": -565.0,
+        "avg_numeric": 36.31997162114225,
+        "max_numeric": 562.0,
+        "numeric_fraction": 0.15277476696293085,
+        "reference_fraction": 0.9985909386516367,
+        "protein_fraction": 0.9839041838283112,
+        "distinct_units": 237,
+        "top_units": [
+          {
+            "unit": "pyridoxal ' phosphate",
+            "records": 1124
+          },
+          {
+            "unit": "[FeS] center",
+            "records": 282
+          },
+          {
+            "unit": "cytochrome P",
+            "records": 270
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "reaction",
+        "records": 13494,
+        "ec_coverage": 6884,
+        "numeric_records": 10958,
+        "reference_records": 7646,
+        "protein_records": 7646,
+        "min_numeric": -4324.0,
+        "avg_numeric": 9.746632597189269,
+        "max_numeric": 47934.0,
+        "numeric_fraction": 0.8120646213131762,
+        "reference_fraction": 0.5666222024603528,
+        "protein_fraction": 0.5666222024603528,
+        "distinct_units": 6547,
+        "top_units": [
+          {
+            "unit": "triacylglycerol + HO = diacylglycerol + a carboxylate",
+            "records": 34
+          },
+          {
+            "unit": "a alpha hydroxysteroid + NAD(P)+ = a oxosteroid + NAD(P)H + H+",
+            "records": 33
+          },
+          {
+            "unit": "Endonucleolytic cleavage to ' phosphomonoester",
+            "records": 31
+          }
+        ],
+        "top_contexts": [
+          {
+            "context": "[hydroxymethylglutaryl-CoA reductase (NADPH)] kinase",
+            "records": 2
+          }
+        ]
+      },
+      {
+        "category": "ph_range",
+        "records": 12795,
+        "ec_coverage": 3045,
+        "numeric_records": 12795,
+        "reference_records": 12791,
+        "protein_records": 12760,
+        "min_numeric": -999.0,
+        "avg_numeric": -26.37786322782337,
+        "max_numeric": 12.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9996873778819851,
+        "protein_fraction": 0.9972645564673701,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "expression",
+        "records": 11331,
+        "ec_coverage": 2540,
+        "numeric_records": 0,
+        "reference_records": 11326,
+        "protein_records": 11327,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 0.9995587326802577,
+        "protein_fraction": 0.9996469861442061,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "storage_stability",
+        "records": 10719,
+        "ec_coverage": 2884,
+        "numeric_records": 0,
+        "reference_records": 10719,
+        "protein_records": 10719,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "ph_stability",
+        "records": 8937,
+        "ec_coverage": 1665,
+        "numeric_records": 8937,
+        "reference_records": 8929,
+        "protein_records": 8910,
+        "min_numeric": -999.0,
+        "avg_numeric": -21.796760657938904,
+        "max_numeric": 14.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9991048450262952,
+        "protein_fraction": 0.9969788519637462,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "posttranslational_modification",
+        "records": 8263,
+        "ec_coverage": 1553,
+        "numeric_records": 0,
+        "reference_records": 8252,
+        "protein_records": 8134,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 0.9986687643712937,
+        "protein_fraction": 0.9843882367178991,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "general_stability",
+        "records": 7860,
+        "ec_coverage": 2300,
+        "numeric_records": 0,
+        "reference_records": 7860,
+        "protein_records": 7860,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "pi_value",
+        "records": 7024,
+        "ec_coverage": 1706,
+        "numeric_records": 7024,
+        "reference_records": 7017,
+        "protein_records": 6999,
+        "min_numeric": -999.0,
+        "avg_numeric": -5.287304669703873,
+        "max_numeric": 12.3,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9990034168564921,
+        "protein_fraction": 0.9964407744874715,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "reaction_type",
+        "records": 6914,
+        "ec_coverage": 3902,
+        "numeric_records": 23,
+        "reference_records": 228,
+        "protein_records": 228,
+        "min_numeric": -6.0,
+        "avg_numeric": 2.0434782608695654,
+        "max_numeric": 5.0,
+        "numeric_fraction": 0.0033265837431298816,
+        "reference_fraction": 0.032976569279722305,
+        "protein_fraction": 0.032976569279722305,
+        "distinct_units": 15,
+        "top_units": [
+          {
+            "unit": "elimination of NH",
+            "records": 4
+          },
+          {
+            "unit": "elimination of HO",
+            "records": 3
+          },
+          {
+            "unit": "cleavage of hydroxy acid",
+            "records": 2
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "temperature_range",
+        "records": 6870,
+        "ec_coverage": 1768,
+        "numeric_records": 6870,
+        "reference_records": 6862,
+        "protein_records": 6864,
+        "min_numeric": -999.0,
+        "avg_numeric": -1.7812576419213972,
+        "max_numeric": 100.0,
+        "numeric_fraction": 1.0,
+        "reference_fraction": 0.9988355167394468,
+        "protein_fraction": 0.9991266375545852,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "reference",
+        "records": 6844,
+        "ec_coverage": 6844,
+        "numeric_records": 0,
+        "reference_records": 0,
+        "protein_records": 0,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 0.0,
+        "protein_fraction": 0.0,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "organic_solvent_stability",
+        "records": 2905,
+        "ec_coverage": 499,
+        "numeric_records": 248,
+        "reference_records": 2902,
+        "protein_records": 2901,
+        "min_numeric": -720.0,
+        "avg_numeric": -33.41532258064516,
+        "max_numeric": 80.0,
+        "numeric_fraction": 0.08537005163511188,
+        "reference_fraction": 0.9989672977624785,
+        "protein_fraction": 0.9986230636833047,
+        "distinct_units": 48,
+        "top_units": [
+          {
+            "unit": "Triton X",
+            "records": 72
+          },
+          {
+            "unit": "propanol",
+            "records": 54
+          },
+          {
+            "unit": "Tween",
+            "records": 21
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "renatured",
+        "records": 1341,
+        "ec_coverage": 657,
+        "numeric_records": 0,
+        "reference_records": 1341,
+        "protein_records": 1341,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      },
+      {
+        "category": "history",
+        "records": 1177,
+        "ec_coverage": 1177,
+        "numeric_records": 1055,
+        "reference_records": 0,
+        "protein_records": 0,
+        "min_numeric": 1.1,
+        "avg_numeric": 4.687146919431279,
+        "max_numeric": 1972.0,
+        "numeric_fraction": 0.8963466440101954,
+        "reference_fraction": 0.0,
+        "protein_fraction": 0.0,
+        "distinct_units": 119,
+        "top_units": [
+          {
+            "unit": "transferred to EC",
+            "records": 748
+          },
+          {
+            "unit": "deleted, included in EC",
+            "records": 62
+          },
+          {
+            "unit": "deleted, identical to EC",
+            "records": 24
+          }
+        ],
+        "top_contexts": []
+      },
+      {
+        "category": "oxidation_stability",
+        "records": 747,
+        "ec_coverage": 449,
+        "numeric_records": 0,
+        "reference_records": 747,
+        "protein_records": 747,
+        "min_numeric": null,
+        "avg_numeric": null,
+        "max_numeric": null,
+        "numeric_fraction": 0.0,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "distinct_units": 0,
+        "top_units": [],
+        "top_contexts": []
+      }
+    ],
+    "text_field_details": [
+      {
+        "field_code": "IN",
+        "field_name": "inhibitor",
+        "records": 194312,
+        "ec_coverage": 4699,
+        "reference_records": 194312,
+        "protein_records": 194312,
+        "qualifier_records": 154962,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.7974906336201573,
+        "sample_values": [
+          "103 Na+ 103 10 mM, 13% loss of activity",
+          "103 Isopropanol (103 50% v/v, 88% loss of activity )",
+          "103 methanol (103 50% v/v, 30% loss of activity )"
+        ]
+      },
+      {
+        "field_code": "RF",
+        "field_name": "reference",
+        "records": 184640,
+        "ec_coverage": 6844,
+        "reference_records": 184640,
+        "protein_records": 0,
+        "qualifier_records": 184640,
+        "reference_fraction": 1.0,
+        "protein_fraction": 0.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "Talbot, B.G.; Qureshi, A.A.; Cohen, R.; Thirion, J.P.: Purification and properties of two distinct groups of ADH isozymes from Chinese hamster liver:: Biochem. Genet. 1981 19, 813-829. Pubmed:6794566",
+          "Fong, W.P.: Isolation and characterization of grass carp Ctenopharyngodon idellus liver alcohol dehydrogenase:: Comp. Biochem. Physiol. B 1991 98, 297-302. Pubmed:",
+          "Pessione, E.; Pergola, L.; Cavaletto, M.; Giunta, C.; Trotta, A.; Vanni, A.: Extraction, purification and characterization of ADH1 from the budding yeast Kluyveromyces marxianus:: Ital. J. Biochem. 1990 39, 71-82. Pubmed:2193901"
+        ]
+      },
+      {
+        "field_code": "KM",
+        "field_name": "Km value",
+        "records": 153581,
+        "ec_coverage": 5155,
+        "reference_records": 153581,
+        "protein_records": 153581,
+        "qualifier_records": 153581,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "10 0.05 benzyl alcohol 10 isoenzyme ADH-3, pH 10.0",
+          "10 0.057 NAD+ 10 isoenzyme 1",
+          "10 0.1 1-Octanol 10 isoenzyme ADH-2"
+        ]
+      },
+      {
+        "field_code": "SP",
+        "field_name": "substrate/product",
+        "records": 153509,
+        "ec_coverage": 6830,
+        "reference_records": 153509,
+        "protein_records": 153509,
+        "qualifier_records": 92315,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.6013653922571315,
+        "sample_values": [
+          "10 3beta,7alpha-dihydroxy-5beta-cholanoic acid + NAD+ = ? + NADH",
+          "10 3beta,12alpha-dihydroxy-5beta-cholanoic acid + NAD+ = ? + NADH",
+          "10 3beta,7alpha,12alpha-trihydroxy-5beta-cholanoic acid + NAD+ = ? + NADH"
+        ]
+      },
+      {
+        "field_code": "SY",
+        "field_name": "systematic name",
+        "records": 118169,
+        "ec_coverage": 6783,
+        "reference_records": 97103,
+        "protein_records": 96936,
+        "qualifier_records": 22636,
+        "reference_fraction": 0.8217298953194154,
+        "protein_fraction": 0.8203166651152164,
+        "qualifier_fraction": 0.19155616109131837,
+        "sample_values": [
+          "aldehyde reductase",
+          "dehydrogenase, alcohol",
+          "alcohol dehydrogenase NAD"
+        ]
+      },
+      {
+        "field_code": "PR",
+        "field_name": "protein",
+        "records": 109702,
+        "ec_coverage": 6844,
+        "reference_records": 109702,
+        "protein_records": 109702,
+        "qualifier_records": 51193,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.466655120234818,
+        "sample_values": [
+          "1 Gallus gallus",
+          "2 Cricetulus griseus",
+          "3 Vicia faba"
+        ]
+      },
+      {
+        "field_code": "EN",
+        "field_name": "engineering",
+        "records": 87247,
+        "ec_coverage": 4061,
+        "reference_records": 87247,
+        "protein_records": 87247,
+        "qualifier_records": 87234,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9998509977420427,
+        "sample_values": [
+          "109 W95L 109 the mutant displays no apparent activity with short-chain primary and secondary alcohols and poor activity with aromatic substrates and coenzyme, the substitution affects the structural stability of the archaeal ADH, decreasing its thermal stability without relevant changes in secondary structure, optimum pH is at about pH 10",
+          "109 W95L/N249Y 109 the mutant exhibits higher activity but decreased affinity toward aliphatic alcohols, aldehydes as well as NAD+ and NADH compared to the wild type enzyme, optimum pH is at about pH 8.6",
+          "117 Q147E (117 polymorphism of the commercial yeast ADH Saccharomyces pastorianus compared to the laboratory strain Saccharomyces cerevisiae, in the V58T, Q127E, Q147E, and I151V substitutions, not readily distinguishable at the current resolutions, and the local structure is not significantly altered )"
+        ]
+      },
+      {
+        "field_code": "TN",
+        "field_name": "turnover number",
+        "records": 82411,
+        "ec_coverage": 3565,
+        "reference_records": 82411,
+        "protein_records": 82411,
+        "qualifier_records": 82411,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "10 0.833 1-butanol 10 isoenzyme ADH-3, pH 10.0",
+          "10 1 ethanol 10 isoenzyme ADH-3, pH 10.0",
+          "10 1 benzyl alcohol 10 isoenzyme ADH-3, pH 10.0"
+        ]
+      },
+      {
+        "field_code": "IC50",
+        "field_name": "IC50 value",
+        "records": 73774,
+        "ec_coverage": 1306,
+        "reference_records": 73774,
+        "protein_records": 73774,
+        "qualifier_records": 73774,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "121 11 6-amino-1-hexanol 121 pH 9.0, 25\u00b0C, recombinant enzyme",
+          "121 9.33 5-amino-1-pentanol 121 pH 9.0, 25\u00b0C, recombinant enzyme",
+          "49 1.7 guanidine hydrochloride 49 wild type enzyme"
+        ]
+      },
+      {
+        "field_code": "CL",
+        "field_name": "cloned",
+        "records": 72628,
+        "ec_coverage": 5636,
+        "reference_records": 72628,
+        "protein_records": 72628,
+        "qualifier_records": 66189,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9113427328303134,
+        "sample_values": [
+          "5 (expressed in Escherichia coli BL21-Codon-PlusDE3-RIL cells)",
+          "6 class III enzyme",
+          "6 expression of isozymes in Escherichia coli strain BL21"
+        ]
+      },
+      {
+        "field_code": "ST",
+        "field_name": "source tissue",
+        "records": 67412,
+        "ec_coverage": 4144,
+        "reference_records": 67412,
+        "protein_records": 67412,
+        "qualifier_records": 27672,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.41049071381949803,
+        "sample_values": [
+          "1,2,6,9,10,11,14,39,44,46,55,62,71,76,82,83,86,110,121,133,134 liver (6 isoenzyme A2 and B2 ; 39 isoenzyme AA-ADH and BB-ADH most abundant in ; 9 isozyme ADH1C*2 ; 10 females show 70% higher hepatic alcohol dehydrogenase activity and display 60% lower voluntary ethanol intake than males. Following ethanol administration 1 g/kg ip, females generate a transient blood acetaldehyde increase with levels that are 2.5fold greater than in males. Castration of males leads to an increase alcohol dehydrogenase activity the appearance of an acetaldehyde burst a reduction of voluntary ethanol intake comparable with that of females ; 9 the activities of total alcohol dehydrogenase, aldehyde dehydrogenase and class I alcohol dehydrogenase isoenzyme between cancer liver tissues and healthy hepatocytes might be a factor in ethanol metabolism disorders which can intensify carcinogenesis ; 110 isozymes ADH1C and ADH3 ; 9 most abundant in the liver ; 9 the total alcohol dehydrogenase activity is significantly higher in cancer tissues than in healthy liver ; 134 class III ADH )",
+          "10 adrenal gland",
+          "10 brain"
+        ]
+      },
+      {
+        "field_code": "PU",
+        "field_name": "purification",
+        "records": 58605,
+        "ec_coverage": 5688,
+        "reference_records": 58605,
+        "protein_records": 58605,
+        "qualifier_records": 41021,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.6999573415237608,
+        "sample_values": [
+          "1",
+          "2",
+          "4"
+        ]
+      },
+      {
+        "field_code": "MW",
+        "field_name": "molecular weight",
+        "records": 52718,
+        "ec_coverage": 4883,
+        "reference_records": 52718,
+        "protein_records": 52718,
+        "qualifier_records": 51101,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9693273644675443,
+        "sample_values": [
+          "1,9,10,12,39,45,55,82,83,96,110,113,116,134,135,155 40000 116 SDS-PAGE ; 110 isozyme ADH2, apparent molecular weight deduced from electrophoretic mobility ; 113 isozyme ADH4, calculated from amino acid sequence ; 96,135 4 * 40000, SDS-PAGE ; 9,12,39,55,82 2 * 40000, SDS-PAGE ; 1,9,83,134 x * 40000, SDS-PAGE ; 10 2 * 40000, ADH-3, SDS-PAGE ; 45 2 * 40000, enzyme form ADHI",
+          "10,39,45,55 80000 10,39,55 gel filtration ; 45 enzyme form ADHI, gel filtration",
+          "100 57000 100 SDS-PAGE"
+        ]
+      },
+      {
+        "field_code": "SA",
+        "field_name": "specific activity",
+        "records": 48114,
+        "ec_coverage": 4095,
+        "reference_records": 48114,
+        "protein_records": 48114,
+        "qualifier_records": 38694,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.8042149894001746,
+        "sample_values": [
+          "1,14,16,21,44,64,70,84,87,94 -999.0 64 activity of the 2 isozmyes with various substrates, overview ; 87 wild-type and mutant enzymes",
+          "10 0.1 10 isoenzyme 4",
+          "10 32.5 10 ADH-1"
+        ]
+      },
+      {
+        "field_code": "KI",
+        "field_name": "Ki value",
+        "records": 44886,
+        "ec_coverage": 2120,
+        "reference_records": 44886,
+        "protein_records": 44886,
+        "qualifier_records": 44886,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "110 1.7 ethanol 110 isozyme ADH1C, using 1-hydroxymethylpyrene as substrate",
+          "110 1470 ethanol 110 isozyme ADH3, using 1-hydroxymethylpyrene as substrate",
+          "113 3.3 ethanol 113 isozyme ADH4, using 1-hydroxymethylpyrene as substrate"
+        ]
+      },
+      {
+        "field_code": "KKM",
+        "field_name": "kcat/KM value",
+        "records": 40401,
+        "ec_coverage": 2469,
+        "reference_records": 40401,
+        "protein_records": 40401,
+        "qualifier_records": 40401,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "118 84.6 ethanol 118 pH 8, 60\u00b0C",
+          "118 85.9 acetaldehyde 118 pH 8, 60\u00b0C",
+          "118 293.4 NAD+ 118 cosubstrate ethanol, pH 8, 60\u00b0C"
+        ]
+      },
+      {
+        "field_code": "NSP",
+        "field_name": "natural substrates/products",
+        "records": 30753,
+        "ec_coverage": 6173,
+        "reference_records": 30753,
+        "protein_records": 30753,
+        "qualifier_records": 20570,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.6688778330569375,
+        "sample_values": [
+          "11 R-3-hydroxy-3-methyl-5-oxovaleric acid + NADH = R-3-hydroxy-3-methyl-5-hydroxyvaleric acid + NAD+ 11 the enzyme transfers the pro-R hydrogen atom from C-4 of the dihydronicotinamide ring of NADH or NADPH to the substrate, the enzyme thus falling into the category of A-side specific oxido-reductases",
+          "11 R-3-hydroxy-3-methyl-5-oxovaleric acid + NADH = R-3-hydroxy-3-methyl-5-hydroxyvaleric acid + NAD+ 11 the enzyme transfers the pro-R hydrogen atom from C-4 of the dihydronicotinamide ring of NADH or NADPH to the substrate, the enzyme thus falling into the category of A-side specific oxido-reductases ir",
+          "11 S-3-hydroxy-3-methyl-5-oxovaleric acid + NADH = S-3-hydroxy-3-methyl-5-hydroxyvaleric acid + NAD+"
+        ]
+      },
+      {
+        "field_code": "PHO",
+        "field_name": "pH optimum",
+        "records": 27570,
+        "ec_coverage": 5223,
+        "reference_records": 27570,
+        "protein_records": 27570,
+        "qualifier_records": 17942,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.6507798331519767,
+        "sample_values": [
+          "10 10.7 10 oxidation of ethanol, isoenzyme 2, 3 and 4",
+          "10,71,82,136 11 82 oxidation of ethanol, pyrazole-insensitive enzyme ; 71 ethanol oxidation, enzyme form ADH-2 and ADH-3 ; 10 oxidation of octanol ; 136 optimally active with ethanol and 1-propanol at pH 11.0 with 3 M KCl",
+          "104 7.7-8.6 104 reaction with ethanol + NAD+"
+        ]
+      },
+      {
+        "field_code": "AC",
+        "field_name": "activating compound",
+        "records": 20472,
+        "ec_coverage": 2961,
+        "reference_records": 20472,
+        "protein_records": 20472,
+        "qualifier_records": 18064,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.8823759280969129,
+        "sample_values": [
+          "116 Urea 116 130% relative activity at 1 M",
+          "116,163 Triton X-100 (116 201% relative activity at 10% v/v ; 163 10% v/v, 3fold increase in activity )",
+          "12 Glutaraldehyde 12 treating with 0.5% glutaraldehyde solution, the activity of the immobilized enzyme is at maximum"
+        ]
+      },
+      {
+        "field_code": "CR",
+        "field_name": "crystallization",
+        "records": 19162,
+        "ec_coverage": 3429,
+        "reference_records": 19162,
+        "protein_records": 19162,
+        "qualifier_records": 17464,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9113871203423443,
+        "sample_values": [
+          "9",
+          "9 (isozyme alphaalpha in complex with inhibitor N-cyclopentyl-N-cyclobutylformamide, isozyme beta1beta1 in complex with inhibitors N-benzylformamide and N-heptylformamide, and isozyme gamma2gamma2 in complex with inhibitor N-1-methylheptylformamide, X-ray diffraction structure determination and analysis at 1.45-2.5 A resolution, structure modeling)",
+          "12 isozyme YADH-1, crystal structure analysis"
+        ]
+      },
+      {
+        "field_code": "ME",
+        "field_name": "metals/ions",
+        "records": 17334,
+        "ec_coverage": 4030,
+        "reference_records": 17334,
+        "protein_records": 17334,
+        "qualifier_records": 16861,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9727125879773855,
+        "sample_values": [
+          "109 selenium 109 steady-state fluorescence properties of alcohol dehydrogenase and its selenomethionyl derivative ; 109 the effect of significant decrease in intrinsic fluorescence intensity of the enzyme caused by replacement of S atoms of methionine residues to Se is explained on the basis of the analysis of its 3D structure. All selenium atoms are located far from both Trp95 and Trp117 and can not cause their fluorescence quenching. Substitution of S by Se causes enhanced protein absorption in the UV-region. This effect is explained by the formation of Se complex with some groups of protein",
+          "12 Fe3+ 12 0.5 mM, substrate glycolaldehyde, 92.2% residual activity",
+          "12,26 Ca2+ 12 CaCl2 and MgCl2 are able to stabilize the enzyme at millimolar concentrations. Ca2+ stabilizes yeast ADH I by preventing the dissociation of the reduced form of the enzyme and by preventing the unfolding of the oxidized form of the enzyme. Ca2+ is fixed by the Asp236 and Glu101 side chains in yeast ADH I ; 12 0.5 mM, substrate glycolaldehyde, 86.2% residual activity ; 26 insertion of an RTX domain from the adenylate cyclase of Bordetella pertussis into a loop near the catalytic active site of the thermostable alcohol dehydrogenase D from Pyrococcus furiosus. The resultant chimera, beta-AdhD, gains the calcium-binding ability of the beta-roll, retains the thermostable activity of AdhD, and exhibits reduced overall alcohol dehydrogenase activity. The addition of calcium to beta-AdhD preferentially inhibits NAD+-dependent activity in comparison to NADP+-dependent activity. Calcium is a competitive inhibitor of AdhD, and the addition of the RTX domain introduces calcium-dependent noncompetitive inhibition to beta-AdhD affecting NAD+-dependent activity"
+        ]
+      },
+      {
+        "field_code": "TO",
+        "field_name": "temperature optimum",
+        "records": 16374,
+        "ec_coverage": 4571,
+        "reference_records": 16374,
+        "protein_records": 16374,
+        "qualifier_records": 11296,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.6898741907902772,
+        "sample_values": [
+          "103 83",
+          "109,136,163 80 109 assay at",
+          "115,126 75"
+        ]
+      },
+      {
+        "field_code": "TS",
+        "field_name": "temperature stability",
+        "records": 16032,
+        "ec_coverage": 2825,
+        "reference_records": 16032,
+        "protein_records": 16032,
+        "qualifier_records": 15916,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9927644710578842,
+        "sample_values": [
+          "109 65-88 109 the single and double mutant are less thermoresistant than the wild type enzyme, displaying a transition temperature of 78 and 88\u00b0C, respectively, which are 17 and 7\u00b0C lower than that of the wild-type enzyme. At 65\u00b0C the single mutant W95L is 10fold less active and the double mutant W95L/N249Y is about 6fold more active than wild type enzyme, the reaction rate catalyzed by the double mutant W95L/N249Y increases more markedly than that of the wild type enzyme up to a temperature of about 83\u00b0C and then decreases rapidly due to thermal inactivation. The reaction rate of the single mutant W95L increases more slowly up to about 80\u00b0C and then decreases rapidly. At 65\u00b0C the single mutant is 10fold less active and the double mutant is about 6fold more active than wild type enzyme.",
+          "12 56 12 native Zn-ADH enzyme ; 12 thermal aggregation occurs at 56\u00b0C, the thermal denaturation of ADH is irreversible",
+          "12 50-60 12 thermal unfolding of ADH is not observed below 60\u00b0C while the kinetic deactivation is observed even at 50\u00b0C"
+        ]
+      },
+      {
+        "field_code": "SU",
+        "field_name": "subunits",
+        "records": 14684,
+        "ec_coverage": 5035,
+        "reference_records": 14684,
+        "protein_records": 14684,
+        "qualifier_records": 14170,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9649959139199128,
+        "sample_values": [
+          "1,9,16,17,27,28,34,75,76,83,88,102,107,108,129,134,153,155,160,172 ? 9 x * 42000, SDS-PAGE ; 76 x * 28000, SDS-PAGE ; 1,9,83,134 x * 40000, SDS-PAGE ; 27 x * 96000, SDS-PAGE ; 88 x * 30000, SDS-PAGE ; 160 x * 85000, SDS-PAGE ; 16 x * 37500, SDS-PAGE ; 28 x * 31997, amino acid sequence calculation ; 102 x * 37443, ADH1, calculated from sequence ; 17 x * 37983, ADH3, calculated from sequence ; 34 x * 41300, SDS-PAGE ; 129 x * 31000, recombinant His6-tagged enzyme, SDS-PAGE ; 153 x * 36411, calculated, x * 37000, SDS-PAGE ; 107 x * 37066, calculated ; 108 x * 37311, calculated ; 75 x * 96000, wild-type, SDS-PAGE ; 155 x * 40000, SDS-PAGE, x * 39900, calculated ; 160 x * 88000, calculated from sequence ; 172 x * 45000, recombinant His-tagged enzyme, SDS-PAGE, x * 50750, His-tagged enzyme, sequence calculation",
+          "103 dodecamer 103 12 * 35000, SDS-PAGE",
+          "118 octamer 118 8 * 45000, SDS-PAGE, 8 * 41664, calculated from sequence"
+        ]
+      },
+      {
+        "field_code": "LO",
+        "field_name": "localization",
+        "records": 14679,
+        "ec_coverage": 3800,
+        "reference_records": 14679,
+        "protein_records": 14679,
+        "qualifier_records": 7622,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.5192451801893861,
+        "sample_values": [
+          "10 microsome",
+          "10,65,107,108,130,160 mitochondrion 65 KlDH3 and KlADH4 are genes encoding mitochondrial alcohol dehydrogenase activities located within the mitochondria. Ethanol induces the transcription of KlADH4 and, conversely, represses that of KlADH3 ; 107 KmAdh3 possesses an amino-terminal extension as a mitochondrial targeting sequence ; 108 KmAdh4 possesses an amino-terminal extension as a mitochondrial targeting sequence ; 130 HpADH3 ; 160 higher enzyme level in mitochondria from cells grown at pH 6.0 than in mitochondria from cells grown at pH 3.7",
+          "100 membrane 100 32% of total activity measured"
+        ]
+      },
+      {
+        "field_code": "GI",
+        "field_name": "general information",
+        "records": 13740,
+        "ec_coverage": 4866,
+        "reference_records": 13740,
+        "protein_records": 13740,
+        "qualifier_records": 13740,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "10,160,168,169,176 metabolism 10 enzyme is involved in phytol degradation ; 160 ADHE can be involved either in ethanol production or assimilation, or both, depending upon environmental conditions ; 168 the enzyme is involved in alginate metabolism ; 169 anaerobic fermentative metabolism of glycerol. Proteome analysis as well as enzyme assays performed in cell-free extracts demonstrate that glycerol is degraded via glyceraldehyde-3-phosphate, which is further metabolized through the lower part of glycolysis leading to formation of mainly ethanol and hydrogen ; 176 analysis of the anerobic metabolic routes involving the enzyme in Chlamydomonas reinhardtii, overview",
+          "121,164,172,176 malfunction (164 methylglyoxal accumulation leads to G2-phase arrest by affecting cell growth, ROS production, viability, differentiation, and virulence. Phenotypes of enzyme-deficient cells, overview ; 121 alternative binding modes in abortive NADH-alcohol complexes of horse liver alcohol dehydrogenase ; 172 Arabidopsis suspension cell cultures show decreased ADH activity upon exposure to H2O2, but not to the thiol oxidizing agent diamide. Purified recombinant ADH shows a significant decrease in the enzyme activity by treatments with H2O2 and diethylamine NONOate DEA/NO. Treatments leading to the formation of a disulfide bond between ADH and glutathione protein S-glutathionylation have no negative effect on the enzyme activity. LC-MS/MS analysis shows that Cys47 and Cys243 can make a stable disulfide bond with glutathione, suggesting redox sensitivity of these residues. Mutation of ADH Cys47 to Ser causes an almost complete loss of the enzyme activity while the Cys243 to Ser mutant have increased specific activity. Incubation of ADH with NAD+ or NADH prevents inhibition of the enzyme by H2O2 or DEA/NO. Binding of ADH with its cofactors may limit availability of Cys residues to redox modifications ; 176 cells with increased ADHE abundance exhibit better survival under dark anoxia )",
+          "18,51,88,91,128,133,134,170,171,174,175,176,177,178 evolution (128 alcohol dehydrogenase is a fermentative enzyme that is highly conserved across species, from prokaryotes to fungi, plants, and animals ; 133 the class I type enzyme belongs to the medium-chain alcohol dehydrogenases, structural and evolutionary relationships of the pigeon enzyme, phylogenetic tree, overview ; 134 the class III type enzyme belongs to the medium-chain alcohol dehydrogenases, structural and evolutionary relationships of the dogfish enzyme, phylogenetic tree, overview ; 51 the enzyme ADH3 belongs to the group III alcohol dehydrogenases ; 88 the enzyme belongs to the short-chain alcohol dehydrogenases ; 18,91,170,174,175 anti-Prelog NADH-dependent alcohol dehydrogenase enzymes are analysed for their specificity and activity on carbonyl substrates from different classes such as beta-ketoesters, aromatic ketones and aliphatic ketones. Acetobacter aceti ADH is highly active on beta-ketoesters such as methyl or ethyl 3-oxobutanoate, with maximum specific activity 66 U/mg on ethyl 4-chloro-3-oxobutanoate. While the Acetobacter aceti, Aminobacter aminovorans and Gluconacetobacter diazotrophicus ADH enzymes are more specific for beta-ketoesters, the enzymes from Acetobacter senegalensis, Komagataeibacter xylinus, and Komagataeibacter medellinensis exhibit a broader substrate spectrum with moderate to high preference for acetophenone and its derivatives as well. ADH activity is favoured by the presence of electron-withdrawing halogen substituents F and Cl at para-position on the benzene ring of acetophenone, all the enzymes display significantly reduced activity with 4-bromoacetophenone and exhibit poor activity on the aliphatic substrate pentanone ; 171 anti-Prelog NADH-dependent alcohol dehydrogenase enzymes are analysed for their specificity and activity on carbonyl substrates from different classes such as beta-ketoesters, aromatic ketones and aliphatic ketones. Acetobacter aceti ADH is highly active on beta-ketoesters such as methyl or ethyl 3-oxobutanoate, with maximum specific activity 66 U/mg on ethyl 4-chloro-3-oxobutanoate. While the Acetobacter aceti, Aminobacter aminovorans, and Gluconacetobacter diazotrophicus ADH enzymes are more specific for beta-ketoesters, the enzymes from Acetobacter senegalensis, Komagataeibacter xylinus, and Komagataeibacter medellinensis exhibit a broader substrate spectrum with moderate to high preference for acetophenone and its derivatives as well. ADH activity is favoured by the presence of electron-withdrawing halogen substituents F and Cl at para-position on the benzene ring of acetophenone, all the enzymes display significantly reduced activity with 4-bromoacetophenone and exhibit poor activity on the aliphatic substrate pentanone ; 176 distribution of ADHE among the five eukaryotic supergroups, overview ; 177 the bifunctional AdhE enzyme is conserved in all bacterial kingdoms but also in more phylogenetically distant microorganisms such as green microalgae ; 178 the enzyme belongs to the quinone oxidoreductase QOR subfamily of the medium-chain dehydrogenase/reductase MDR family based on the results of amino acid sequence analysis and phylogenetic analysis )"
+        ]
+      },
+      {
+        "field_code": "PHR",
+        "field_name": "pH range",
+        "records": 11268,
+        "ec_coverage": 3045,
+        "reference_records": 11268,
+        "protein_records": 11268,
+        "qualifier_records": 9267,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.8224174653887114,
+        "sample_values": [
+          "101 4-7.5 101 pH 4.0: about 80% of maximal activity, pH 7.5: about 60% of maximal activity",
+          "103 7-8 103 pH 7: 41% of maximal activity, pH 8: 59% of maximal activity",
+          "11 4.6-6.9"
+        ]
+      },
+      {
+        "field_code": "SS",
+        "field_name": "storage stability",
+        "records": 10719,
+        "ec_coverage": 2884,
+        "reference_records": 10719,
+        "protein_records": 10719,
+        "qualifier_records": 10719,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "116 -20\u00b0C, several months, no loss of activity",
+          "122 15\u00b0C, 50 mM sodium phosphate buffer, pH 8.0, half-life of wild-type 7 h, half-life of mutant C257L 17 h",
+          "122 4\u00b0C, 50 mM sodium phosphate buffer, pH 7.0, 10 mM 2-mercaptoethanol, 10% glycerol, both wild-type and mutant C357L stable for several months"
+        ]
+      },
+      {
+        "field_code": "RE",
+        "field_name": "reaction",
+        "records": 8404,
+        "ec_coverage": 6884,
+        "reference_records": 2566,
+        "protein_records": 2556,
+        "qualifier_records": 4644,
+        "reference_fraction": 0.3053307948595907,
+        "protein_fraction": 0.30414088529271777,
+        "qualifier_fraction": 0.552594002855783,
+        "sample_values": [
+          "9alpha-hydroxyandrosta-1,4-diene-3,17-dione = 3-hydroxy-9,10-secoandrosta-1,3,510-triene-9,17-dione",
+          "H2O + L-dehydroascorbate = 4R,5S-4,5,6-trihydroxy-2,3-dioxohexanoate",
+          "L-ascorbate = L-dehydroascorbate"
+        ]
+      },
+      {
+        "field_code": "RN",
+        "field_name": "recommended name",
+        "records": 8054,
+        "ec_coverage": 8054,
+        "reference_records": 0,
+        "protein_records": 0,
+        "qualifier_records": 1346,
+        "reference_fraction": 0.0,
+        "protein_fraction": 0.0,
+        "qualifier_fraction": 0.1671219269927986,
+        "sample_values": [
+          "spontaneous reaction",
+          "alcohol dehydrogenase",
+          "L-xylulose reductase"
+        ]
+      },
+      {
+        "field_code": "AP",
+        "field_name": "application",
+        "records": 7917,
+        "ec_coverage": 3149,
+        "reference_records": 7917,
+        "protein_records": 7917,
+        "qualifier_records": 7914,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9996210685865858,
+        "sample_values": [
+          "12 energy production (12 preparation of a bioanode for use in ethanol oxidation. The bioanode is obtained via immobilization of dehydrogenase enzymes alcohol dehydrogenase or aldehyde dehydrogenase with polyamidoamine dendrimers onto carbon paper platforms, using the layer-by-layer technique. The prepared bioanode proves to be capable of producing good power density values )",
+          "137,138,147 degradation (147 direct conversion of switchgrass to ethanol without conventional pretreatment of the biomass is accomplished by deletion of lactate dehydrogenase and heterologous expression of a Clostridium thermocellum bifunctional acetaldehyde/alcohol dehydrogenase in Caldicellulosiruptor bescii. Whereas wild-type Caldicellulosiruptor bescii lacks the ability to make ethanol, 70% of the fermentation products in the engineered strain are ethanol 12.8 mM ethanol directly from 2% wt/vol switchgrass with decreased production of acetate by 38% compared with wild-type ; 137 expression of AdhB gene in an ldh deletion mutant of Caldicellulosiruptor bescii leads to ethanol production at 75\u00b0C, near the ethanol boiling point. The AdhB expressing strain produces ethanol 1.4 mM on Avicel, 0.4 mM on switchgrass as well as acetate 13.0 mM on Avicel, 15.7 mM on switchgrass. The addition of 40 mM MOPS to the growth medium increases the maximal growth yield of C. bescii by approximately twofold ; 138 expression of AdhB gene in an ldh deletion mutant of Caldicellulosiruptor bescii leads to ethanol production at 75\u00b0C, near the ethanol boiling point. The AdhE expressing strain produce ethanol 2.3 mM on Avicel, 1.6 mM on switchgrass and acetate 12.3 mM on Avicel, 15.1 mM on switchgrass. The addition of 40 mM MOPS to the growth medium increases the maximal growth yield of C. bescii by approximately twofold )",
+          "15 biotechnology 15 possible usage of the enzyme in bioindustrial processes and as biosensor"
+        ]
+      },
+      {
+        "field_code": "CF",
+        "field_name": "cofactor",
+        "records": 7876,
+        "ec_coverage": 3086,
+        "reference_records": 7876,
+        "protein_records": 7876,
+        "qualifier_records": 5558,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.7056881665820214,
+        "sample_values": [
+          "1,2,3,4,5,6,7,8,9,10,12,13,14,15,16,17,18,19,20,21,22,24,25,26,27,30, 31,35,36,37,39,41,42,44,45,46,47,48,49,50,51,53,54,55,56,58,62,63,64,66, 68,69,70,71,72,73,74,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92, 94,95,96,97,98,99,100,102,109,110,111,112,113,114,115,116,117,118,119, 120,121,122,124,125,126,127,128,129,130,131,132,133,136,140,141,142,143, 145,146,152,155,163,164,165,168,170,171,172,173,174,175,176,177 NAD+ (15,27,47,64,114,116,168 dependent on ; 124 specific for NAD+ ; 164 specific for ; 49,99 dependent ; 165 preferred cofactor ; 44 kinetics of coenzyme binding in the pH-range 10-12 ; 4 NAD+-plus-acetone-induced conversion ; 44 NAD+ acts as an activator which induces an active form of the enzyme ; 44 preferred substrate ; 87 activity with mutants G223D/T224I and G223D/T224I/H225N ; 12 cofactor binding mode ; 122 dependent on, cofactor binding mechanism and conformation from crystal structure analysis ; 90 the monomer consists of a catalytic and a cofactor-binding domain, the cofactor is bound between 2 domains in a cleft ; 8,30,37,53,68 strongly preferred as cofactor ; 96 specific for NAD+, no activity with NADP+, pro-R stereospecificity for hydrogen transfer ; 102 ADH1 preferrs NAD+ 205fold better than NADP+ as cofactor ; 17 ADH3 does not react with NADP+ ; 146 preferred over NADP+ ; 7 strict requirement for NADH as the coenzyme. Critical role of the D37 residue in discriminating NADH from NADPH ; 115 shows NAD+ as the preferred co-factor over NADP+ ; 44 the binding of NAD+ is kinetically limited by a unimolecular isomerization corresponding to the conformational change that is controlled by deprotonation of the catalytic zinc-water to produce a negatively-charged zinc-hydroxide, which can attract the positively-charged nicotinamide ring ; 127 strict requirement for NADH as the coenzyme, no activity with NADP+. The specificity constant value is 6fold higher for NADH than NAD+ ; 126 the enzyme transfers the deuteride to the Si-face of NAD+ ; 51 Adh3 is strictly dependent on NAD+/NADH, and shows no activity with NADP+/NADPH as cofactor ; 136 exclusively NAD+ dependent ; 26 H255R single mutant exhibits an increased binding affinity toward NADP+ and a concomitant reduction in affinity for NAD+ ; 26 insertion of an RTX domain from the adenylate cyclase of Bordetella pertussis into a loop near the catalytic active site of the thermostable alcohol dehydrogenase D from Pyrococcus furiosus. The resultant chimera, beta-AdhD, gains the calcium-binding ability of the beta-roll, retains the thermostable activity of AdhD, and exhibits reduced overall alcohol dehydrogenase activity. The addition of calcium to beta-AdhD preferentially inhibits NAD+-dependent activity in comparison to NADP+-dependent activity. Calcium is a competitive inhibitor of AdhD, and the addition of the RTX domain introduces calcium-dependent noncompetitive inhibition to beta-AdhD affecting NAD+-dependent activity ; 118 NAD+ is about 2fold preferred over NADP+ )",
+          "1,2,3,4,6,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22,24,25,26,27,30,31, 32,35,36,39,41,42,43,44,45,46,47,48,49,50,51,54,55,56,57,58,62,64,66,69, 70,71,72,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,91,92,93,94,97, 109,117,118,119,120,121,122,125,126,127,128,129,130,131,139,140,141,144, 147,150,155,158,159,163,164,165,166,170,171,172,173,174,175,176,177, 178 NADH (131 required ; 47,64 dependent on ; 49 dependent ; 165,178 preferred cofactor ; 44 kinetics of coenzyme binding in the pH range 10-12 ; 44 preferred coenzyme ; 87 activity with mutants G223D/T224I and G223D/T224I/H225N ; 12 cofactor binding mode ; 7 strict requirement for NADH as the coenzyme. Critical role of the D37 residue in discriminating NADH from NADPH ; 127 strict requirement for NADH as the coenzyme, no activity with NADPH. The specificity constant value is 6fold higher for NADH than NAD+ ; 126 the specificity constant value is 21-fold higher for NADH than NAD+. No activity with NADPH ; 51 Adh3 is strictly dependent on NAD+/NADH, and shows no activity with NADP+/NADPH as cofactor ; 7 the enzyme transfers the pro-S hydrogen of [4R-2H]NADH and exhibits Prelog specificity ; 166 the cofactor NADH can be recycled with D-glucose dehydrogenase/D-glucose system or in a coupled substrate approach using isopropanol as the hydrogen donor ; 18,91,170,171,174,175 a NADH-dependent alcohol dehydrogenase ; 47 cofactor binding analysis with wild-type and mutant enzymes, crystal structure analysis, overview ; 117 three-dimensional enzyme-bound structure analysis ; 176 NADH binding sites are Gly270-Gly291 and Glu599-Met622 )",
+          "10,16,26,44,57,58,87,97,147,150,153,165,178 NADPH (58 at 1.6% of the activity with NADH ; 16 no activity as coenzyme ; 44 also utilized as coenzyme by the SS isoenzyme ; 87 specific for, residues Gly223, Thr224, His225, Leu200, and Lys228 are involved in cofactor binding pocket formation ; 57 about 20% of the activity with NADH ; 97 weak activity ; 153 enzyme strictly requires NADPH as a coenzyme ; 26 experiments with the highly active double mutant K249G/H255R using NADPH as a cofactor demonstrate an unprecedented transient behavior where the binding mechanism appears to be dependent on cofactor concentration ; 178 low activity with, cf. Ec 1.1.1.2 )"
+        ]
+      },
+      {
+        "field_code": "GS",
+        "field_name": "general stability",
+        "records": 7860,
+        "ec_coverage": 2300,
+        "reference_records": 7860,
+        "protein_records": 7860,
+        "qualifier_records": 7860,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "116 the presence of a second phase of a water-insoluble solvent like hexane or octane has only minor effects on the enzyme, which retains 80% of its activity, allowing the use of these solvents in aqueous/organic mixtures to increase the availability of low-water soluble substrates",
+          "12 even at 50\u00b0C the stabilization effect of lipid membranes on the tertiary and quaternary structures of the liposomal YADH allows the enzyme to form its thermostable complex with NAD+ in liposomes",
+          "12 enzyme covalently immobilized to magnetic Fe3O4 nanoparticles via glutaraldehyde shows enhanced thermal stability and good durability in the repeated use after recovered by magnetic separations. Within 7 cycles of usage, the remaining activity is about 100%, 89.15%, 79.42%, 69.50%, 62.80%, 56.48%, and 48.26% of the first use"
+        ]
+      },
+      {
+        "field_code": "PHS",
+        "field_name": "pH stability",
+        "records": 7233,
+        "ec_coverage": 1665,
+        "reference_records": 7233,
+        "protein_records": 7233,
+        "qualifier_records": 6697,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.925895202543896,
+        "sample_values": [
+          "101 4-8 101 4\u00b0C, 48 h, stable",
+          "12 6-8 12 at pH 6.0 and 8.0, the activity of free ADH decreases dramatically during the incubation, and 90 min later most of the activity is lost, the immobilized form retains 81% of activity at pH 8.0",
+          "12 6.5-9 12 native Zn-ADH enzyme"
+        ]
+      },
+      {
+        "field_code": "RT",
+        "field_name": "reaction type",
+        "records": 6865,
+        "ec_coverage": 3902,
+        "reference_records": 179,
+        "protein_records": 179,
+        "qualifier_records": 180,
+        "reference_fraction": 0.02607428987618354,
+        "protein_fraction": 0.02607428987618354,
+        "qualifier_fraction": 0.026219956300072834,
+        "sample_values": [
+          "redox reaction",
+          "oxidation",
+          "reduction"
+        ]
+      },
+      {
+        "field_code": "SN",
+        "field_name": "synonym",
+        "records": 6436,
+        "ec_coverage": 6436,
+        "reference_records": 10,
+        "protein_records": 0,
+        "qualifier_records": 3413,
+        "reference_fraction": 0.0015537600994406464,
+        "protein_fraction": 0.0,
+        "qualifier_fraction": 0.5302983219390927,
+        "sample_values": [
+          "spontaneous non-enzymatic reaction",
+          "alcohol:NAD+ oxidoreductase",
+          "xylitol:NADP+ 4-oxidoreductase L-xylulose-forming"
+        ]
+      },
+      {
+        "field_code": "PI",
+        "field_name": "isoelectric point",
+        "records": 6228,
+        "ec_coverage": 1706,
+        "reference_records": 6228,
+        "protein_records": 6228,
+        "qualifier_records": 5771,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9266217084136159,
+        "sample_values": [
+          "102 6.3 102 calculated from sequence, ADH1",
+          "107 6.1 107 calculated",
+          "108 5.7 108 calculated"
+        ]
+      },
+      {
+        "field_code": "TR",
+        "field_name": "temperature range",
+        "records": 6017,
+        "ec_coverage": 1768,
+        "reference_records": 6017,
+        "protein_records": 6017,
+        "qualifier_records": 5212,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.8662123982050856,
+        "sample_values": [
+          "101,105 20-50 101 20\u00b0C: about 80% of maximal activity, 50\u00b0C: about 55% of maximal activity ; 105 20\u00b0C: about 80% of maximal activity, 50\u00b0C: about 60% of maximal activity, reduction of N-benzyl-3-pyrrolidinone",
+          "103 75-90 103 75\u00b0C: about 45% of maximal activity, 90\u00b0C: about 45% of maximal activity",
+          "115 25-90"
+        ]
+      },
+      {
+        "field_code": "EXP",
+        "field_name": "expression",
+        "records": 4202,
+        "ec_coverage": 2540,
+        "reference_records": 4202,
+        "protein_records": 4202,
+        "qualifier_records": 4202,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "108 down 108 isoform is not expressed at 45\u00b0C in glycerol-containing medium and is significantly lower expressed at 45\u00b0C than at 30\u00b0C in ethanol- and glucose-containing medium",
+          "108,128 more 128 osmotic, cold, or drought stress does not induce expression of Adh2 ; 108 isoform ADH4 is significantly expressed in stationary phase and in presence of ethanol",
+          "12,107,128,139,140,141,142,160,161,164,176 up (128 expression of Adh is significantly upregulated in 4-day-old soybean seedlings, in in the root apical meristem, subjected to 2 days of flooding ; 139,140,141,142 gene expression is largely induced during ethanol fermentation ; 107 isoform ADH3 is significantly expressed in presence of ethanol ; 160 expression is strongly influenced by the pH of the culture medium. Expression in cells grown on ethanol is higher at pH 6.0 than at pH 3.7 ; 161 low level increase in Aadh1 gene expression with ethanol, pyruvate or xylose as the carbon source ; 12 expression is significantly upregulated under high furfural 2-furaldehyde or 5-hydroxymethyl-2-furaldehyde concentrations ; 164 the enzyme activity is highly induced in glutathione GSH-deficient cells ; 176 ADHE is upregulated under oxic conditions. Upregulation is observed in cells exposed to diverse physiological stresses, including zinc deficiency, nitrogen starvation, and inhibition of carbon concentration/fixation capacity. Cells with increased ADHE abundance exhibit better survival under dark anoxia. Zinc deficiency increases ADHE accumulation and fermentative abilities. Lack of RubisCO carboxylase activity or carbonic anhydrase 3, and impaired starch synthesis also induce the enzyme )"
+        ]
+      },
+      {
+        "field_code": "PM",
+        "field_name": "post translational modification",
+        "records": 2832,
+        "ec_coverage": 1553,
+        "reference_records": 2832,
+        "protein_records": 2832,
+        "qualifier_records": 2567,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9064265536723164,
+        "sample_values": [
+          "107,108 proteolytic modification 107 sequence contains a N-terminal mitochondrial import sequence of 24 amino acids ; 108 sequence contains a N-terminal mitochondrial import sequence of 28 amino acids",
+          "172 side-chain modification (172 S-glutathionylation, recombinant ADH activity does not decrease upon incubation with GSSG. In contrast, ADH activity is more stable over time when incubated with GSSG. This increase in the enzyme stability leads to an increase about 20% in activity compared to the control. Treatment with GSSG does not significantly promote the release of Zn from recombinant ADH )",
+          "49 more 49 carboxymethylation with sodium iodoacetate"
+        ]
+      },
+      {
+        "field_code": "OSS",
+        "field_name": "organic solvent stability",
+        "records": 1842,
+        "ec_coverage": 499,
+        "reference_records": 1842,
+        "protein_records": 1842,
+        "qualifier_records": 1825,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.990770901194354,
+        "sample_values": [
+          "12,73 Pyridine 12 inactivation ; 73 active, from 25\u00b0C up to 90\u00b0C, 3 h",
+          "12,73 toluene 12 active, from 25\u00b0C up to 75\u00b0C, 3 h, stabilization of the enzyme at elevated temperature ; 73 active, from 25\u00b0C up to 90\u00b0C, 3 h",
+          "12,73 dioxane 12 50% v/v, 50% remaining activity at 4\u00b0C after 100 min, 10% remaining activity after 100 min at 25\u00b0C ; 73 50% v/v, about 95% remaining activity at 4\u00b0C or 25\u00b0C after 1-100 min"
+        ]
+      },
+      {
+        "field_code": "REN",
+        "field_name": "renatured",
+        "records": 1341,
+        "ec_coverage": 657,
+        "reference_records": 1341,
+        "protein_records": 1341,
+        "qualifier_records": 1260,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 0.9395973154362416,
+        "sample_values": [
+          "12 Zn2+ withdrawal by inactivation with Chelex 100, reactivation of the apoenzyme by addition of CuSO4, 1 h at 25\u00b0C, pH 7.6",
+          "26 (solubilization of overexpressed recombinant His-tagged enzyme from Escherichia coli strain BL21DE3 inclusion bodies by 8 M urea, and refolding by dialysis, cation exchange chromatography, and dilution in presence of 0.001 mM NADPH in 20 mM sodium acetate, pH 5.3, 10% glycerol, and 0.05% Tween 20, the refolded enzyme shows 90-95% of soluble enzyme activity)",
+          "26 (study on guanidinium chloride-induced isothermal and thermal denaturation. Folding/unfolding is completely reversible and a two-state process. Conformational stability, i.e. DELTAGS, and the DELTACP value for the protein unfolding, are 22.68 kcal/mole and 5.83 kcal/mole K)"
+        ]
+      },
+      {
+        "field_code": "OS",
+        "field_name": "oxygen stability",
+        "records": 747,
+        "ec_coverage": 449,
+        "reference_records": 747,
+        "protein_records": 747,
+        "qualifier_records": 747,
+        "reference_fraction": 1.0,
+        "protein_fraction": 1.0,
+        "qualifier_fraction": 1.0,
+        "sample_values": [
+          "12 among all the cysteine residues, Cys43 is the most susceptible to H2O2 oxidation, and the major oxidation products of this cysteine are Cys-SO2H and Cys-SO3H. The oxidation of Cys43 might be responsible for the inactivation of the enzyme upon H2O2 treatment",
+          "12 Adh1p is oxidatively modified during ageing and, consequently, its activity becomes reduced",
+          "58 pronounced oxygen lability at pH 9, even at pH 7, 2 h under air, 80% loss of activity"
+        ]
+      }
+    ],
+    "entity_linkage": {
+      "enzymes_with_proteins": 6844,
+      "enzymes_with_facts": 8053,
+      "enzymes_with_text": 6878,
+      "enzymes_with_all": 6838,
+      "proteins_and_facts": 6,
+      "proteins_and_text": 0,
+      "facts_and_text": 38,
+      "proteins_only": 0,
+      "facts_only": 1171,
+      "text_only": 2,
+      "avg_proteins": 13.617256362507758,
+      "avg_facts": 258.1421477343265,
+      "avg_text": 228.07908131595283
+    },
+    "top_enzymes_by_proteins": [
+      {
+        "ec_number": "3.2.1.21",
+        "protein_count": 421
+      },
+      {
+        "ec_number": "2.7.11.1",
+        "protein_count": 383
+      },
+      {
+        "ec_number": "4.1.1.39",
+        "protein_count": 372
+      },
+      {
+        "ec_number": "2.7.13.3",
+        "protein_count": 370
+      },
+      {
+        "ec_number": "3.2.1.4",
+        "protein_count": 349
+      },
+      {
+        "ec_number": "3.2.1.14",
+        "protein_count": 339
+      },
+      {
+        "ec_number": "2.5.1.18",
+        "protein_count": 335
+      },
+      {
+        "ec_number": "3.2.1.8",
+        "protein_count": 326
+      },
+      {
+        "ec_number": "1.15.1.1",
+        "protein_count": 322
+      },
+      {
+        "ec_number": "3.2.1.1",
+        "protein_count": 317
+      }
+    ],
+    "top_enzymes_by_fact_volume": [
+      {
+        "ec_number": "4.2.1.1",
+        "records": 10177
+      },
+      {
+        "ec_number": "3.2.1.21",
+        "records": 7562
+      },
+      {
+        "ec_number": "3.1.1.1",
+        "records": 7365
+      },
+      {
+        "ec_number": "1.14.18.1",
+        "records": 6844
+      },
+      {
+        "ec_number": "3.2.1.8",
+        "records": 6361
+      },
+      {
+        "ec_number": "3.5.2.6",
+        "records": 6286
+      },
+      {
+        "ec_number": "2.5.1.18",
+        "records": 6254
+      },
+      {
+        "ec_number": "3.1.1.3",
+        "records": 6171
+      },
+      {
+        "ec_number": "3.4.14.5",
+        "records": 6071
+      },
+      {
+        "ec_number": "3.2.1.1",
+        "records": 5962
+      }
+    ]
+  },
+  "doi_stats": {
+    "total_doi_links": 144605,
+    "top_domains": [
+      [
+        "doi.org",
+        144605
+      ]
+    ]
+  },
+  "pubmed_stats": {
+    "total_articles": 153123,
+    "articles_with_doi": 144606,
+    "unique_pubmed_ids": 153123,
+    "max_ec_per_article": 20,
+    "median_ec_per_article": 1
+  }
+}

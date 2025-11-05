@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRENDA Explorer</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f6f7fb; color: #1f2933; }
+    header { background: #1f2933; color: white; padding: 1.5rem 2rem; }
+    h1 { margin: 0; font-size: 1.5rem; }
+    main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+    .card { background: white; border-radius: 10px; padding: 1.5rem; box-shadow: 0 10px 30px rgba(31,41,51,0.15); margin-bottom: 2rem; }
+    label { display: block; font-weight: bold; margin-bottom: 0.5rem; }
+    input[type="text"] { width: 100%; padding: 0.7rem 1rem; border-radius: 8px; border: 1px solid #cbd2d9; font-size: 1rem; }
+    input[type="text"]:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 3px rgba(37,99,235,0.2); }
+    button { background: #2563eb; border: none; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.2s ease; }
+    button:hover { background: #1d4ed8; }
+    .grid { display: grid; gap: 1.5rem; }
+    .hidden { display: none; }
+    .table-container { overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; min-width: 600px; }
+    th, td { text-align: left; padding: 0.75rem 0.5rem; border-bottom: 1px solid #e4e7eb; }
+    th { background: #f1f5f9; }
+    .tag { background: #dbeafe; color: #1d4ed8; padding: 0.25rem 0.6rem; border-radius: 9999px; font-size: 0.8rem; margin-right: 0.5rem; display: inline-block; }
+    .muted { color: #667085; }
+    .error { color: #dc2626; font-weight: bold; }
+    .loader { border: 3px solid #e2e8f0; border-top: 3px solid #2563eb; border-radius: 50%; width: 26px; height: 26px; animation: spin 0.8s linear infinite; margin-right: 0.75rem; }
+    .flex { display: flex; align-items: center; }
+    .flex-between { display: flex; align-items: center; justify-content: space-between; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @media (max-width: 768px) { main { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BRENDA Enzyme Explorer</h1>
+  </header>
+  <main>
+    <section class="card" id="insightsSection">
+      <h2>Dataset Overview</h2>
+      <p class="muted">High-level metrics derived from the local BRENDA mirror.</p>
+      <div class="grid" id="insightsTotals"></div>
+      <div class="grid" style="margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        <div>
+          <h3>Top ECs by protein annotations</h3>
+          <div id="topProteins"></div>
+        </div>
+        <div>
+          <h3>Most referenced ECs</h3>
+          <div id="topReferences"></div>
+        </div>
+        <div>
+          <h3>Common inhibitors</h3>
+          <div id="topInhibitors"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Quick Search</h2>
+      <p class="muted">Search by enzyme name, EC number, synonym, or keyword.</p>
+      <div class="grid">
+        <div>
+          <label for="searchInput">Search term</label>
+          <input id="searchInput" type="text" placeholder="e.g. beta-glucosidase" />
+        </div>
+        <div>
+          <button id="searchBtn">Search</button>
+        </div>
+      </div>
+      <div id="searchStatus" class="flex hidden" style="margin-top: 1rem;"></div>
+      <div id="searchResults" class="table-container" style="margin-top: 1.5rem;"></div>
+    </section>
+
+    <section class="card">
+      <h2>Lookup by EC Number</h2>
+      <p class="muted">Fetch enzyme metadata, grouped facts, and text annotations.</p>
+      <div class="grid">
+        <div>
+          <label for="ecInput">EC number</label>
+          <input id="ecInput" type="text" placeholder="e.g. 3.2.1.21" />
+        </div>
+        <div>
+          <button id="ecBtn">Fetch EC details</button>
+        </div>
+      </div>
+      <div id="ecStatus" class="flex hidden" style="margin-top: 1rem;"></div>
+      <div id="ecDetails" style="margin-top: 1.5rem;"></div>
+    </section>
+
+    <section class="card">
+      <h2>Ask the LLM Agent</h2>
+      <p class="muted">Natural-language questions are translated into SQL over the local BRENDA database.</p>
+      <div class="grid">
+        <div>
+          <label for="chatInput">Your question</label>
+          <textarea id="chatInput" rows="4" style="width: 100%; padding: 0.7rem 1rem; border-radius: 8px; border: 1px solid #cbd2d9; font-size: 1rem; resize: vertical;" placeholder="e.g. Summarise inhibitors reported for EC 1.1.1.1"></textarea>
+        </div>
+        <div>
+          <button id="chatBtn">Ask Brenda Agent</button>
+        </div>
+      </div>
+      <div id="chatStatus" class="flex hidden" style="margin-top: 1rem;"></div>
+      <div id="chatAnswer" style="margin-top: 1.5rem;"></div>
+    </section>
+  </main>
+
+  <script>
+    const API_BASE = window.location.origin;
+
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const searchStatus = document.getElementById('searchStatus');
+    const searchResults = document.getElementById('searchResults');
+
+    const ecInput = document.getElementById('ecInput');
+    const ecBtn = document.getElementById('ecBtn');
+    const ecStatus = document.getElementById('ecStatus');
+    const ecDetails = document.getElementById('ecDetails');
+
+    const chatInput = document.getElementById('chatInput');
+    const chatBtn = document.getElementById('chatBtn');
+    const chatStatus = document.getElementById('chatStatus');
+    const chatAnswer = document.getElementById('chatAnswer');
+
+    const insightsTotals = document.getElementById('insightsTotals');
+    const topProteins = document.getElementById('topProteins');
+    const topReferences = document.getElementById('topReferences');
+    const topInhibitors = document.getElementById('topInhibitors');
+
+    function showStatus(container, message, isLoading = false, isError = false) {
+      container.innerHTML = '';
+      container.classList.remove('hidden');
+      if (isLoading) {
+        const loader = document.createElement('div'); loader.className = 'loader'; container.appendChild(loader);
+      }
+      const text = document.createElement('span');
+      text.textContent = message;
+      if (isError) { text.className = 'error'; }
+      container.appendChild(text);
+    }
+
+    function hideStatus(container) {
+      container.classList.add('hidden');
+      container.innerHTML = '';
+    }
+
+    function renderSearchResults(data) {
+      if (!data || (!data.enzymes?.length && !data.synonyms?.length && !data.text_fields?.length)) {
+        searchResults.innerHTML = '<p class="muted">No results found.</p>';
+        return;
+      }
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      thead.innerHTML = '<tr><th>EC Number</th><th>Name / Field</th><th>Context</th></tr>';
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+
+      (data.enzymes || []).forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><strong>${item.ec_number}</strong></td><td>${item.recommended_name || ''}</td><td>${item.systematic_name || ''}</td>`;
+        tbody.appendChild(tr);
+      });
+      (data.synonyms || []).forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${item.ec_number}</td><td><span class="tag">Synonym</span>${item.synonym}</td><td></td>`;
+        tbody.appendChild(tr);
+      });
+      (data.text_fields || []).forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${item.ec_number}</td><td><span class="tag">${item.field_code}</span>${item.value_text}</td><td></td>`;
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      searchResults.innerHTML = '';
+      searchResults.appendChild(table);
+    }
+
+    function renderEcDetails(data) {
+      if (!data) {
+        ecDetails.innerHTML = '<p class="muted">No details available.</p>';
+        return;
+      }
+      const container = document.createElement('div');
+
+      const header = document.createElement('div');
+      header.className = 'flex-between';
+      header.innerHTML = `<div><h3>${data.ec_number} — ${data.recommended_name || ''}</h3><p class="muted">${data.systematic_name || ''}</p></div><div><span class="tag">Proteins: ${data.proteins?.length || 0}</span><span class="tag">Facts: ${Object.values(data.facts || {}).reduce((acc, arr) => acc + arr.length, 0)}</span></div>`;
+      container.appendChild(header);
+
+      if (data.reaction_summary) {
+        const reaction = document.createElement('p');
+        reaction.textContent = `Reaction summary: ${data.reaction_summary}`;
+        container.appendChild(reaction);
+      }
+
+      if (Array.isArray(data.proteins) && data.proteins.length) {
+        const proteinSection = document.createElement('section');
+        proteinSection.innerHTML = '<h4>Representative proteins</h4>';
+        const table = document.createElement('table');
+        table.innerHTML = '<thead><tr><th>Organism</th><th>Protein ID</th><th>Comment</th></tr></thead>';
+        const tbody = document.createElement('tbody');
+        data.proteins.slice(0, 10).forEach(p => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${p.organism || ''}</td><td>${p.protein_id || ''}</td><td>${p.comment || ''}</td>`;
+          tbody.appendChild(tr);
+        });
+        if (data.proteins.length > 10) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td colspan="3" class="muted">… ${data.proteins.length - 10} more proteins available via API.</td>`;
+          tbody.appendChild(tr);
+        }
+        table.appendChild(tbody);
+        proteinSection.appendChild(table);
+        container.appendChild(proteinSection);
+      }
+
+      if (data.facts && Object.keys(data.facts).length) {
+        const factsSection = document.createElement('section');
+        factsSection.innerHTML = '<h4>Structured facts</h4>';
+        Object.entries(data.facts).forEach(([category, items]) => {
+          const sub = document.createElement('details');
+          const summary = document.createElement('summary');
+          summary.textContent = `${category} (${items.length})`;
+          sub.appendChild(summary);
+          const list = document.createElement('ul');
+          items.slice(0, 10).forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${item.value || ''}</strong> <span class="muted">${item.unit || ''}</span> ${item.context ? ' — ' + item.context : ''}`;
+            list.appendChild(li);
+          });
+          if (items.length > 10) {
+            const more = document.createElement('p');
+            more.className = 'muted';
+            more.textContent = `… ${items.length - 10} more entries available via API.`;
+            sub.appendChild(more);
+          }
+          sub.appendChild(list);
+          factsSection.appendChild(sub);
+        });
+        container.appendChild(factsSection);
+      }
+
+      if (data.text_fields && Object.keys(data.text_fields).length) {
+        const textSection = document.createElement('section');
+        textSection.innerHTML = '<h4>Text annotations</h4>';
+        Object.entries(data.text_fields).forEach(([code, items]) => {
+          const sub = document.createElement('details');
+          const summary = document.createElement('summary');
+          summary.textContent = `${code} (${items.length})`;
+          sub.appendChild(summary);
+          const list = document.createElement('ul');
+          items.slice(0, 5).forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item.value_text;
+            list.appendChild(li);
+          });
+          if (items.length > 5) {
+            const more = document.createElement('p');
+            more.className = 'muted';
+            more.textContent = `… ${items.length - 5} more entries available via API.`;
+            sub.appendChild(more);
+          }
+          sub.appendChild(list);
+          textSection.appendChild(sub);
+        });
+        container.appendChild(textSection);
+      }
+
+      ecDetails.innerHTML = '';
+      ecDetails.appendChild(container);
+    }
+
+    function renderInsights(data) {
+      if (!data?.totals) {
+        insightsTotals.innerHTML = '<p class="muted">No insight data.</p>';
+        return;
+      }
+      const totals = data.totals;
+      const cards = [
+        { label: 'Enzymes', value: totals.enzyme_count },
+        { label: 'Protein annotations', value: totals.protein_annotations },
+        { label: 'Protein rows', value: totals.protein_rows },
+        { label: 'Structured facts', value: totals.fact_rows },
+        { label: 'Text facts', value: totals.text_rows }
+      ];
+      insightsTotals.innerHTML = cards.map(card => `
+        <div style="background:#1d4ed8;color:white;padding:1rem 1.25rem;border-radius:12px;box-shadow:0 10px 25px rgba(29,78,216,0.3);">
+          <p style="margin:0;font-size:0.9rem;opacity:0.85;">${card.label}</p>
+          <p style="margin:0;font-size:1.6rem;font-weight:bold;">${card.value?.toLocaleString?.() || card.value}</p>
+        </div>
+      `).join('');
+
+      const renderList = (rows, columns) => {
+        if (!rows?.length) return '<p class="muted">No data.</p>';
+        const header = `<tr>${columns.map(col => `<th>${col.header}</th>`).join('')}</tr>`;
+        const body = rows.map(row => `<tr>${columns.map(col => `<td>${row[col.key] ?? ''}</td>`).join('')}</tr>`).join('');
+        return `<table><thead>${header}</thead><tbody>${body}</tbody></table>`;
+      };
+
+      topProteins.innerHTML = renderList(data.top_proteins, [
+        { header: 'EC', key: 'ec_number' },
+        { header: 'Name', key: 'recommended_name' },
+        { header: 'Proteins', key: 'protein_count' }
+      ]);
+
+      topReferences.innerHTML = renderList(data.top_references, [
+        { header: 'EC', key: 'ec_number' },
+        { header: 'Reference records', key: 'reference_records' }
+      ]);
+
+      topInhibitors.innerHTML = renderList(data.top_inhibitors, [
+        { header: 'Inhibitor', key: 'inhibitor' },
+        { header: 'Entries', key: 'entries' }
+      ]);
+    }
+
+    async function handleSearch() {
+      const term = searchInput.value.trim();
+      if (!term) return;
+      showStatus(searchStatus, 'Searching…', true);
+      searchResults.innerHTML = '';
+      try {
+        const resp = await fetch(`${API_BASE}/search?q=${encodeURIComponent(term)}`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+        hideStatus(searchStatus);
+        renderSearchResults(data);
+      } catch (err) {
+        showStatus(searchStatus, `Error: ${err.message}`, false, true);
+      }
+    }
+
+    async function handleEcLookup() {
+      const ec = ecInput.value.trim();
+      if (!ec) return;
+      showStatus(ecStatus, 'Fetching enzyme details…', true);
+      ecDetails.innerHTML = '';
+      try {
+        const resp = await fetch(`${API_BASE}/enzymes/${encodeURIComponent(ec)}?include_facts=true&include_text=true`);
+        if (!resp.ok) {
+          const errData = await resp.json().catch(() => ({}));
+          throw new Error(errData.detail || `HTTP ${resp.status}`);
+        }
+        const data = await resp.json();
+        hideStatus(ecStatus);
+        renderEcDetails(data);
+      } catch (err) {
+        showStatus(ecStatus, `Error: ${err.message}`, false, true);
+      }
+    }
+
+    const chatHistory = [];
+
+    function renderChatHistory() {
+      if (!chatHistory.length) {
+        chatAnswer.innerHTML = '<p class="muted">Ask a question to begin.</p>';
+        return;
+      }
+      chatAnswer.innerHTML = chatHistory.map(item => `
+        <div style="margin-bottom:1.5rem;">
+          <p style="font-weight:bold;">You:</p>
+          <p>${item.question.replace(/\n/g, '<br/>')}</p>
+          <p style="font-weight:bold;margin-top:0.75rem;">Agent:</p>
+          <p>${item.answer.replace(/\n/g, '<br/>')}</p>
+          <details style="margin-top:0.5rem;">
+            <summary>Executed SQL (${item.sql.length})</summary>
+            ${item.sql.map(stmt => `<pre style="background:#f1f5f9;padding:0.75rem;border-radius:6px;overflow:auto;">${stmt}</pre>`).join('')}
+          </details>
+        </div>
+      `).join('');
+    }
+
+    async function handleChatAsk() {
+      const question = chatInput.value.trim();
+      if (!question) return;
+      showStatus(chatStatus, 'Querying the database via LLM agent…', true);
+      try {
+        const resp = await fetch(`${API_BASE}/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question })
+        });
+        if (!resp.ok) {
+          const errData = await resp.json().catch(() => ({}));
+          throw new Error(errData.detail || `HTTP ${resp.status}`);
+        }
+        const data = await resp.json();
+        hideStatus(chatStatus);
+        chatHistory.unshift({ question, answer: data.answer, sql: data.sql });
+        if (chatHistory.length > 10) chatHistory.pop();
+        renderChatHistory();
+      } catch (err) {
+        showStatus(chatStatus, `Error: ${err.message}`, false, true);
+      }
+    }
+
+    searchBtn.addEventListener('click', handleSearch);
+    ecBtn.addEventListener('click', handleEcLookup);
+    chatBtn.addEventListener('click', handleChatAsk);
+    searchInput.addEventListener('keyup', e => { if (e.key === 'Enter') handleSearch(); });
+    ecInput.addEventListener('keyup', e => { if (e.key === 'Enter') handleEcLookup(); });
+    chatInput.addEventListener('keyup', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleChatAsk(); } });
+
+    async function loadInsights() {
+      try {
+        const resp = await fetch(`${API_BASE}/insights/summary`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+        renderInsights(data);
+      } catch (err) {
+        insightsTotals.innerHTML = `<p class=\"error\">Failed to load insights: ${err.message}</p>`;
+      }
+    }
+
+    loadInsights();
+    renderChatHistory();
+  </script>
+</body>
+</html>

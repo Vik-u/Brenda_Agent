@@ -1,0 +1,28 @@
+agents:
+  researcher:
+    description: Domain expert agent responsible for querying and summarizing BRENDA enzymatic data.
+    llm:
+      provider: openai
+      model: gpt-4o-mini
+      temperature: 0.3
+    tools:
+      - brenda_api_tool
+      - literature_search_tool
+  analyst:
+    description: Data analyst agent tasked with cleaning, transforming, and validating enzymatic datasets.
+    llm:
+      provider: openai
+      model: gpt-4o-mini
+      temperature: 0.2
+    tools:
+      - pandas_toolkit
+      - validation_tool
+  orchestrator:
+    description: Supervises agents, routes tasks, enforces workflow policies, and assembles deliverables.
+    llm:
+      provider: openai
+      model: gpt-4o-mini
+      temperature: 0.1
+    tools:
+      - planning_tool
+      - reporting_tool

@@ -1,0 +1,79 @@
+{
+  "requested": 5,
+  "attempted": 5,
+  "successful": 0,
+  "failed": [
+    {
+      "doi": "10.1128/IAI.67.3.1359-1367.1999",
+      "source_url": "https://iai.asm.org/content/iai/67/3/1359.full.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: Client error '403 Forbidden' for url 'https://iai.asm.org/content/iai/67/3/1359.full.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "doi": "10.1128/MCB.19.3.2322",
+      "source_url": "https://mcb.asm.org/content/mcb/19/3/2322.full.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: Client error '403 Forbidden' for url 'https://mcb.asm.org/content/mcb/19/3/2322.full.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "doi": "10.1128/IAI.67.3.1508-1510.1999",
+      "source_url": "https://iai.asm.org/content/iai/67/3/1508.full.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: Client error '403 Forbidden' for url 'https://iai.asm.org/content/iai/67/3/1508.full.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "doi": "10.1093/dnares/5.6.355",
+      "source_url": "https://academic.oup.com/dnaresearch/article-pdf/5/6/355/7286098/dnares_5_6_355.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: Client error '403 Forbidden' for url 'https://academic.oup.com/dnaresearch/article-pdf/5/6/355/7286098/dnares_5_6_355.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "doi": "10.1017/s1355838299981256",
+      "source_url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/7D1A7EAD3F13D5FEAED9EA5A3C148839/stamped-S1355838299001259a.pdf/div-class-title-the-3-end-cca-of-mature-trna-is-an-antideterminant-for-eukaryotic-3-trnase-div.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: No PDF available at provided URL"
+    }
+  ],
+  "results": [
+    {
+      "doi": "10.1128/IAI.67.3.1359-1367.1999",
+      "source_url": "https://iai.asm.org/content/iai/67/3/1359.full.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: Client error '403 Forbidden' for url 'https://iai.asm.org/content/iai/67/3/1359.full.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "doi": "10.1128/MCB.19.3.2322",
+      "source_url": "https://mcb.asm.org/content/mcb/19/3/2322.full.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: Client error '403 Forbidden' for url 'https://mcb.asm.org/content/mcb/19/3/2322.full.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "doi": "10.1128/IAI.67.3.1508-1510.1999",
+      "source_url": "https://iai.asm.org/content/iai/67/3/1508.full.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: Client error '403 Forbidden' for url 'https://iai.asm.org/content/iai/67/3/1508.full.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "doi": "10.1093/dnares/5.6.355",
+      "source_url": "https://academic.oup.com/dnaresearch/article-pdf/5/6/355/7286098/dnares_5_6_355.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: Client error '403 Forbidden' for url 'https://academic.oup.com/dnaresearch/article-pdf/5/6/355/7286098/dnares_5_6_355.pdf'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403"
+    },
+    {
+      "doi": "10.1017/s1355838299981256",
+      "source_url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/7D1A7EAD3F13D5FEAED9EA5A3C148839/stamped-S1355838299001259a.pdf/div-class-title-the-3-end-cca-of-mature-trna-is-an-antideterminant-for-eukaryotic-3-trnase-div.pdf",
+      "pdf_path": null,
+      "text_path": null,
+      "status": "error: No PDF available at provided URL"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+workflows:
+  brenda_enzyme_insight:
+    version: 0.1.0
+    description: Retrieve, validate, and summarize enzyme kinetics data from BRENDA for target reactions.
+    stages:
+      - name: collect_requirements
+        agent: orchestrator
+        output: structured_work_spec
+      - name: retrieve_brenda_records
+        agent: researcher
+        input: structured_work_spec
+        output: raw_brenda_payload
+      - name: enrich_with_literature
+        agent: researcher
+        input: raw_brenda_payload
+        output: enriched_dataset
+      - name: perform_data_analysis
+        agent: analyst
+        input: enriched_dataset
+        output: validated_dataset
+      - name: synthesize_report
+        agent: orchestrator
+        input: validated_dataset
+        output: final_report
+    telemetry:
+      log_structured: true
+      persist_results: true
+      emit_traces: true

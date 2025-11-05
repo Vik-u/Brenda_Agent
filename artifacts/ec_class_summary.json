@@ -1,0 +1,1566 @@
+{
+  "classes": {
+    "1": {
+      "label": "Oxidoreductases",
+      "enzyme_count": 2483,
+      "protein_rows": 28451,
+      "fact_rows": 525137,
+      "text_rows": 474493,
+      "aggregated_counts": {
+        "km_records": 54377,
+        "turnover_records": 25889,
+        "inhibitor_records": 58812
+      },
+      "top_fact_categories": [
+        {
+          "code": "substrates_products",
+          "records": 68104
+        },
+        {
+          "code": "inhibitor",
+          "records": 58812
+        },
+        {
+          "code": "km_value",
+          "records": 54377
+        },
+        {
+          "code": "synonyms",
+          "records": 29859
+        },
+        {
+          "code": "turnover_number",
+          "records": 25889
+        }
+      ],
+      "top_text_fields": [
+        {
+          "code": "KM",
+          "records": 48629,
+          "label": "Km value"
+        },
+        {
+          "code": "IN",
+          "records": 45224,
+          "label": "inhibitor"
+        },
+        {
+          "code": "RF",
+          "records": 44395,
+          "label": "reference"
+        },
+        {
+          "code": "SP",
+          "records": 41725,
+          "label": "substrate/product"
+        },
+        {
+          "code": "PR",
+          "records": 28456,
+          "label": "protein"
+        }
+      ],
+      "numeric_metrics": {
+        "ki_value": {
+          "count": 9033,
+          "min": 2e-11,
+          "q1": 0.000613,
+          "median": 0.0163,
+          "q3": 0.367,
+          "max": 10623.0,
+          "mean": 7.600523048610165,
+          "std": 145.7100395787758
+        },
+        "km_value": {
+          "count": 52756,
+          "min": 1.7e-09,
+          "q1": 0.02,
+          "median": 0.131,
+          "q3": 1.3,
+          "max": 17000.0,
+          "mean": 14.439836234286687,
+          "std": 165.6079931704406
+        },
+        "ph_optimum": {
+          "count": 10076,
+          "min": 1.0,
+          "q1": 6.5,
+          "median": 7.5,
+          "q3": 8.0,
+          "max": 14.0,
+          "mean": 7.314868003175864,
+          "std": 1.502426287162505
+        },
+        "specific_activity": {
+          "count": 14168,
+          "min": 2.255e-10,
+          "q1": 0.11,
+          "median": 2.855,
+          "q3": 36.14,
+          "max": 1000000.0,
+          "mean": 1384.9860143799388,
+          "std": 21588.016409100965
+        },
+        "temperature_optimum": {
+          "count": 5381,
+          "min": 3.0,
+          "q1": 26.0,
+          "median": 35.0,
+          "q3": 45.0,
+          "max": 110.0,
+          "mean": 38.8947407545066,
+          "std": 16.944805735036706
+        },
+        "turnover_number": {
+          "count": 25663,
+          "min": 9.12e-08,
+          "q1": 0.6,
+          "median": 5.6,
+          "q3": 41.0,
+          "max": 3600000.0,
+          "mean": 1238.7621647788767,
+          "std": 41880.04614976834
+        }
+      },
+      "inhibitor_summary": {
+        "unique_inhibitors": 27655,
+        "top_inhibitors": [
+          {
+            "value": "more",
+            "records": 2935
+          },
+          {
+            "value": "Cu2+",
+            "records": 694
+          },
+          {
+            "value": "EDTA",
+            "records": 638
+          },
+          {
+            "value": "Zn2+",
+            "records": 619
+          },
+          {
+            "value": "p-chloromercuribenzoate",
+            "records": 457
+          }
+        ]
+      },
+      "substrate_summary": {
+        "unique_substrates": 36998,
+        "top_substrates": [
+          {
+            "value": "more = ?",
+            "records": 9244
+          },
+          {
+            "value": "benzaldehyde + NAD+ + H2O = benzoate + NADH + H+",
+            "records": 46
+          },
+          {
+            "value": "heme + AH2 + O2 = biliverdin + Fe2+ + CO + A + H2O",
+            "records": 45
+          },
+          {
+            "value": "L-tryptophan + tetrahydrobiopterin + O2 = 5-hydroxy-L-tryptophan + 4a-hydroxytetrahydrobiopterin",
+            "records": 44
+          },
+          {
+            "value": "L-tryptophan + tetrahydrobiopterin + O2 = 5-hydroxy-L-tryptophan + 4a-hydroxytetrahydrobiopterin  {r}",
+            "records": 44
+          }
+        ]
+      },
+      "cofactor_summary": {
+        "unique_cofactors": 420,
+        "top_cofactors": [
+          {
+            "value": "FAD",
+            "records": 1833
+          },
+          {
+            "value": "NADPH",
+            "records": 1595
+          },
+          {
+            "value": "NAD+",
+            "records": 1271
+          },
+          {
+            "value": "NADH",
+            "records": 1262
+          },
+          {
+            "value": "more",
+            "records": 1190
+          }
+        ]
+      },
+      "organism_summary": {
+        "unique_organisms": 6453,
+        "top_organisms": [
+          {
+            "organism": "Homo sapiens",
+            "records": 891
+          },
+          {
+            "organism": "Arabidopsis thaliana",
+            "records": 684
+          },
+          {
+            "organism": "Mus musculus",
+            "records": 551
+          },
+          {
+            "organism": "Rattus norvegicus",
+            "records": 523
+          },
+          {
+            "organism": "Escherichia coli",
+            "records": 471
+          }
+        ]
+      }
+    },
+    "2": {
+      "label": "Transferases",
+      "enzyme_count": 2255,
+      "protein_rows": 27597,
+      "fact_rows": 487806,
+      "text_rows": 435623,
+      "aggregated_counts": {
+        "km_records": 42372,
+        "turnover_records": 16230,
+        "inhibitor_records": 52913
+      },
+      "top_fact_categories": [
+        {
+          "code": "substrates_products",
+          "records": 65944
+        },
+        {
+          "code": "inhibitor",
+          "records": 52913
+        },
+        {
+          "code": "km_value",
+          "records": 42372
+        },
+        {
+          "code": "synonyms",
+          "records": 35358
+        },
+        {
+          "code": "source_tissue",
+          "records": 27770
+        }
+      ],
+      "top_text_fields": [
+        {
+          "code": "RF",
+          "records": 45019,
+          "label": "reference"
+        },
+        {
+          "code": "IN",
+          "records": 40427,
+          "label": "inhibitor"
+        },
+        {
+          "code": "KM",
+          "records": 37152,
+          "label": "Km value"
+        },
+        {
+          "code": "SP",
+          "records": 35386,
+          "label": "substrate/product"
+        },
+        {
+          "code": "SY",
+          "records": 33038,
+          "label": "systematic name"
+        }
+      ],
+      "numeric_metrics": {
+        "ki_value": {
+          "count": 9721,
+          "min": 2.1e-09,
+          "q1": 0.002,
+          "median": 0.0328,
+          "q3": 0.415,
+          "max": 6680.0,
+          "mean": 8.172552581579035,
+          "std": 115.439343727465
+        },
+        "km_value": {
+          "count": 40612,
+          "min": 1e-14,
+          "q1": 0.0242,
+          "median": 0.17,
+          "q3": 1.04075,
+          "max": 4600.0,
+          "mean": 7.10025219180432,
+          "std": 66.14040281012595
+        },
+        "ph_optimum": {
+          "count": 7911,
+          "min": 3.0,
+          "q1": 7.0,
+          "median": 7.5,
+          "q3": 8.0,
+          "max": 11.5,
+          "mean": 7.369166982682341,
+          "std": 0.9864688259572616
+        },
+        "specific_activity": {
+          "count": 10891,
+          "min": 5e-11,
+          "q1": 0.024565,
+          "median": 0.96,
+          "q3": 19.0,
+          "max": 1000000.0,
+          "mean": 317.92595073970887,
+          "std": 10069.51839309076
+        },
+        "temperature_optimum": {
+          "count": 4630,
+          "min": 0.5,
+          "q1": 30.0,
+          "median": 37.0,
+          "q3": 42.0,
+          "max": 125.0,
+          "mean": 38.92874730021598,
+          "std": 16.451314413959206
+        },
+        "turnover_number": {
+          "count": 15836,
+          "min": 2.17e-07,
+          "q1": 0.116,
+          "median": 1.6,
+          "q3": 18.0,
+          "max": 5000000.0,
+          "mean": 687.9077239623479,
+          "std": 40837.97908127092
+        }
+      },
+      "inhibitor_summary": {
+        "unique_inhibitors": 27424,
+        "top_inhibitors": [
+          {
+            "value": "more",
+            "records": 3130
+          },
+          {
+            "value": "Zn2+",
+            "records": 523
+          },
+          {
+            "value": "EDTA",
+            "records": 520
+          },
+          {
+            "value": "Cu2+",
+            "records": 462
+          },
+          {
+            "value": "ATP",
+            "records": 414
+          }
+        ]
+      },
+      "substrate_summary": {
+        "unique_substrates": 32237,
+        "top_substrates": [
+          {
+            "value": "more = ?",
+            "records": 10896
+          },
+          {
+            "value": "deoxynucleoside triphosphate + DNAn = diphosphate + DNAn+1  |#12# DNA products synthesized by Pol delta and its subassemblies on primed M13 DNA, overview | <1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,96,97,98,99,100,101,102,103,104,108,110,111,115,117,126,127,129,130,132,133,134,135,138,147,148,150,151,152,153,154,156,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,231,232,238,239,243,244,245,248,250,251,254,255,256,259,260,262,264,266,267,268,272,276,278,283,284,285,286,287,288,292,295,299,301,302,305,306,307,308,309,311,315,317,318,319,322,324,325,326,329,330,331,334,335,336,339,340,341,343,344,345,346,347,348,349,351,352,353,355,356,357,358,359,360,361,362,363,364,365,367,368,369,370,372,374,375,376,377,380,381,382,384,387,389,394,396>",
+            "records": 212
+          },
+          {
+            "value": "more = ? G-G-GPA (F4/4/2, where GPA = 1-deoxy-1-[(2-pyridyl)amino]-D-glucitol), G-(G-G-G-G<->)G-G-GPA (F1/4/2), and G-G-G-G-G-G-G-(G<->)G-G-GPA (F7/1/2). Contrary to the prevailing hypothesis, the main branch of F4/4/2 is an important donor substrate component of 4-alpha-glucanotransferase and does not serve as an acceptor substrate. But when G-G-G-G-G-GPA is added to the mixture, it successfully accepts a maltotriosyl (G3-) residue from F4/4/2. The debranching activity of GDE towards phosphorylase-limit glycogen substantially increases when methyl alpha-maltooligosides with lengths equal to or greater than that of methyl alpha-maltopentaoside (G5-OCH3) are added to the enzyme reaction mixture. GP-limit dextrin is a bifunctional substrate possessing both donor and acceptor moieties for GDE 4-alpha-glucanotransferase. Maltohexaose is both acceptor and activator of 4-alpha-glucanotransferase. Synthesis of fluorogenic biantennary dextrins F3/1/2, F4/1/2, F5/1/2, F4/1/3, F1/4/2, F4/4/2, and F4/4/3. Substrate specificity of GDE 4-alpha-glucanotransferase, overview ) <1,2,3,4,5,7,8,9,10,12,13,15,16,20,23,25,26,28,31,32,33,36,38,41,43,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,63,64,65,82,83,84,91,96>",
+            "records": 134
+          },
+          {
+            "value": "ATP + a protein = ADP + a phosphoprotein",
+            "records": 122
+          },
+          {
+            "value": "ATP + protein = ADP + phosphoprotein",
+            "records": 100
+          }
+        ]
+      },
+      "cofactor_summary": {
+        "unique_cofactors": 183,
+        "top_cofactors": [
+          {
+            "value": "pyridoxal 5'-phosphate",
+            "records": 471
+          },
+          {
+            "value": "ATP",
+            "records": 391
+          },
+          {
+            "value": "S-adenosyl-L-methionine",
+            "records": 229
+          },
+          {
+            "value": "more",
+            "records": 153
+          },
+          {
+            "value": "thiamine diphosphate",
+            "records": 93
+          }
+        ]
+      },
+      "organism_summary": {
+        "unique_organisms": 4749,
+        "top_organisms": [
+          {
+            "organism": "Homo sapiens",
+            "records": 1837
+          },
+          {
+            "organism": "Mus musculus",
+            "records": 1047
+          },
+          {
+            "organism": "Arabidopsis thaliana",
+            "records": 945
+          },
+          {
+            "organism": "Escherichia coli",
+            "records": 873
+          },
+          {
+            "organism": "Rattus norvegicus",
+            "records": 744
+          }
+        ]
+      }
+    },
+    "3": {
+      "label": "Hydrolases",
+      "enzyme_count": 1719,
+      "protein_rows": 30510,
+      "fact_rows": 706186,
+      "text_rows": 602736,
+      "aggregated_counts": {
+        "km_records": 46226,
+        "turnover_records": 29608,
+        "inhibitor_records": 107902
+      },
+      "top_fact_categories": [
+        {
+          "code": "inhibitor",
+          "records": 107902
+        },
+        {
+          "code": "substrates_products",
+          "records": 100049
+        },
+        {
+          "code": "km_value",
+          "records": 46226
+        },
+        {
+          "code": "synonyms",
+          "records": 36887
+        },
+        {
+          "code": "protein_variants",
+          "records": 32792
+        }
+      ],
+      "top_text_fields": [
+        {
+          "code": "IN",
+          "records": 79041,
+          "label": "inhibitor"
+        },
+        {
+          "code": "RF",
+          "records": 59652,
+          "label": "reference"
+        },
+        {
+          "code": "SP",
+          "records": 57263,
+          "label": "substrate/product"
+        },
+        {
+          "code": "KM",
+          "records": 41902,
+          "label": "Km value"
+        },
+        {
+          "code": "SY",
+          "records": 34542,
+          "label": "systematic name"
+        }
+      ],
+      "numeric_metrics": {
+        "ki_value": {
+          "count": 18195,
+          "min": 6e-18,
+          "q1": 2.5e-05,
+          "median": 0.001,
+          "q3": 0.033,
+          "max": 11700.0,
+          "mean": 7.4508210475987,
+          "std": 143.79584763752192
+        },
+        "km_value": {
+          "count": 43677,
+          "min": 5e-10,
+          "q1": 0.028,
+          "median": 0.23,
+          "q3": 1.5,
+          "max": 5000.0,
+          "mean": 6.392726309899384,
+          "std": 65.53627793005126
+        },
+        "ph_optimum": {
+          "count": 13717,
+          "min": 1.0,
+          "q1": 5.5,
+          "median": 6.8,
+          "q3": 7.5,
+          "max": 12.0,
+          "mean": 6.5117977691915145,
+          "std": 1.635271778848559
+        },
+        "specific_activity": {
+          "count": 16294,
+          "min": 2.5e-08,
+          "q1": 0.611,
+          "median": 12.4,
+          "q3": 125.0,
+          "max": 4880000.0,
+          "mean": 2779.3234547357742,
+          "std": 69518.50263929699
+        },
+        "temperature_optimum": {
+          "count": 7983,
+          "min": 2.0,
+          "q1": 35.0,
+          "median": 40.0,
+          "q3": 55.0,
+          "max": 125.0,
+          "mean": 46.03482400100213,
+          "std": 17.377622784343647
+        },
+        "turnover_number": {
+          "count": 29277,
+          "min": 5.83e-10,
+          "q1": 0.54,
+          "median": 6.0,
+          "q3": 51.0,
+          "max": 7900000.0,
+          "mean": 2269.3832087818964,
+          "std": 77532.81329487306
+        }
+      },
+      "inhibitor_summary": {
+        "unique_inhibitors": 55287,
+        "top_inhibitors": [
+          {
+            "value": "more",
+            "records": 5448
+          },
+          {
+            "value": "EDTA",
+            "records": 1964
+          },
+          {
+            "value": "Cu2+",
+            "records": 1880
+          },
+          {
+            "value": "Zn2+",
+            "records": 1833
+          },
+          {
+            "value": "Hg2+",
+            "records": 1324
+          }
+        ]
+      },
+      "substrate_summary": {
+        "unique_substrates": 46811,
+        "top_substrates": [
+          {
+            "value": "more = ?",
+            "records": 24190
+          },
+          {
+            "value": "casein + H2O = ?",
+            "records": 196
+          },
+          {
+            "value": "more = ?  |#17# formation of products from two substrates independently in the same reaction, ptRNAfMet47 and ptRNAMet82 are modified for eparation by PAGE by the addition of two extra G nucleotides to the 5 end of the leader sequence, giving rise to ptRNAfMet47(+2) and ptRNAMet82(+2) | <30,53,55,56,58,59,61,62,63,64,65,66,67,70,71,81,88,96,99,103,105,106,111,113,118,130,134,136,138,142,143,144,145,150,152,156,157,162,163,172,173,184,185,186,187,188,189,190,191,193,194,195,198,199,200,213,222,226,238>",
+            "records": 172
+          },
+          {
+            "value": "GTP + H2O = GDP + phosphate",
+            "records": 145
+          },
+          {
+            "value": "GTP + H2O = GDP + phosphate  {ir}",
+            "records": 116
+          }
+        ]
+      },
+      "cofactor_summary": {
+        "unique_cofactors": 58,
+        "top_cofactors": [
+          {
+            "value": "more",
+            "records": 125
+          },
+          {
+            "value": "ATP",
+            "records": 119
+          },
+          {
+            "value": "NAD+",
+            "records": 36
+          },
+          {
+            "value": "pyridoxal 5'-phosphate",
+            "records": 12
+          },
+          {
+            "value": "NS2B cofactor",
+            "records": 11
+          }
+        ]
+      },
+      "organism_summary": {
+        "unique_organisms": 6766,
+        "top_organisms": [
+          {
+            "organism": "Homo sapiens",
+            "records": 1387
+          },
+          {
+            "organism": "Mus musculus",
+            "records": 855
+          },
+          {
+            "organism": "Rattus norvegicus",
+            "records": 677
+          },
+          {
+            "organism": "Escherichia coli",
+            "records": 580
+          },
+          {
+            "organism": "Arabidopsis thaliana",
+            "records": 536
+          }
+        ]
+      }
+    },
+    "4": {
+      "label": "Lyases",
+      "enzyme_count": 891,
+      "protein_rows": 11506,
+      "fact_rows": 168125,
+      "text_rows": 153031,
+      "aggregated_counts": {
+        "km_records": 13727,
+        "turnover_records": 7704,
+        "inhibitor_records": 16349
+      },
+      "top_fact_categories": [
+        {
+          "code": "substrates_products",
+          "records": 18499
+        },
+        {
+          "code": "inhibitor",
+          "records": 16349
+        },
+        {
+          "code": "km_value",
+          "records": 13727
+        },
+        {
+          "code": "protein_variants",
+          "records": 11284
+        },
+        {
+          "code": "synonyms",
+          "records": 10619
+        }
+      ],
+      "top_text_fields": [
+        {
+          "code": "RF",
+          "records": 16309,
+          "label": "reference"
+        },
+        {
+          "code": "KM",
+          "records": 12016,
+          "label": "Km value"
+        },
+        {
+          "code": "IN",
+          "records": 11860,
+          "label": "inhibitor"
+        },
+        {
+          "code": "PR",
+          "records": 11507,
+          "label": "protein"
+        },
+        {
+          "code": "SY",
+          "records": 9958,
+          "label": "systematic name"
+        }
+      ],
+      "numeric_metrics": {
+        "ki_value": {
+          "count": 6182,
+          "min": 8e-09,
+          "q1": 9.4e-05,
+          "median": 0.0036,
+          "q3": 0.084925,
+          "max": 1200.0,
+          "mean": 3.0177617337662603,
+          "std": 28.053597465702335
+        },
+        "km_value": {
+          "count": 13129,
+          "min": 4.8e-08,
+          "q1": 0.0394,
+          "median": 0.35,
+          "q3": 2.1,
+          "max": 10000.0,
+          "mean": 13.25292925028723,
+          "std": 170.97321680443576
+        },
+        "ph_optimum": {
+          "count": 3306,
+          "min": 2.5,
+          "q1": 6.7,
+          "median": 7.5,
+          "q3": 8.0,
+          "max": 11.5,
+          "mean": 7.271500302480339,
+          "std": 1.2057345784683988
+        },
+        "specific_activity": {
+          "count": 3916,
+          "min": 3e-09,
+          "q1": 0.22175,
+          "median": 5.585,
+          "q3": 61.775000000000006,
+          "max": 16000000.0,
+          "mean": 9413.355781255588,
+          "std": 317334.83254209044
+        },
+        "temperature_optimum": {
+          "count": 1993,
+          "min": 0.09437,
+          "q1": 30.0,
+          "median": 37.0,
+          "q3": 50.0,
+          "max": 100.0,
+          "mean": 40.17470584044155,
+          "std": 16.050532470185768
+        },
+        "turnover_number": {
+          "count": 7568,
+          "min": 5e-07,
+          "q1": 0.23,
+          "median": 3.0,
+          "q3": 23.47,
+          "max": 33000000.0,
+          "mean": 27245.902990458504,
+          "std": 627446.1600561873
+        }
+      },
+      "inhibitor_summary": {
+        "unique_inhibitors": 7278,
+        "top_inhibitors": [
+          {
+            "value": "more",
+            "records": 831
+          },
+          {
+            "value": "EDTA",
+            "records": 366
+          },
+          {
+            "value": "Zn2+",
+            "records": 311
+          },
+          {
+            "value": "Cu2+",
+            "records": 295
+          },
+          {
+            "value": "Mn2+",
+            "records": 176
+          }
+        ]
+      },
+      "substrate_summary": {
+        "unique_substrates": 8403,
+        "top_substrates": [
+          {
+            "value": "more = ?",
+            "records": 4266
+          },
+          {
+            "value": "more = ?  |#93# major reaction products are tri- and disaccharide along with various sizes of intermediary oligosaccharides | <13,22,23,27,29,30,31,36,40,44,47,50,73,76,85,87,88,91,92,93,94,95,97,98,99,100,101,102,104,105,107,108,109,110,113,114,116,118,123,128,131,132,134,138,140,141,143,144,145,146,147,149,151,152,153,154,158,159,160,162,170>",
+            "records": 186
+          },
+          {
+            "value": "DNA = fragments of DNA  {ir}",
+            "records": 63
+          },
+          {
+            "value": "DNA = fragments of DNA",
+            "records": 63
+          },
+          {
+            "value": "GTP = 3',5'-cyclic GMP + diphosphate  |#17,45# regulation of intracellular cGMP concentration is essential for normal thermotaxis ; #50,54# cGMP is involved in transmitting the NO activating signals to a variety of downstream effectors such as cyclicnucleotide-gated channels, protein kinases, and phosphodiesterases <196>; #4# cyclic GMP is a second messenger in controlling blood pressure, cardiac vasculature, and fluid secretion <185>; #4# cyclic GMP serves as the second messenger in visual transduction, linking photon absorption by rhodopsin to the activity of ion channels <166>| <2,3,6,19,20,22,25,30,36,42,45,50,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,76,77,78,81,83,84,85,86,88,89,92,93,96,97,98,100,105,106,107,108,109,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,231,232,233,234,235,236,237,238,239,249,252,253,254,255,256,257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,272,273>",
+            "records": 60
+          }
+        ]
+      },
+      "cofactor_summary": {
+        "unique_cofactors": 102,
+        "top_cofactors": [
+          {
+            "value": "pyridoxal 5'-phosphate",
+            "records": 476
+          },
+          {
+            "value": "more",
+            "records": 134
+          },
+          {
+            "value": "thiamine diphosphate",
+            "records": 102
+          },
+          {
+            "value": "FAD",
+            "records": 80
+          },
+          {
+            "value": "NAD+",
+            "records": 73
+          }
+        ]
+      },
+      "organism_summary": {
+        "unique_organisms": 3729,
+        "top_organisms": [
+          {
+            "organism": "Escherichia coli",
+            "records": 290
+          },
+          {
+            "organism": "Arabidopsis thaliana",
+            "records": 232
+          },
+          {
+            "organism": "Homo sapiens",
+            "records": 221
+          },
+          {
+            "organism": "Rattus norvegicus",
+            "records": 142
+          },
+          {
+            "organism": "Mus musculus",
+            "records": 138
+          }
+        ]
+      }
+    },
+    "5": {
+      "label": "Isomerases",
+      "enzyme_count": 343,
+      "protein_rows": 5001,
+      "fact_rows": 85467,
+      "text_rows": 75880,
+      "aggregated_counts": {
+        "km_records": 5782,
+        "turnover_records": 3911,
+        "inhibitor_records": 10491
+      },
+      "top_fact_categories": [
+        {
+          "code": "inhibitor",
+          "records": 10491
+        },
+        {
+          "code": "substrates_products",
+          "records": 9045
+        },
+        {
+          "code": "protein_variants",
+          "records": 6370
+        },
+        {
+          "code": "synonyms",
+          "records": 5855
+        },
+        {
+          "code": "km_value",
+          "records": 5782
+        }
+      ],
+      "top_text_fields": [
+        {
+          "code": "IN",
+          "records": 8551,
+          "label": "inhibitor"
+        },
+        {
+          "code": "RF",
+          "records": 8256,
+          "label": "reference"
+        },
+        {
+          "code": "SY",
+          "records": 5444,
+          "label": "systematic name"
+        },
+        {
+          "code": "EN",
+          "records": 5046,
+          "label": "engineering"
+        },
+        {
+          "code": "KM",
+          "records": 5009,
+          "label": "Km value"
+        }
+      ],
+      "numeric_metrics": {
+        "ki_value": {
+          "count": 937,
+          "min": 1e-07,
+          "q1": 0.0018,
+          "median": 0.035,
+          "q3": 0.576,
+          "max": 1174.0,
+          "mean": 7.24805084683031,
+          "std": 50.510634235567544
+        },
+        "km_value": {
+          "count": 5535,
+          "min": 2.7e-07,
+          "q1": 0.1,
+          "median": 1.0,
+          "q3": 13.845,
+          "max": 5800.0,
+          "mean": 35.96088914144354,
+          "std": 145.19189456803468
+        },
+        "ph_optimum": {
+          "count": 1344,
+          "min": 2.5,
+          "q1": 7.0,
+          "median": 7.5,
+          "q3": 8.0,
+          "max": 11.0,
+          "mean": 7.401227678571429,
+          "std": 0.9791655804187327
+        },
+        "specific_activity": {
+          "count": 1813,
+          "min": 1e-08,
+          "q1": 0.389,
+          "median": 7.5,
+          "q3": 82.1,
+          "max": 88500.0,
+          "mean": 604.025252989068,
+          "std": 4012.9509477936067
+        },
+        "temperature_optimum": {
+          "count": 1056,
+          "min": 4.0,
+          "q1": 30.0,
+          "median": 38.5,
+          "q3": 60.0,
+          "max": 100.0,
+          "mean": 45.628503787878785,
+          "std": 19.591728021087327
+        },
+        "turnover_number": {
+          "count": 3865,
+          "min": 2.1e-06,
+          "q1": 0.78,
+          "median": 14.0,
+          "q3": 137.0,
+          "max": 57500000.0,
+          "mean": 27158.729295057707,
+          "std": 1009449.0976321752
+        }
+      },
+      "inhibitor_summary": {
+        "unique_inhibitors": 6872,
+        "top_inhibitors": [
+          {
+            "value": "more",
+            "records": 485
+          },
+          {
+            "value": "EDTA",
+            "records": 138
+          },
+          {
+            "value": "Cu2+",
+            "records": 135
+          },
+          {
+            "value": "Zn2+",
+            "records": 122
+          },
+          {
+            "value": "Hg2+",
+            "records": 60
+          }
+        ]
+      },
+      "substrate_summary": {
+        "unique_substrates": 3150,
+        "top_substrates": [
+          {
+            "value": "more = ?",
+            "records": 2770
+          },
+          {
+            "value": "ATP + H2O = ADP + phosphate",
+            "records": 156
+          },
+          {
+            "value": "ATP + H2O + a folded polypeptide = ADP + phosphate + an unfolded polypeptide",
+            "records": 47
+          },
+          {
+            "value": "ATP + H2O + a folded polypeptide = ADP + phosphate + an unfolded polypeptide  {ir}",
+            "records": 47
+          },
+          {
+            "value": "ATP + H2O = ADP + phosphate  {ir}",
+            "records": 45
+          }
+        ]
+      },
+      "cofactor_summary": {
+        "unique_cofactors": 67,
+        "top_cofactors": [
+          {
+            "value": "pyridoxal 5'-phosphate",
+            "records": 146
+          },
+          {
+            "value": "more",
+            "records": 119
+          },
+          {
+            "value": "NAD+",
+            "records": 82
+          },
+          {
+            "value": "ATP",
+            "records": 66
+          },
+          {
+            "value": "adenosylcobalamin",
+            "records": 30
+          }
+        ]
+      },
+      "organism_summary": {
+        "unique_organisms": 1561,
+        "top_organisms": [
+          {
+            "organism": "Homo sapiens",
+            "records": 215
+          },
+          {
+            "organism": "Escherichia coli",
+            "records": 164
+          },
+          {
+            "organism": "Arabidopsis thaliana",
+            "records": 148
+          },
+          {
+            "organism": "Mus musculus",
+            "records": 107
+          },
+          {
+            "organism": "Saccharomyces cerevisiae",
+            "records": 84
+          }
+        ]
+      }
+    },
+    "6": {
+      "label": "Ligases",
+      "enzyme_count": 264,
+      "protein_rows": 4178,
+      "fact_rows": 71583,
+      "text_rows": 65647,
+      "aggregated_counts": {
+        "km_records": 8369,
+        "turnover_records": 4085,
+        "inhibitor_records": 7940
+      },
+      "top_fact_categories": [
+        {
+          "code": "km_value",
+          "records": 8369
+        },
+        {
+          "code": "substrates_products",
+          "records": 8293
+        },
+        {
+          "code": "inhibitor",
+          "records": 7940
+        },
+        {
+          "code": "protein_variants",
+          "records": 5146
+        },
+        {
+          "code": "turnover_number",
+          "records": 4085
+        }
+      ],
+      "top_text_fields": [
+        {
+          "code": "KM",
+          "records": 7422,
+          "label": "Km value"
+        },
+        {
+          "code": "RF",
+          "records": 6707,
+          "label": "reference"
+        },
+        {
+          "code": "IN",
+          "records": 6584,
+          "label": "inhibitor"
+        },
+        {
+          "code": "EN",
+          "records": 4293,
+          "label": "engineering"
+        },
+        {
+          "code": "PR",
+          "records": 4178,
+          "label": "protein"
+        }
+      ],
+      "numeric_metrics": {
+        "ki_value": {
+          "count": 1217,
+          "min": 1e-08,
+          "q1": 0.0006,
+          "median": 0.032,
+          "q3": 0.65,
+          "max": 6000.0,
+          "mean": 9.82887641931964,
+          "std": 177.00765465090282
+        },
+        "km_value": {
+          "count": 8047,
+          "min": 4e-08,
+          "q1": 0.016149999999999998,
+          "median": 0.14,
+          "q3": 0.9535,
+          "max": 11000.0,
+          "mean": 7.991014237273519,
+          "std": 134.1541053883094
+        },
+        "ph_optimum": {
+          "count": 1039,
+          "min": 1.5,
+          "q1": 7.2,
+          "median": 7.6,
+          "q3": 8.0,
+          "max": 11.0,
+          "mean": 7.65684311838306,
+          "std": 0.8322450390552332
+        },
+        "specific_activity": {
+          "count": 1080,
+          "min": 1e-08,
+          "q1": 0.033,
+          "median": 0.4285,
+          "q3": 4.9879999999999995,
+          "max": 3300.0,
+          "mean": 20.703436732039815,
+          "std": 140.41485371994008
+        },
+        "temperature_optimum": {
+          "count": 631,
+          "min": 4.0,
+          "q1": 30.0,
+          "median": 37.0,
+          "q3": 50.0,
+          "max": 97.0,
+          "mean": 41.294770206022186,
+          "std": 16.73124622449064
+        },
+        "turnover_number": {
+          "count": 3991,
+          "min": 1.1e-08,
+          "q1": 0.17,
+          "median": 1.43,
+          "q3": 6.08,
+          "max": 450000.0,
+          "mean": 238.14874057354322,
+          "std": 9127.493247363955
+        }
+      },
+      "inhibitor_summary": {
+        "unique_inhibitors": 5219,
+        "top_inhibitors": [
+          {
+            "value": "more",
+            "records": 313
+          },
+          {
+            "value": "AMP",
+            "records": 74
+          },
+          {
+            "value": "ADP",
+            "records": 63
+          },
+          {
+            "value": "ATP",
+            "records": 61
+          },
+          {
+            "value": "diphosphate",
+            "records": 52
+          }
+        ]
+      },
+      "substrate_summary": {
+        "unique_substrates": 3331,
+        "top_substrates": [
+          {
+            "value": "more = ?",
+            "records": 1387
+          },
+          {
+            "value": "ATP + (deoxyribonucleotide)n + (deoxyribonucleotide)m = AMP + diphosphate + (deoxyribonucleotide)n+m",
+            "records": 72
+          },
+          {
+            "value": "ATP + acetate + CoA = AMP + diphosphate + acetyl-CoA",
+            "records": 41
+          },
+          {
+            "value": "ATP + L-glutamate + NH3 = ADP + phosphate + L-glutamine",
+            "records": 39
+          },
+          {
+            "value": "ATP + L-glutamate + NH3 = ADP + phosphate + L-glutamine  {r}",
+            "records": 39
+          }
+        ]
+      },
+      "cofactor_summary": {
+        "unique_cofactors": 27,
+        "top_cofactors": [
+          {
+            "value": "ATP",
+            "records": 262
+          },
+          {
+            "value": "biotin",
+            "records": 58
+          },
+          {
+            "value": "more",
+            "records": 19
+          },
+          {
+            "value": "GTP",
+            "records": 15
+          },
+          {
+            "value": "NAD+",
+            "records": 15
+          }
+        ]
+      },
+      "organism_summary": {
+        "unique_organisms": 1143,
+        "top_organisms": [
+          {
+            "organism": "Homo sapiens",
+            "records": 181
+          },
+          {
+            "organism": "Escherichia coli",
+            "records": 162
+          },
+          {
+            "organism": "Mus musculus",
+            "records": 117
+          },
+          {
+            "organism": "Saccharomyces cerevisiae",
+            "records": 96
+          },
+          {
+            "organism": "Rattus norvegicus",
+            "records": 88
+          }
+        ]
+      }
+    },
+    "7": {
+      "label": "Translocases",
+      "enzyme_count": 99,
+      "protein_rows": 2444,
+      "fact_rows": 34985,
+      "text_rows": 31292,
+      "aggregated_counts": {
+        "km_records": 1672,
+        "turnover_records": 452,
+        "inhibitor_records": 3518
+      },
+      "top_fact_categories": [
+        {
+          "code": "substrates_products",
+          "records": 4106
+        },
+        {
+          "code": "synonyms",
+          "records": 3859
+        },
+        {
+          "code": "protein_variants",
+          "records": 3607
+        },
+        {
+          "code": "inhibitor",
+          "records": 3518
+        },
+        {
+          "code": "source_tissue",
+          "records": 1749
+        }
+      ],
+      "top_text_fields": [
+        {
+          "code": "RF",
+          "records": 4302,
+          "label": "reference"
+        },
+        {
+          "code": "SY",
+          "records": 3610,
+          "label": "systematic name"
+        },
+        {
+          "code": "EN",
+          "records": 2963,
+          "label": "engineering"
+        },
+        {
+          "code": "IN",
+          "records": 2625,
+          "label": "inhibitor"
+        },
+        {
+          "code": "PR",
+          "records": 2444,
+          "label": "protein"
+        }
+      ],
+      "numeric_metrics": {
+        "ki_value": {
+          "count": 339,
+          "min": 1e-06,
+          "q1": 0.0006,
+          "median": 0.007,
+          "q3": 0.1185,
+          "max": 43.0,
+          "mean": 1.091146594837758,
+          "std": 5.230506528829439
+        },
+        "km_value": {
+          "count": 1556,
+          "min": 1.3e-05,
+          "q1": 0.009,
+          "median": 0.057249999999999995,
+          "q3": 0.41774999999999995,
+          "max": 56.7,
+          "mean": 0.9757978099614395,
+          "std": 3.6846389930954224
+        },
+        "ph_optimum": {
+          "count": 372,
+          "min": 4.0,
+          "q1": 6.5,
+          "median": 7.0,
+          "q3": 7.5,
+          "max": 10.0,
+          "mean": 6.978736559139786,
+          "std": 0.9244232526033472
+        },
+        "specific_activity": {
+          "count": 474,
+          "min": 1e-07,
+          "q1": 0.0425,
+          "median": 0.505,
+          "q3": 9.825,
+          "max": 4073.0,
+          "mean": 57.937963835,
+          "std": 314.9587562921049
+        },
+        "temperature_optimum": {
+          "count": 199,
+          "min": 1.0,
+          "q1": 25.0,
+          "median": 30.0,
+          "q3": 37.0,
+          "max": 100.0,
+          "mean": 34.18341708542714,
+          "std": 14.278028113713376
+        },
+        "turnover_number": {
+          "count": 431,
+          "min": 0.0005,
+          "q1": 3.915,
+          "median": 50.0,
+          "q3": 228.5,
+          "max": 5199.0,
+          "mean": 195.34485633410674,
+          "std": 385.68997331542033
+        }
+      },
+      "inhibitor_summary": {
+        "unique_inhibitors": 1986,
+        "top_inhibitors": [
+          {
+            "value": "more",
+            "records": 248
+          },
+          {
+            "value": "vanadate",
+            "records": 71
+          },
+          {
+            "value": "Zn2+",
+            "records": 34
+          },
+          {
+            "value": "rotenone",
+            "records": 34
+          },
+          {
+            "value": "Ouabain",
+            "records": 33
+          }
+        ]
+      },
+      "substrate_summary": {
+        "unique_substrates": 1917,
+        "top_substrates": [
+          {
+            "value": "more = ?",
+            "records": 697
+          },
+          {
+            "value": "ATP + H2O = ADP + phosphate",
+            "records": 115
+          },
+          {
+            "value": "ATP + H2O = ADP + phosphate  {ir}",
+            "records": 71
+          },
+          {
+            "value": "ATP + H2O + Cu2+/in = ADP + phosphate + Cu2+/out",
+            "records": 62
+          },
+          {
+            "value": "ATP + H2O + Cu2+/in = ADP + phosphate + Cu2+/out  {r}",
+            "records": 60
+          }
+        ]
+      },
+      "cofactor_summary": {
+        "unique_cofactors": 62,
+        "top_cofactors": [
+          {
+            "value": "heme",
+            "records": 64
+          },
+          {
+            "value": "ATP",
+            "records": 60
+          },
+          {
+            "value": "FMN",
+            "records": 44
+          },
+          {
+            "value": "FAD",
+            "records": 40
+          },
+          {
+            "value": "more",
+            "records": 21
+          }
+        ]
+      },
+      "organism_summary": {
+        "unique_organisms": 821,
+        "top_organisms": [
+          {
+            "organism": "Escherichia coli",
+            "records": 124
+          },
+          {
+            "organism": "Homo sapiens",
+            "records": 121
+          },
+          {
+            "organism": "Arabidopsis thaliana",
+            "records": 90
+          },
+          {
+            "organism": "Mus musculus",
+            "records": 65
+          },
+          {
+            "organism": "Saccharomyces cerevisiae",
+            "records": 51
+          }
+        ]
+      }
+    }
+  },
+  "generated_by": "scripts/ec_class_analysis.py"
+}

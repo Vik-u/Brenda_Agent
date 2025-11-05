@@ -1,0 +1,24 @@
+{
+  "references": {
+    "total_enzymes": 6697,
+    "total_references": 167675,
+    "min": 1,
+    "median": 8,
+    "mean": 25.037330147827387,
+    "p90": 70,
+    "p99": 219,
+    "max": 596
+  },
+  "pubmed": {
+    "total_articles": 153123,
+    "min_ec": 1,
+    "median_ec": 1,
+    "mean_ec": 1.0945383776441162,
+    "p90_ec": 1,
+    "p99_ec": 3,
+    "max_ec": 20,
+    "with_doi": 144606,
+    "doi_fraction": 0.9443780490194158
+  },
+  "figure_dir": "/Users/viku/Documents/PlayGround/Projects/brenda-agentic-workflow/artifacts/figures"
+}
