@@ -38,7 +38,39 @@ cd Brenda_Agent
 cp .env.example .env
 ```
 
-Add BRENDA/OpenAI/Redis credentials if you have them. The chatbot relies on `OLLAMA_BASE_URL` and `OLLAMA_MODEL` only when diverging from the defaults in `config/settings.yaml`.
+Open `.env` in your editor and fill in any secrets you have handy:
+
+| Variable | When you need it | Notes |
+| --- | --- | --- |
+| `BRENDA_API_KEY` | Calling the official BRENDA API instead of the local SQLite mirror | Optional – the workflow falls back to the ingested database if empty. |
+| `OPENAI_API_KEY` | Using OpenAI-backed LLMs for orchestration instead of the default Ollama model | Optional – by default we talk to the local model. |
+| `REDIS_URL` | Enabling caching/coordination features in pipelines | Optional. |
+| `OLLAMA_BASE_URL` | Only if your Ollama server is not on the default `http://localhost:11434` | Example: `http://127.0.0.1:11434` on macOS; `http://wsl-host:11434` if Ollama runs on Windows and the agent on WSL. |
+| `OLLAMA_MODEL` | To use a different local model (`gemma3:27b`, `llama2:latest`, etc.) | Defaults to `gpt-oss:20b`; make sure the model is pulled locally. |
+
+Quick checklist to get the local LLM ready:
+
+```bash
+# 1. Install Ollama from https://ollama.com
+# 2. Pull the model once (downloads several GB depending on model)
+ollama pull gpt-oss:20b
+
+# 3. Start the Ollama daemon (runs an HTTP server on port 11434 by default)
+ollama serve
+
+# 4. Optional: change the Ollama base URL
+#    a) If running from another machine, export the address, e.g.
+#       export OLLAMA_BASE_URL=http://192.168.1.10:11434
+#    b) Update the same value inside .env so the scripts pick it up automatically.
+```
+
+You can verify connectivity via:
+
+```bash
+curl -s ${OLLAMA_BASE_URL:-http://localhost:11434}/api/tags | jq '.models[].name'
+```
+
+If you see the model you pulled (e.g. `gpt-oss:20b`), the chatbot will be able to connect. The defaults in `config/settings.yaml` point to `http://localhost:11434`, so no `.env` tweak is necessary for the standard local setup.
 
 ### 3. Build the local BRENDA database
 
