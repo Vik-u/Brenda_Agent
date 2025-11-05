@@ -16,6 +16,7 @@ logger = get_logger(__name__)
 
 class ResearcherAgent(BaseAgent):
     _DEFAULT_CANDIDATE_LIMIT = 3
+    _MAX_RECORDS = 5000
 
     def __init__(self) -> None:
         super().__init__(
@@ -228,7 +229,7 @@ class ResearcherAgent(BaseAgent):
                 )
                 params.extend([like_fragment, like_fragment])
 
-            fact_query += " ORDER BY category, id LIMIT 2000"
+            fact_query += f" ORDER BY category, id LIMIT {self._MAX_RECORDS}"
             fact_rows = conn.execute(fact_query, tuple(params)).fetchall()
 
             protein_rows = conn.execute(
@@ -248,7 +249,7 @@ class ResearcherAgent(BaseAgent):
                     "OR LOWER(COALESCE(reference_tokens, '')) LIKE ?)"
                 )
                 text_params.extend([like_fragment, like_fragment])
-            text_query += " ORDER BY id LIMIT 2000"
+            text_query += f" ORDER BY id LIMIT {self._MAX_RECORDS}"
             text_rows = conn.execute(text_query, tuple(text_params)).fetchall()
         finally:
             conn.close()

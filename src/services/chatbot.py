@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import ast
 import re
+import sqlite3
 import textwrap
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Set
 
 from langchain_community.chat_models import ChatOllama
 from langchain_community.utilities import SQLDatabase
@@ -34,6 +35,23 @@ class ChatResult:
 
 class BrendaChatbot:
     """Simple SQL-enabled chatbot backed by a local Ollama model."""
+
+    _CATEGORY_FETCH_LIMIT = 5000
+    _CATEGORY_KEYWORDS: Dict[str, Sequence[str]] = {
+        "km": ("km_value",),
+        "k m": ("km_value",),
+        "kcat/km": ("kcat_km_value",),
+        "kcat": ("turnover_number", "kcat_km_value"),
+        "turnover": ("turnover_number",),
+        "specific activity": ("specific_activity",),
+        "substrate": ("substrates_products", "natural_substrates_products"),
+        "product": ("substrates_products", "natural_substrates_products"),
+        "cofactor": ("cofactor",),
+        "temperature": ("temperature_optimum", "temperature_range", "temperature_stability"),
+        "ph": ("ph_optimum", "ph_range", "ph_stability"),
+        "optimum ph": ("ph_optimum", "ph_range"),
+        "optimum temperature": ("temperature_optimum", "temperature_range"),
+    }
 
     def __init__(
         self,
@@ -69,6 +87,7 @@ class BrendaChatbot:
         )
         model_name = getattr(self._llm, "model", None) or model or ollama_cfg.model
 
+        self._db_path = db_path
         self._db = SQLDatabase.from_uri(
             f"sqlite:///{db_path}", include_tables=self._default_tables
         )
@@ -97,6 +116,7 @@ class BrendaChatbot:
         logger.info("chatbot.ask.start", question=question)
         sql = self._generate_sql(question)
         rows, executed_sql = self._execute_sql(sql, question)
+        rows = self._augment_rows_with_requested_categories(question, rows)
         references = self._collect_references(question, rows)
         answer = self._summarise_answer(question, executed_sql, rows, references)
         logger.info(
@@ -222,6 +242,10 @@ class BrendaChatbot:
                 "Try broadening the identifier (e.g. remove organism filters or use a related EC number)."
             )
 
+        ec_numbers = self._extract_ec_numbers(question, rows)
+        enzyme_overview = self._fetch_enzyme_overview(ec_numbers)
+        global_category_counts = self._fetch_global_category_counts(ec_numbers)
+
         lines: List[str] = [
             f"Question: {question}",
             f"Returned rows: {len(rows)} (showing first {min(len(rows), 10)})",
@@ -261,6 +285,68 @@ class BrendaChatbot:
                 lines.append(f"{idx}. {citation}{suffix}")
             if len(references) > 10:
                 lines.append(f"... {len(references) - 10} additional reference entries omitted.")
+
+        ec_numbers = self._extract_ec_numbers(question, rows)
+        enzyme_overview = self._fetch_enzyme_overview(ec_numbers)
+        global_category_counts = self._fetch_global_category_counts(ec_numbers)
+
+        if enzyme_overview:
+            lines.append("")
+            lines.append("Enzyme overview (from `enzymes` table):")
+            for ec_number in ec_numbers:
+                overview = enzyme_overview.get(ec_number)
+                if not overview:
+                    continue
+                lines.append(
+                    "- EC {ec}: proteins={proteins}, synonyms={synonyms}, reactions={reactions}, "
+                    "KM={km}, turnover={turnover}, inhibitors={inhibitors}".format(
+                        ec=ec_number,
+                        proteins=overview.get("protein_count", "?"),
+                        synonyms=overview.get("synonym_count", "?"),
+                        reactions=overview.get("reaction_count", "?"),
+                        km=overview.get("km_count", "?"),
+                        turnover=overview.get("turnover_count", "?"),
+                        inhibitors=overview.get("inhibitor_count", "?"),
+                    )
+                )
+
+        if global_category_counts:
+            lines.append("")
+            lines.append("Fact counts by category (entire dataset, not limited to the preview):")
+            for category, count in sorted(
+                global_category_counts.items(),
+                key=lambda item: (-item[1], item[0]),
+            ):
+                lines.append(f"- {category}: {count}")
+
+        if enzyme_overview:
+            lines.append("")
+            lines.append("Enzyme overview (from `enzymes` table):")
+            for ec_number in ec_numbers:
+                overview = enzyme_overview.get(ec_number)
+                if not overview:
+                    continue
+                lines.append(
+                    "- EC {ec}: proteins={proteins}, synonyms={synonyms}, reactions={reactions}, "
+                    "KM={km}, turnover={turnover}, inhibitors={inhibitors}".format(
+                        ec=ec_number,
+                        proteins=overview.get("protein_count", "?"),
+                        synonyms=overview.get("synonym_count", "?"),
+                        reactions=overview.get("reaction_count", "?"),
+                        km=overview.get("km_count", "?"),
+                        turnover=overview.get("turnover_count", "?"),
+                        inhibitors=overview.get("inhibitor_count", "?"),
+                    )
+                )
+
+        if global_category_counts:
+            lines.append("")
+            lines.append("Fact counts by category (entire dataset, not limited to the preview):")
+            for category, count in sorted(
+                global_category_counts.items(),
+                key=lambda item: (-item[1], item[0]),
+            ):
+                lines.append(f"- {category}: {count}")
 
         lines.append("")
         lines.append("Note: All values above are taken directly from the structured BRENDA snapshot;")
@@ -456,3 +542,92 @@ class BrendaChatbot:
                 self._llm.invoke(prompt)
             except Exception as exc:  # pragma: no cover - no impact on final answer
                 logger.debug("chatbot.summary_budget_failed", error=str(exc))
+
+    def _fetch_enzyme_overview(self, ec_numbers: List[str]) -> Dict[str, Dict[str, Any]]:
+        if not ec_numbers:
+            return {}
+
+        query = (
+            "SELECT ec_number, protein_count, synonym_count, reaction_count, km_count, "
+            "turnover_count, inhibitor_count FROM enzymes WHERE ec_number IN (%s)"
+        ) % (",".join("?" for _ in ec_numbers))
+
+        with sqlite3.connect(self._db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            rows = conn.execute(query, tuple(ec_numbers)).fetchall()
+
+        return {row["ec_number"]: dict(row) for row in rows}
+
+    def _fetch_global_category_counts(self, ec_numbers: List[str]) -> Dict[str, int]:
+        if not ec_numbers:
+            return {}
+
+        query = (
+            "SELECT category, COUNT(*) AS cnt FROM enzyme_facts "
+            "WHERE ec_number IN (%s) GROUP BY category"
+        ) % (",".join("?" for _ in ec_numbers))
+
+        with sqlite3.connect(self._db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            rows = conn.execute(query, tuple(ec_numbers)).fetchall()
+
+        return {row["category"]: int(row["cnt"]) for row in rows}
+
+    def _augment_rows_with_requested_categories(
+        self,
+        question: str,
+        rows: List[Dict[str, Any]],
+    ) -> List[Dict[str, Any]]:
+        ec_numbers = self._extract_ec_numbers(question, rows)
+        if not ec_numbers:
+            return rows
+
+        requested_categories: Set[str] = set()
+        lower_question = question.lower()
+        for keyword, categories in self._CATEGORY_KEYWORDS.items():
+            if keyword in lower_question:
+                requested_categories.update(cat.lower() for cat in categories)
+        if not requested_categories:
+            return rows
+
+        existing_categories = {
+            (row.get("category") or "").lower(): row.get("category")
+            for row in rows
+            if row.get("category")
+        }
+        missing_categories = [
+            category
+            for category in requested_categories
+            if category not in existing_categories
+        ]
+        if not missing_categories:
+            return rows
+
+        placeholders = ",".join("?" for _ in ec_numbers)
+        category_placeholders = ",".join("?" for _ in missing_categories)
+        query = (
+            "SELECT ec_number, category, value, value_numeric_low, value_numeric_high, unit, context, "
+            "comment, proteins, reference_ids FROM enzyme_facts "
+            f"WHERE ec_number IN ({placeholders}) AND LOWER(category) IN ({category_placeholders}) "
+            "ORDER BY category, id LIMIT ?"
+        )
+
+        parameters: List[Any] = list(ec_numbers) + list(missing_categories) + [self._CATEGORY_FETCH_LIMIT]
+
+        with sqlite3.connect(self._db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            extra_rows = [dict(row) for row in conn.execute(query, parameters).fetchall()]
+
+        if not extra_rows:
+            return rows
+
+        combined = rows.copy()
+        existing_row_hashes: Set[tuple] = {
+            tuple(sorted(item.items())) for item in combined
+        }
+        for row in extra_rows:
+            key = tuple(sorted(row.items()))
+            if key not in existing_row_hashes:
+                combined.append(row)
+                existing_row_hashes.add(key)
+        return combined
