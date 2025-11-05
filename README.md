@@ -17,12 +17,13 @@ Production-ready scaffolding for a multi-agent system that mines, analyses, and 
 
 - Python 3.11 (use `scripts/setup_py311_env.sh` to create `.venv-py311`)
 - Ollama running locally with the `gpt-oss:20b` model (`ollama pull gpt-oss:20b`)
-- Processed BRENDA database at `data/processed/brenda.db` (see [Data Preparation](#data-preparation))
+- Raw BRENDA dumps (`brenda_2025_1.json` and `brenda_2025_1.txt`) placed in `data/raw/`
+- Processed SQLite mirror (`data/processed/brenda.db`) – generated locally, not stored in Git
 
 ### 1. Bootstrap the virtual environment
 
 ```bash
-cd brenda-agentic-workflow
+cd Brenda_Agent
 ./scripts/setup_py311_env.sh
 
 # manual alternative
@@ -39,16 +40,33 @@ cp .env.example .env
 
 Add BRENDA/OpenAI/Redis credentials if you have them. The chatbot relies on `OLLAMA_BASE_URL` and `OLLAMA_MODEL` only when diverging from the defaults in `config/settings.yaml`.
 
-### 3. Ensure Ollama is ready
+### 3. Build the local BRENDA database
+
+Download the official JSON/TXT dumps from BRENDA and place them under `data/raw/`:
+
+```
+data/raw/brenda_2025_1.json
+data/raw/brenda_2025_1.txt
+```
+
+Then build the SQLite mirror (stored at `data/processed/brenda.db`):
+
+```bash
+./scripts/build_brenda_db.sh
+```
+
+This script activates the virtual environment, runs the streaming ingester, and overwrites any existing database.
+
+### 4. Ensure Ollama is ready
 
 ```bash
 ollama pull gpt-oss:20b
 ollama serve  # run in a separate terminal
 ```
 
-### 4. Verify the local database
+### 5. Verify the local database
 
-Confirm `data/processed/brenda.db` exists. If you need to build it, run the ingestion pipeline described in [Data Preparation](#data-preparation).
+Confirm `data/processed/brenda.db` exists. If not, rerun `./scripts/build_brenda_db.sh` and double-check that the raw dumps are present.
 
 ## Running the Workflow
 
@@ -85,23 +103,35 @@ python -m pytest
 
 ## Data Preparation
 
-Run the ingestion pipeline to convert the raw BRENDA JSON dump into a structured SQLite database:
+Run the helper script to convert the raw BRENDA dumps into the structured SQLite database:
 
 ```bash
-source .venv-py311/bin/activate
-# unpack tarballs if you pulled the raw archives
-# tar -xf data/brenda_2025_1.json.tar -C data/raw
-# tar -xf data/brenda_2025_1.txt.tar -C data/raw
-python -m src.pipelines.brenda_ingestion --source data/raw/brenda_2025_1.json --text data/raw/brenda_2025_1.txt --target data/processed/brenda.db
+./scripts/build_brenda_db.sh \
+  data/raw/brenda_2025_1.json \
+  data/raw/brenda_2025_1.txt \
+  data/processed/brenda.db
 ```
 
-The script streams the 2025.1 JSON release (~661 MB) with `ijson` and parses the legacy TXT dump, producing `data/processed/brenda.db` with summary tables (`enzymes`, `proteins`), a wide `enzyme_facts` table, and a `text_facts` table that keeps the short-form annotations (AC, KM, IN, etc.).
+Internally this invokes `python -m src.pipelines.brenda_ingestion`, streaming the JSON (≈661 MB) with `ijson` and parsing the TXT dump. The output database contains the `enzymes`, `proteins`, `enzyme_facts`, and `text_facts` tables used by the agents.
 
 Generate a Markdown snapshot once the database exists:
 
 ```bash
 python -m src.pipelines.brenda_analysis --output docs/brenda_analysis.md
 ```
+
+### Regenerating large artifacts
+
+Several derived datasets are intentionally excluded from Git. Rebuild them locally with the commands below (activate the virtual environment first):
+
+| Output file | Purpose | Command |
+| --- | --- | --- |
+| `artifacts/pubmed_references.json` | Aggregated PubMed IDs per EC number | `python -m src.pipelines.pubmed_reference_export --database data/processed/brenda.db --output artifacts/pubmed_references.json` |
+| `artifacts/pubmed_articles.json` | Full article metadata + cleaned HTML for each PMID | `python -m src.pipelines.pubmed_article_scrape --references artifacts/pubmed_references.json --output artifacts/pubmed_articles.json` |
+| `artifacts/pubmed_links.json` | Lightweight mapping of PubMed IDs to EC context | `python -m src.pipelines.pubmed_link_index --articles artifacts/pubmed_articles.json --output artifacts/pubmed_links.json` |
+| `artifacts/pubmed_stats_summary.json`, plots in `artifacts/figures/` | Visual summaries and statistics | `python -m src.pipelines.pubmed_stats --references artifacts/pubmed_references.json --links artifacts/pubmed_links.json --summary artifacts/pubmed_stats_summary.json` |
+
+These files can be large (100 MB–600 MB) and are gitignored. Remove them freely and regenerate when needed.
 
 ## Interactive API
 
