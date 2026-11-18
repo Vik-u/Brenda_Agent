@@ -208,7 +208,7 @@ def fetch_all(pmids: Iterable[str]) -> List[PubMedArticle]:
     pmid_list = list(pmids)
     total_batches = (len(pmid_list) + BATCH_SIZE - 1) // BATCH_SIZE
     for idx, batch in enumerate(chunked(pmid_list, BATCH_SIZE), start=1):
-        for attempt in range(3):
+        for attempt in range(5):
             try:
                 articles.extend(fetch_batch(batch))
             except httpx.HTTPStatusError as exc:
@@ -221,10 +221,10 @@ def fetch_all(pmids: Iterable[str]) -> List[PubMedArticle]:
                     time.sleep(sleep_time)
                     continue
                 raise
-            except httpx.TimeoutException:
+            except (httpx.TimeoutException, httpx.RequestError, ET.ParseError) as exc:
                 sleep_time = REQUEST_DELAY_SECONDS * (attempt + 1) * 5
                 print(
-                    f"Timeout fetching batch {idx}/{total_batches}; retrying (attempt {attempt + 1})"
+                    f"Transient fetch error on batch {idx}/{total_batches}: {exc!s}; retrying (attempt {attempt + 1})"
                 )
                 time.sleep(sleep_time)
                 continue

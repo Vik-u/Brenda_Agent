@@ -1,0 +1,102 @@
+file_name: "data/processed/brenda.db"
+table_name: "multiple (enzymes, proteins, enzyme_facts, text_facts)"
+description: "SQLite mirror produced by src.pipelines.brenda_ingestion from BRENDA 2025_1 JSON/TXT."
+
+schema_version: "1.0.0"
+last_updated: "2025-12-18"
+backward_compatible: true
+
+provenance:
+  original_source: "BRENDA release 2025_1 (JSON/TXT)"
+  source_path: "data/raw/brenda_2025_1.json, data/raw/brenda_2025_1.txt"
+  checksum_sha256: "fcafdf9197dbb5e4748f495144dc8abf0ee15885ae85f46ba1c536455366fd5e"
+
+tables:
+  - table_name: "enzymes"
+    primary_key: ["ec_number"]
+    description: "Per-EC aggregates and counts."
+    columns:
+      - { name: "ec_number", type: "TEXT", required: true, description: "EC identifier." }
+      - { name: "enzyme_id", type: "TEXT", required: false, description: "BRENDA enzyme ID." }
+      - { name: "recommended_name", type: "TEXT", required: false }
+      - { name: "systematic_name", type: "TEXT", required: false }
+      - { name: "reaction_summary", type: "TEXT", required: false }
+      - { name: "protein_count", type: "INTEGER", required: false }
+      - { name: "synonym_count", type: "INTEGER", required: false }
+      - { name: "reaction_count", type: "INTEGER", required: false }
+      - { name: "km_count", type: "INTEGER", required: false }
+      - { name: "turnover_count", type: "INTEGER", required: false }
+      - { name: "inhibitor_count", type: "INTEGER", required: false }
+
+  - table_name: "proteins"
+    primary_key: ["id"]
+    description: "Protein annotations keyed to EC numbers."
+    columns:
+      - { name: "id", type: "INTEGER", required: true }
+      - { name: "ec_number", type: "TEXT", required: true, description: "EC foreign key." }
+      - { name: "protein_id", type: "TEXT", required: false, description: "Protein identifier (often free-form)." }
+      - { name: "organism", type: "TEXT", required: false }
+      - { name: "comment", type: "TEXT", required: false }
+      - { name: "reference_ids", type: "TEXT", required: false }
+      - { name: "raw_json", type: "TEXT", required: false, description: "Original raw protein payload." }
+
+  - table_name: "enzyme_facts"
+    primary_key: ["id"]
+    description: "Structured facts (kinetics, ligands, conditions) per EC."
+    columns:
+      - { name: "id", type: "INTEGER", required: true }
+      - { name: "ec_number", type: "TEXT", required: true }
+      - { name: "category", type: "TEXT", required: true, description: "Fact category (e.g., km_value, inhibitor, specific_activity)." }
+      - { name: "value", type: "TEXT", required: false, description: "Raw value string." }
+      - { name: "value_numeric_low", type: "REAL", required: false }
+      - { name: "value_numeric_high", type: "REAL", required: false }
+      - { name: "unit", type: "TEXT", required: false }
+      - { name: "context", type: "TEXT", required: false, description: "Organism/ligand/tissue context extracted from payload." }
+      - { name: "comment", type: "TEXT", required: false }
+      - { name: "proteins", type: "TEXT", required: false, description: "Semicolon-joined protein IDs." }
+      - { name: "reference_ids", type: "TEXT", required: false }
+      - { name: "raw_json", type: "TEXT", required: false, description: "Original fact payload." }
+
+  - table_name: "text_facts"
+    primary_key: ["id"]
+    description: "Verbatim text fields parsed from the TXT dump."
+    columns:
+      - { name: "id", type: "INTEGER", required: true }
+      - { name: "ec_number", type: "TEXT", required: true }
+      - { name: "field_code", type: "TEXT", required: true, description: "Two- or three-letter BRENDA text code (e.g., RF, KM, SP)." }
+      - { name: "field_name", type: "TEXT", required: false }
+      - { name: "value_raw", type: "TEXT", required: false, description: "Original raw text line." }
+      - { name: "value_text", type: "TEXT", required: false, description: "Markup-stripped text." }
+      - { name: "protein_tokens", type: "TEXT", required: false }
+      - { name: "reference_tokens", type: "TEXT", required: false }
+      - { name: "qualifiers", type: "TEXT", required: false }
+
+validators:
+  - field: "enzyme_facts.value_numeric_low/value_numeric_high"
+    rule: "consistent_with_value_string"
+    threshold: null
+    severity: "warning"
+  - field: "enzyme_facts.unit"
+    rule: "not_null_preferred"
+    allowed_values: ["mM", "uM", "nM", "1/s", "mg/mL", "μmol/min/mg"]
+    severity: "warning"
+  - field: "proteins.organism"
+    rule: "non_empty"
+    severity: "warning"
+
+stats_snapshot:
+  rows:
+    enzymes: 8055
+    proteins: 109687
+    enzyme_facts: 2079335
+    text_facts: 1838750
+  missing_unit_fraction: 0.71
+  duplicate_fraction: "≈0.10 groups duplicated across ec/category/value/unit/context"
+  distribution_value:
+    median: null
+    iqr: null
+
+failure_patterns:
+  - "Units absent or inconsistent across enzyme_facts."
+  - "Protein identifiers are non-canonical and may duplicate across ECs."
+  - "Context fields mix organism/tissue/ligand text."

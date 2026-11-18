@@ -306,7 +306,8 @@ def _parse_value(value: str) -> Tuple[Optional[float], Optional[float], Optional
         body = match.group("body").strip()
         context = match.group("context")
 
-    numbers = NUMERIC_RE.findall(body)
+    numeric_body = re.sub(r"(?<=\d)\s*-\s*(?=\d)", " ", body)
+    numbers = NUMERIC_RE.findall(numeric_body)
     low = high = None
     if numbers:
         try:
@@ -319,6 +320,13 @@ def _parse_value(value: str) -> Tuple[Optional[float], Optional[float], Optional
     if numbers:
         unit_candidate = NUMERIC_RE.sub("", body)
         unit_candidate = unit_candidate.replace("-", " ")
+        unit_candidate = re.sub(r"[<>~=]", " ", unit_candidate)
+        unit_candidate = re.sub(
+            r"\b(?:approx\.?|ca\.?|about)\b",
+            " ",
+            unit_candidate,
+            flags=re.IGNORECASE,
+        )
         unit_candidate = re.sub(r"\s+", " ", unit_candidate).strip()
         if unit_candidate:
             unit = unit_candidate

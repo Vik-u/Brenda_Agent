@@ -19,7 +19,7 @@ python -m pip install --upgrade wheel setuptools
 python -m pip install -r requirements/base.txt
 python -m pip install -r requirements/dev.txt
 
-python -m pip install crewai langchain-ollama
+python -m pip install crewai
 
 cat <<SETUP
 ================================================================

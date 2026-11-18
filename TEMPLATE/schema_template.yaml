@@ -1,0 +1,50 @@
+file_name: "REQUIRED"
+table_name: "REQUIRED"
+description: "REQUIRED short description"
+
+schema_version: "1.0.0"
+last_updated: "YYYY-MM-DD"
+backward_compatible: true
+
+provenance:
+  original_source: "Database Name Version"
+  source_path: "/ftp/.../file.ext"
+  checksum_sha256: "<hash>"
+
+primary_key:
+  - "field1"
+  - "field2"   # composite allowed
+
+columns:
+  - name: "field_name"
+    type: "string / float / integer / list"
+    required: true/false
+    description: "What this field means"
+    maps_to: ["EC", "UniProt", "CHEBI"]   # optional
+  - name: "value"
+    type: "float"
+    required: true
+    description: "A numeric parameter"
+
+validators:
+  - field: "value"
+    rule: "greater_than"
+    threshold: 0
+    severity: "warning"
+  - field: "unit"
+    rule: "in_set"
+    allowed_values: ["mM", "uM", "1/s"]
+    severity: "error"
+
+stats_snapshot:
+  rows: REQUIRED
+  missing_unit_fraction: number
+  duplicate_fraction: number
+  distribution_value:
+    median: number
+    iqr: number
+
+failure_patterns:
+  - "Units inconsistent"
+  - "Deprecated IDs"
+  - "Malformed organism names"

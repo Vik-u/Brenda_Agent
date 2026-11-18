@@ -33,7 +33,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--model",
-        help="Override the Ollama model to use (defaults to configuration)",
+        help="Override the OpenAI chat model to use (defaults to configuration)",
     )
     args = parser.parse_args()
 

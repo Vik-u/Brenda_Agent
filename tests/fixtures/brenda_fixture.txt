@@ -1,0 +1,8 @@
+ID	1.1.1.1
+KM	0.12 mM {glucose} <1>
+IN	#P12345# EDTA <2>
+RF	Smith et al. Pubmed:123456
+///
+ID	4.3.1.18
+SY	D-Serine hydrolase (deaminating)
+///

@@ -1,0 +1,33 @@
+{
+  "sqlite": {
+    "count_enzymes": {
+      "rows": 1,
+      "avg_ms": 13.488,
+      "min_ms": 0.341
+    },
+    "facts_by_ec": {
+      "rows": 200,
+      "avg_ms": 11.252,
+      "min_ms": 0.77
+    },
+    "facts_by_category": {
+      "rows": 200,
+      "avg_ms": 1.415,
+      "min_ms": 0.707
+    },
+    "text_fields_by_code": {
+      "rows": 200,
+      "avg_ms": 194.392,
+      "min_ms": 2.022
+    },
+    "join_enzyme_facts": {
+      "rows": 200,
+      "avg_ms": 16.744,
+      "min_ms": 1.35
+    },
+    "db_size_bytes": 1802240000
+  },
+  "postgres": {
+    "status": "skipped_no_url"
+  }
+}

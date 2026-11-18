@@ -1,0 +1,38 @@
+{
+  "data": {
+    "1.1.1.1": {
+      "id": "1.1.1.1",
+      "recommended_name": "alcohol dehydrogenase",
+      "systematic_name": "ethanol:NAD+ oxidoreductase",
+      "synonyms": ["ADH"],
+      "reaction": [
+        {"value": "ethanol + NAD+ = acetaldehyde + NADH"}
+      ],
+      "km_value": [
+        {"value": "0.12 mM", "proteins": ["P12345"], "references": ["1"]}
+      ],
+      "turnover_number": [
+        {"value": "10 per_s"}
+      ],
+      "inhibitor": [
+        {"value": "EDTA", "comment": "chelates metals", "references": ["2"]}
+      ],
+      "protein": {
+        "P12345": {
+          "organism": "Homo sapiens",
+          "comment": "test protein",
+          "references": ["1"]
+        }
+      }
+    },
+    "4.3.1.18": {
+      "id": "4.3.1.18",
+      "recommended_name": "D-serine dehydratase",
+      "systematic_name": "D-serine ammonia-lyase",
+      "synonyms": ["D-Serine hydrolase (deaminating)"],
+      "reaction": [
+        {"value": "D-serine = pyruvate + NH3"}
+      ]
+    }
+  }
+}

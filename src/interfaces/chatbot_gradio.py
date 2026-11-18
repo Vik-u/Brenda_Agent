@@ -82,7 +82,7 @@ def launch(*, port: int | None = None, share: bool = False) -> None:
 
         with gr.Row():
             model_box = gr.Textbox(
-                label="Ollama model override",
+                label="OpenAI model override",
                 placeholder="Leave blank to use default model",
             )
             show_sql = gr.Checkbox(label="Show executed SQL", value=False)

@@ -16,7 +16,7 @@ Production-ready scaffolding for a multi-agent system that mines, analyses, and 
 ### Requirements
 
 - Python 3.11 (use `scripts/setup_py311_env.sh` to create `.venv-py311`)
-- Ollama running locally with the `gpt-oss:20b` model (`ollama pull gpt-oss:20b`)
+- OpenAI API key with access to `gpt-4o-mini` (set `OPENAI_API_KEY` in your environment)
 - Raw BRENDA dumps (`brenda_2025_1.json` and `brenda_2025_1.txt`) placed in `data/raw/`
 - Processed SQLite mirror (`data/processed/brenda.db`) – generated locally, not stored in Git
 
@@ -42,35 +42,13 @@ Open `.env` in your editor and fill in any secrets you have handy:
 
 | Variable | When you need it | Notes |
 | --- | --- | --- |
+| `OPENAI_API_KEY` | Required for the default OpenAI-backed LLMs | Defaults to `gpt-4o-mini`; override with `OPENAI_MODEL` if desired. |
+| `OPENAI_MODEL`, `OPENAI_TEMPERATURE`, `OPENAI_TOP_P`, `OPENAI_BASE_URL` | Optional LLM tuning | Leave unset to use the values in `config/settings.yaml`. |
 | `BRENDA_API_KEY` | Calling the official BRENDA API instead of the local SQLite mirror | Optional – the workflow falls back to the ingested database if empty. |
-| `OPENAI_API_KEY` | Using OpenAI-backed LLMs for orchestration instead of the default Ollama model | Optional – by default we talk to the local model. |
 | `REDIS_URL` | Enabling caching/coordination features in pipelines | Optional. |
-| `OLLAMA_BASE_URL` | Only if your Ollama server is not on the default `http://localhost:11434` | Example: `http://127.0.0.1:11434` on macOS; `http://wsl-host:11434` if Ollama runs on Windows and the agent on WSL. |
-| `OLLAMA_MODEL` | To use a different local model (`gemma3:27b`, `llama2:latest`, etc.) | Defaults to `gpt-oss:20b`; make sure the model is pulled locally. |
+| `OLLAMA_BASE_URL`, `OLLAMA_MODEL` | Only if you want to swap to a local Ollama model instead of OpenAI | Defaults point to `http://localhost:11434` and `gpt-oss:20b`. |
 
-Quick checklist to get the local LLM ready:
-
-```bash
-# 1. Install Ollama from https://ollama.com
-# 2. Pull the model once (downloads several GB depending on model)
-ollama pull gpt-oss:20b
-
-# 3. Start the Ollama daemon (runs an HTTP server on port 11434 by default)
-ollama serve
-
-# 4. Optional: change the Ollama base URL
-#    a) If running from another machine, export the address, e.g.
-#       export OLLAMA_BASE_URL=http://192.168.1.10:11434
-#    b) Update the same value inside .env so the scripts pick it up automatically.
-```
-
-You can verify connectivity via:
-
-```bash
-curl -s ${OLLAMA_BASE_URL:-http://localhost:11434}/api/tags | jq '.models[].name'
-```
-
-If you see the model you pulled (e.g. `gpt-oss:20b`), the chatbot will be able to connect. The defaults in `config/settings.yaml` point to `http://localhost:11434`, so no `.env` tweak is necessary for the standard local setup.
+Make sure `OPENAI_API_KEY` is exported in your shell (or set in `.env`) before running the chatbot or crew workflows.
 
 ### 3. Build the local BRENDA database
 
@@ -89,14 +67,7 @@ Then build the SQLite mirror (stored at `data/processed/brenda.db`):
 
 This script activates the virtual environment, runs the streaming ingester, and overwrites any existing database.
 
-### 4. Ensure Ollama is ready
-
-```bash
-ollama pull gpt-oss:20b
-ollama serve  # run in a separate terminal
-```
-
-### 5. Verify the local database
+### 4. Verify the local database
 
 Confirm `data/processed/brenda.db` exists. If not, rerun `./scripts/build_brenda_db.sh` and double-check that the raw dumps are present.
 
@@ -226,7 +197,7 @@ Execute the full data build + analysis pipeline using Nextflow (Chatbot stage is
 ```bash
 nextflow run main.nf
 
-# enable the crew/LLM demo once Ollama is running locally
+# enable the crew/LLM demo once OPENAI_API_KEY is set
 nextflow run main.nf --enable_chatbot true
 ```
 
@@ -236,7 +207,7 @@ The pipeline orchestrates the ingestion, analysis, PubMed enrichment, and option
 
 ### CLI (rich-formatted)
 
-Activate the virtual environment and make sure the Ollama daemon is running:
+Activate the virtual environment and make sure `OPENAI_API_KEY` is set (and the SQLite database exists at `data/processed/brenda.db`):
 
 ```bash
 source .venv-py311/bin/activate
@@ -263,7 +234,7 @@ The classic “alcohol dehydrogenase” that converts alcohols to aldehydes/keto
 
 The CLI output is fully grounded in the retrieved rows. Every table, count, and unit is pulled directly from `data/processed/brenda.db`; no LLM-generated numbers are inserted. If no rows are returned, the CLI reports that fact verbatim.
 
-The CLI renders Markdown via `rich`, includes executed SQL in a highlighted panel, and exposes a `--model` flag if you want to override the Ollama model. The underlying class is importable for scripts: `from src.services import BrendaChatbot`.
+The CLI renders Markdown via `rich`, includes executed SQL in a highlighted panel, and exposes a `--model` flag if you want to override the OpenAI model. The underlying class is importable for scripts: `from src.services import BrendaChatbot`.
 
 ### Gradio chat UI
 
@@ -271,9 +242,7 @@ The CLI renders Markdown via `rich`, includes executed SQL in a highlighted pane
 ./scripts/run_gradio_chatbot.sh --port 8570
 ```
 
-This starts a local chat UI at http://127.0.0.1:8570 (auto-selected if the port is busy). Use the optional text box to override the Ollama model and the checkbox to stream the executed SQL with each response. The session keeps conversational history so you can ask follow-up questions without losing context.
-
-> **Note:** LangChain currently emits a deprecation warning about `ChatOllama`. You can silence it by `pip install langchain-ollama` and updating the configuration, but it does not affect functionality.
+This starts a local chat UI at http://127.0.0.1:8570 (auto-selected if the port is busy). Use the optional text box to override the OpenAI model and the checkbox to stream the executed SQL with each response. The session keeps conversational history so you can ask follow-up questions without losing context.
 
 ### Programmatic access
 

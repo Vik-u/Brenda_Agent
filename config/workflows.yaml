@@ -26,3 +26,19 @@ workflows:
       log_structured: true
       persist_results: true
       emit_traces: true
+
+  brenda_enzyme_insight_kg:
+    version: 0.1.0
+    description: Enrich the standard enzyme insight workflow with KG neighbors.
+    stages:
+      - name: run_base_workflow
+        agent: orchestrator
+        output: structured_report
+      - name: enrich_with_kg
+        agent: orchestrator
+        input: structured_report
+        output: kg_augmented_report
+    telemetry:
+      log_structured: true
+      persist_results: true
+      emit_traces: true

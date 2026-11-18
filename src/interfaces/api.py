@@ -11,9 +11,12 @@ from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
+from src.core.settings import get_settings
+from src.kg.retrieval import KGReader
 from src.services import BrendaChatbot
 
 DB_PATH = Path("data/processed/brenda.db")
+KG_DB_PATH = Path(get_settings().kg.database_path)
 
 app = FastAPI(title="BRENDA Agentic API", version="0.2.0")
 
@@ -39,6 +42,12 @@ def get_chatbot() -> BrendaChatbot:
         except FileNotFoundError as exc:  # pragma: no cover - init guard
             raise HTTPException(status_code=500, detail=str(exc))
     return _chatbot_instance
+
+
+def get_kg_reader() -> KGReader:
+    if not KG_DB_PATH.exists():
+        raise HTTPException(status_code=404, detail="KG database not found")
+    return KGReader(KG_DB_PATH)
 
 
 def get_connection() -> sqlite3.Connection:
@@ -279,6 +288,41 @@ def list_text_fields(
     return {
         "results": [dict(row) for row in rows],
         "count": len(rows),
+    }
+
+
+@app.get("/kg/nodes/{node_id}")
+def get_kg_node(node_id: str) -> Dict[str, Any]:
+    reader = get_kg_reader()
+    node = reader.get_node(node_id)
+    if node is None:
+        raise HTTPException(status_code=404, detail="KG node not found")
+    return node
+
+
+@app.get("/kg/enzymes/{ec_number}")
+def get_kg_enzyme(
+    ec_number: str,
+    relation: Optional[str] = Query(None, description="Filter edges by relation"),
+    limit: int = Query(200, gt=0, le=2000),
+) -> Dict[str, Any]:
+    reader = get_kg_reader()
+    node_id = f"enzyme:{ec_number}"
+    neighbors = reader.neighbors(node_id, relation=relation, limit=limit)
+    return {
+        "node_id": node_id,
+        "relation": relation,
+        "count": len(neighbors),
+        "neighbors": [
+            {
+                "relation": n.relation,
+                "target_id": n.target_id,
+                "target_type": n.target_type,
+                "target_label": n.target_label,
+                "target_properties": n.target_properties,
+            }
+            for n in neighbors
+        ],
     }
 
 

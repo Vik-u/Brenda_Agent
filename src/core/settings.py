@@ -25,6 +25,8 @@ class OpenAISettings(BaseModel):
     api_key: Optional[str] = None
     model: str = "gpt-4o-mini"
     temperature: float = 0.2
+    top_p: float = 1.0
+    base_url: Optional[str] = None
 
 
 class RedisSettings(BaseModel):
@@ -68,11 +70,16 @@ class ChatbotSettings(BaseModel):
     max_rows: int = Field(default=25)
 
 
+class KgSettings(BaseModel):
+    database_path: str = Field(default="data/processed/brenda_kg.db")
+
+
 class Settings(BaseModel):
     app: AppSettings = AppSettings()
     services: ServiceSettings = ServiceSettings()
     workflows: WorkflowSettings = WorkflowSettings()
     chatbot: ChatbotSettings = ChatbotSettings()
+    kg: KgSettings = KgSettings()
     raw: Dict[str, Any] = Field(default_factory=dict)
 
     @classmethod
@@ -84,11 +91,13 @@ class Settings(BaseModel):
         services_cfg = merged.get("services", {})
         workflows_cfg = merged.get("workflows", {})
         chatbot_cfg = merged.get("chatbot", {})
+        kg_cfg = merged.get("kg", {})
         return cls(
             app=AppSettings(**app_cfg),
             services=ServiceSettings(**services_cfg),
             workflows=WorkflowSettings(**workflows_cfg),
             chatbot=ChatbotSettings(**chatbot_cfg),
+            kg=KgSettings(**kg_cfg),
             raw=merged,
         )
 

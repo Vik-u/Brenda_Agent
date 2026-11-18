@@ -1,0 +1,81 @@
+file_name: "data/raw/brenda_2025_1.json"
+table_name: "enzyme_entries"
+description: "Top-level JSON mapping EC numbers to enzyme records with kinetic facts, protein dictionaries, and text/reference fields."
+
+schema_version: "1.0.0"
+last_updated: "2025-12-18"
+backward_compatible: true
+
+provenance:
+  original_source: "BRENDA release 2025_1"
+  source_path: "https://www.brenda-enzymes.org/downloads"
+  checksum_sha256: "a08268e5f4ae326b041b7b7b6c79a39363ef5080b0b65d81a02e9741ccbffd16"
+
+primary_key:
+  - "ec_number (JSON key)"
+
+columns:
+  - name: "id"
+    type: "string"
+    required: true
+    description: "BRENDA enzyme identifier."
+  - name: "recommended_name"
+    type: "string"
+    required: true
+    description: "Recommended enzyme name."
+  - name: "systematic_name"
+    type: "string"
+    required: true
+    description: "Systematic enzyme name."
+  - name: "reaction"
+    type: "list<object>"
+    required: false
+    description: "List of reaction dicts (value, optional comment/refs)."
+  - name: "synonyms"
+    type: "list<string>"
+    required: false
+    description: "Synonym strings."
+  - name: "protein"
+    type: "dict"
+    required: false
+    description: "Dictionary keyed by protein identifier; values hold organism, comment, references, raw_json."
+  - name: "km_value / turnover_number / kcat_km_value / ic50_value / ki_value / specific_activity"
+    type: "list<object>"
+    required: false
+    description: "Kinetic measurements; each element may include value, comment, unit (often missing), proteins, references, context."
+    maps_to: ["EC", "CHEBI (ligands)", "UniProt (proteins)"]
+  - name: "inhibitor / activating_compound / cofactor / metals_ions / natural_substrates_products / substrates_products"
+    type: "list<object>"
+    required: false
+    description: "Ligand and substrate/product annotations; values and comments are free text with optional references/proteins."
+  - name: "ph_optimum / ph_range / ph_stability / temperature_optimum / temperature_range / temperature_stability / organic_solvent_stability / oxidation_stability / storage_stability / general_stability"
+    type: "list<object>"
+    required: false
+    description: "Condition-dependent annotations; numeric values often embedded in strings with braces for context."
+  - name: "cloned / expression / purification / crystallization / localization / subunits / posttranslational_modification / protein_variants / source_tissue / application / general_information / reference / renatured / reaction_type / pi_value / molecular_weight"
+    type: "list<object>"
+    required: false
+    description: "Miscellaneous descriptive/text fields with optional references."
+
+validators:
+  - field: "value inside kinetic lists"
+    rule: "parsable_numeric_if_present"
+    threshold: null
+    severity: "warning"
+  - field: "unit inside kinetic lists"
+    rule: "in_set"
+    allowed_values: ["mM", "uM", "nM", "1/s", "mg/mL", "μmol/min/mg"]
+    severity: "warning"
+
+stats_snapshot:
+  rows: 8055                         # EC entries observed
+  missing_unit_fraction: 0.71        # derived from processed mirror
+  duplicate_fraction: "≈0.10 groups duplicated across ec/category/value/unit/context"
+  distribution_value:
+    median: null
+    iqr: null
+
+failure_patterns:
+  - "Units absent or embedded in value strings."
+  - "Protein identifiers are free-form, sometimes numeric placeholders."
+  - "Context (organism/ligand/tissue) mixed into value or comment fields."

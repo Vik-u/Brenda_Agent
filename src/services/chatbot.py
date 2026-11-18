@@ -11,9 +11,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Set
 
-from langchain_community.chat_models import ChatOllama
 from langchain_community.utilities import SQLDatabase
 from langchain_core.callbacks.base import Callbacks
+from langchain_core.language_models.chat_models import BaseChatModel
+from langchain_openai import ChatOpenAI
 from sqlalchemy.exc import OperationalError
 from tabulate import tabulate
 
@@ -34,7 +35,7 @@ class ChatResult:
 
 
 class BrendaChatbot:
-    """Simple SQL-enabled chatbot backed by a local Ollama model."""
+    """Simple SQL-enabled chatbot backed by an OpenAI chat model."""
 
     _CATEGORY_FETCH_LIMIT = 5000
     _CATEGORY_KEYWORDS: Dict[str, Sequence[str]] = {
@@ -66,11 +67,11 @@ class BrendaChatbot:
         max_rows: Optional[int] = None,
         verbose: bool = False,
         callbacks: Optional[Callbacks] = None,
-        llm: Optional[ChatOllama] = None,
+        llm: Optional[BaseChatModel] = None,
         formatter: Optional[ResponseFormatter] = None,
     ) -> None:
         settings = get_settings()
-        ollama_cfg = settings.services.ollama
+        openai_cfg = settings.services.openai
         chatbot_cfg = settings.chatbot
 
         db_path = Path(database_path or chatbot_cfg.database_path)
@@ -79,13 +80,14 @@ class BrendaChatbot:
                 f"Structured database not found at {db_path}. Run the ingestion pipeline first."
             )
 
-        self._llm = llm or ChatOllama(
-            model=model or ollama_cfg.model,
-            base_url=base_url or ollama_cfg.base_url,
-            temperature=temperature if temperature is not None else ollama_cfg.temperature,
-            top_p=top_p if top_p is not None else ollama_cfg.top_p,
+        self._llm = llm or ChatOpenAI(
+            model=model or openai_cfg.model,
+            api_key=openai_cfg.api_key,
+            base_url=base_url or openai_cfg.base_url or None,
+            temperature=temperature if temperature is not None else openai_cfg.temperature,
+            top_p=top_p if top_p is not None else openai_cfg.top_p,
         )
-        model_name = getattr(self._llm, "model", None) or model or ollama_cfg.model
+        model_name = getattr(self._llm, "model", None) or model or openai_cfg.model
 
         self._db_path = db_path
         self._db = SQLDatabase.from_uri(
@@ -96,8 +98,8 @@ class BrendaChatbot:
         self._callbacks = callbacks
         self._schema_cache = self._db.get_table_info_no_throw(list(self._default_tables))
         self._formatter = formatter or ResponseFormatter(
-            model=model or ollama_cfg.model,
-            api_base=base_url or ollama_cfg.base_url,
+            model=model or openai_cfg.model,
+            api_key=openai_cfg.api_key,
         )
         logger.info(
             "chatbot.initialized",

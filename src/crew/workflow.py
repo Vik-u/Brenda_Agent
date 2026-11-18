@@ -8,7 +8,7 @@ from typing import Any, Dict, Optional
 
 from crewai import Agent, Crew, Task
 from langchain_core.tools import Tool
-from langchain_community.chat_models import ChatOllama
+from langchain_openai import ChatOpenAI
 
 from src.core.settings import get_settings
 from src.services.chatbot import BrendaChatbot
@@ -23,14 +23,15 @@ class CrewRunResult:
     filter_payload: Dict[str, Any]
 
 
-def _build_llm(model_override: Optional[str] = None) -> ChatOllama:
+def _build_llm(model_override: Optional[str] = None) -> ChatOpenAI:
     settings = get_settings()
-    ollama_cfg = settings.services.ollama
-    return ChatOllama(
-        model=model_override or ollama_cfg.model,
-        base_url=ollama_cfg.base_url,
-        temperature=ollama_cfg.temperature,
-        top_p=ollama_cfg.top_p,
+    openai_cfg = settings.services.openai
+    return ChatOpenAI(
+        model=model_override or openai_cfg.model,
+        api_key=openai_cfg.api_key,
+        base_url=openai_cfg.base_url or None,
+        temperature=openai_cfg.temperature,
+        top_p=openai_cfg.top_p,
     )
 
 

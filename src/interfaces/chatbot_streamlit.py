@@ -35,7 +35,7 @@ def main() -> None:
     with st.sidebar:
         st.header("Settings")
         model_override = st.text_input(
-            "Ollama model override",
+            "OpenAI model override",
             value="",
             help="Leave empty to use the configured default.",
         ) or None

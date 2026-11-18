@@ -17,7 +17,7 @@ class _StubResponse:
 
 
 class _StubLLM:
-    """Minimal stand-in for ChatOllama used in tests."""
+    """Minimal stand-in for the chat model used in tests."""
 
     def __init__(self, responses: list[str]) -> None:
         self._responses = responses

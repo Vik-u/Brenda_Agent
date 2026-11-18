@@ -9,6 +9,10 @@ services:
     api_key: ${BRENDA_API_KEY:-}
   openai:
     api_key: ${OPENAI_API_KEY:-}
+    model: ${OPENAI_MODEL:-gpt-4o-mini}
+    temperature: ${OPENAI_TEMPERATURE:-0.2}
+    top_p: ${OPENAI_TOP_P:-1.0}
+    base_url: ${OPENAI_BASE_URL:-}
   redis:
     url: ${REDIS_URL:-redis://localhost:6379/0}
   database:
@@ -24,6 +28,9 @@ chatbot:
   top_k: 5
   max_iterations: 12
   max_rows: 25
+
+kg:
+  database_path: ${KG_DATABASE_PATH:-data/processed/brenda_kg.db}
 
 workflows:
   default_timeout_seconds: 180

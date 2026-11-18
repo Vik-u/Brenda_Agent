@@ -5,7 +5,7 @@ The BRENDA Agentic Workflow is designed as a modular, production-ready scaffold 
 ## Components
 
 - **Configuration Layer** (`config/`, `src/core/settings.py`): Loads YAML configuration and environment variables to provide runtime settings.
-- **Service Layer** (`src/services/brenda_client.py`, `src/services/chatbot.py`): Provides external service clients and the Ollama-backed SQL agent over the ingested BRENDA data.
+- **Service Layer** (`src/services/brenda_client.py`, `src/services/chatbot.py`): Provides external service clients and the OpenAI-backed SQL agent over the ingested BRENDA data.
 - **Agent Layer** (`src/agents/`): Encapsulates distinct responsibilities for the orchestration, research, and analysis roles.
 - **Workflow Layer** (`src/workflows/`): Defines high-level business processes that sequences agents and aggregates outputs.
 - **Interface Layer** (`src/main.py`, `scripts/`): Command-line entrypoints and automation scripts for running workflows.

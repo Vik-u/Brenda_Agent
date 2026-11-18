@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from typing import Iterable, List, Optional
 
@@ -25,8 +26,8 @@ else:  # pragma: no cover - defined only when dspy missing
 
 @dataclass
 class ResponseFormatter:
-    model: str = "gpt-oss:20b"
-    api_base: str = "http://localhost:11434"
+    model: str = "gpt-4o-mini"
+    api_key: Optional[str] = None
 
     def __post_init__(self) -> None:
         if dspy is None or FriendlyAnswerSignature is None:
@@ -36,11 +37,21 @@ class ResponseFormatter:
             return
 
         model_name = self.model
-        if not model_name.startswith("ollama/"):
-            model_name = f"ollama/{model_name}"
-        self._lm = dspy.LM(model_name, api_base=self.api_base)
-        dspy.configure(lm=self._lm)
-        self._predictor = dspy.Predict(FriendlyAnswerSignature)
+        api_key = self.api_key or os.getenv("OPENAI_API_KEY")
+
+        try:
+            if hasattr(dspy, "OpenAI"):
+                self._lm = dspy.OpenAI(model=model_name, api_key=api_key)
+            else:
+                if not model_name.startswith("openai/"):
+                    model_name = f"openai/{model_name}"
+                self._lm = dspy.LM(model_name, api_key=api_key)
+
+            dspy.configure(lm=self._lm)
+            self._predictor = dspy.Predict(FriendlyAnswerSignature)
+        except Exception:  # pragma: no cover - formatter is optional
+            self._lm = None
+            self._predictor = None
 
     def _build_evidence(self, rows: Iterable[dict], references: Iterable[dict]) -> str:
         row_lines: List[str] = []
